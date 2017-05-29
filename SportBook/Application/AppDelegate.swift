@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        if UserManager.sharedInstance.IsAuthenticated {
+        if AuthManager.sharedInstance.IsAuthenticated {
             let mainVc = UIStoryboard.loadMainViewController()
             
             self.window = UIWindow(frame: UIScreen.main.bounds)

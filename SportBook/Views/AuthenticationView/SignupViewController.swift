@@ -24,41 +24,48 @@ class SignupViewController : BaseViewController {
     
     let disposeBag = DisposeBag()
     
-    var signupViewModel : SignupViewModel = SignupViewModel()
+    var signupViewModel : SignupViewModel!
     
     override func viewDidLoad() {
-        //Subscribe text field text changed
-        tfEmail.rx.text.observeOn(MainScheduler.instance).subscribe(onNext: { text in
-            self.signupViewModel.email = text
-        }).addDisposableTo(disposeBag)
         
-        tfPassword.rx.text.observeOn(MainScheduler.instance).subscribe(onNext: { text in
-            self.signupViewModel.password = text
-        }).addDisposableTo(disposeBag)
+        signupViewModel = SignupViewModel(emailText: tfEmail.rx.text.orEmpty.asDriver(),
+                                         passwordText: tfPassword.rx.text.orEmpty.asDriver(),
+                                         confirmPasswordText: tfConfirmPassword.rx.text.orEmpty.asDriver())
         
-        tfConfirmPassword.rx.text.observeOn(MainScheduler.instance).subscribe(onNext: { text in
-            self.signupViewModel.confirmPassword = text
-        }).addDisposableTo(disposeBag)
+        signupViewModel.credentialsValid
+            .drive(onNext: { [unowned self] valid in
+                self.btnSignup.isEnabled = valid
+            })
+            .addDisposableTo(disposeBag)
         
-        //Create view tap observable
-        let viewTap = view.rx.tapGesture().when(.recognized)
         
-        //Create sign up button tap observable
-        let signupTap = btnSignup.rx.tapGesture().when(.recognized)
+        let signUpTap = btnSignup.rx.tap
         
-        //Merge view tap and sign up button tap
-        Observable.from([viewTap, signupTap]).asObservable().subscribe(onNext: {_ in
+        
+        signUpTap.asObservable().subscribe(onNext: { [unowned self] _ in
             self.dismissKeyboard()
         }).addDisposableTo(disposeBag)
         
-        signupTap.flatMap {_ in
-            return self.signupViewModel.signup()
-            }.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] in
-                print("Sign Up Success!!!")
-                let mainView = UIStoryboard.loadMainViewController()
-                self?.dismiss(animated: false) {}
-                self?.navigationController?.present(mainView, animated: true, completion: {})
-                }).addDisposableTo(self.disposeBag)
+        signUpTap.withLatestFrom(signupViewModel.credentialsValid)
+            .filter { $0 }
+            .flatMapLatest { [unowned self] valid -> Observable<AuthenticationStatus> in
+                self.signupViewModel.signUp(self.tfEmail.text!, password: self.tfPassword.text!)
+                    .observeOn(SerialDispatchQueueScheduler(qos: .userInteractive))
+            }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] authStatus in
+                switch authStatus {
+                case .None:
+                    break
+                case .Authenticated:
+                    self.navigationController?.popViewController(animated: true)
+                    break
+                case .Error(let error):
+                    self.showError(error)
+                    break
+                }
+            })
+            .addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,5 +77,35 @@ class SignupViewController : BaseViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.dismissKeyboard()
+    }
+    
+    fileprivate func showError(_ error: AuthenticationError) {
+        var title: String = ""
+        var message: String = ""
+        
+        switch error {
+        case .Unknown:
+            title = "An error occuried"
+            message = "Unknown error"
+            break
+        case .UserCancelled:
+            return
+        case .Server, .BadReponse:
+            title = "An error occuried"
+            message = "Server error"
+            break
+        case .BadCredentials:
+            title = "Bad credentials"
+            message = "This user don't exist"
+            break
+        case .Custom(let error):
+            title = "Sign up failed"
+            message = error.description
+            break
+        }
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }

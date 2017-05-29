@@ -15,7 +15,8 @@ class ProfileViewController : BaseViewController {
     @IBAction func btnLogoutTapped(_ sender: UIButton) {
         AuthenticationProvider.request(.signOut).subscribe(onNext: { result in
             print(JSON(result.data))
-            UserManager.sharedInstance.logout()
+            UserManager.sharedInstance.clear()
+            AuthManager.sharedInstance.signOut()
         })
     }
 }

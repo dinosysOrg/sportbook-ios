@@ -8,36 +8,38 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 import SwiftyJSON
 import Moya
 import FacebookCore
 import FacebookLogin
 
-class LoginViewModel : AuthenticationDelegate {
+class LoginViewModel {
     
     let disposeBag = DisposeBag()
     
-    var email : String! = ""
+    let credentialsValid: Driver<Bool>
     
-    var password : String! = ""
-    
-    func loginWithEmail() -> Observable<Void> {
-        return Observable<Void>.create { observer in
-            //Valid data here
-            
-            AuthenticationProvider.request(Authentication.signInWithEmail(self.email, self.password)).flatMap { response in
-                return self.handleResponse(response)
-                }.subscribe(onError: { error in
-                    //Notify error)
-                }, onCompleted: { _ in
-                    observer.onNext()
-                }).addDisposableTo(self.disposeBag)
-            
-            return Disposables.create()
-        }
+    init(emailText: Driver<String>, passwordText: Driver<String>) {
+        
+        let usernameValid = emailText
+            .distinctUntilChanged()
+            .throttle(0.3)
+            .map { Validation.emailValid(email: $0) }
+        
+        let passwordValid = passwordText
+            .distinctUntilChanged()
+            .throttle(0.3)
+            .map { $0.utf8.count > 6 }
+        
+        credentialsValid = Driver.combineLatest(usernameValid, passwordValid) { $0 && $1 }
     }
     
-    func loginFacebook(viewcontroller : UIViewController) -> Observable<Void> {
+    func signInWithEmail(_ email: String, password: String) -> Observable<AuthenticationStatus> {
+        return AuthManager.sharedInstance.signIn(email, password: password)
+    }
+    
+    func signInWithFacebook(viewcontroller : UIViewController) -> Observable<AuthenticationStatus> {
         
         let loginManager = LoginManager()
         
@@ -45,39 +47,32 @@ class LoginViewModel : AuthenticationDelegate {
         loginManager.logOut()
         
         //Create observable to do login facebook and return result
-        return Observable<Void>.create { observer in
+        return Observable<AuthenticationStatus>.create { observer in
             
             //Init permission
             let permission = [ReadPermission.publicProfile, ReadPermission.userFriends]
             
             //Login with permision, view controller and completion closure
-            loginManager.logIn(permission, viewController: viewcontroller, completion: {  result in
+            loginManager.logIn(permission, viewController: viewcontroller, completion: { result in
                 
                 switch result {
                 //If success return notify and acess token
                 case .success(_, _, let accessToken):
-                    AuthenticationProvider.request(.signInWithFacebook(accessToken.authenticationToken)).flatMap { response in
-                        return self.handleResponse(response)
-                    }.subscribe(onError: { error in
-                        //Notify error
-                    }, onCompleted: { _ in
-                        observer.onNext()
+                    AuthManager.sharedInstance.signIn(accessToken.authenticationToken).subscribe(onNext: { authStatus in
+                        observer.onNext(authStatus)
                     }).addDisposableTo(self.disposeBag)
-                    
-                    //Do sign in with Facebook
                     break
                 //If user cancelled notify false and message
                 case .cancelled:
                     //Notify cancelled error
+                    observer.onNext(AuthenticationStatus.Error(AuthenticationError.UserCancelled))
                     break
                 //If failed to login notify false and error message
-                case .failed(let error):
-                     //Notify request failed error
+                case .failed(_):
+                    //Notify request failed error
+                    observer.onNext(AuthenticationStatus.Error(AuthenticationError.Unknown))
                     break
                 }
-                
-                //Complete and dispose
-                observer.onCompleted()
             })
             
             return Disposables.create()

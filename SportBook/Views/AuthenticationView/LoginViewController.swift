@@ -16,7 +16,7 @@ class LoginViewController : BaseViewController {
     
     let disposeBag = DisposeBag()
     
-    var loginViewModel = LoginViewModel()
+    var loginViewModel : LoginViewModel!
     
     @IBOutlet weak var btnLogin: UIButton!
     
@@ -30,39 +30,56 @@ class LoginViewController : BaseViewController {
     
     override func viewDidLoad() {
         
-        //Subscribe text field text changed
-        tfEmail.rx.text.observeOn(MainScheduler.instance).subscribe(onNext: { text in
-            self.loginViewModel.email = text
-        }).addDisposableTo(disposeBag)
+        loginViewModel = LoginViewModel(emailText: tfEmail.rx.text.orEmpty.asDriver(),
+                                             passwordText: tfPassword.rx.text.orEmpty.asDriver())
         
-        tfPassword.rx.text.observeOn(MainScheduler.instance).subscribe(onNext: { text in
-            self.loginViewModel.password = text
-        }).addDisposableTo(disposeBag)
+        loginViewModel.credentialsValid
+            .drive(onNext: { [unowned self] valid in
+                self.btnLogin.isEnabled = valid
+            })
+            .addDisposableTo(disposeBag)
         
-        let signinEmailTap = btnLogin.rx.tapGesture()
-            .when(.recognized)
         
-        let signinFacebookTap = btnLoginFacebook.rx.tapGesture()
-            .when(.recognized)
+        let signInTap = btnLogin.rx.tap
         
-        let signinEmail = signinEmailTap.flatMap {_ in
-            return self.loginViewModel.loginWithEmail()
-        }
+        let facebookTap = btnLoginFacebook.rx.tap
         
-        let signinFacebook = signinFacebookTap.flatMap {_ in
-            return self.loginViewModel.loginFacebook(viewcontroller: self)
-        }
-        
-        Observable.from([signinEmailTap, signinFacebookTap]).merge().subscribe(onNext: {_ in
+        Observable.from([signInTap, facebookTap]).asObservable().subscribe(onNext: { [unowned self] _ in
             self.dismissKeyboard()
         }).addDisposableTo(disposeBag)
         
-        Observable.from([signinEmail, signinFacebook]).merge().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] in
-            print("Sign In Success!!!")
-            let mainView = UIStoryboard.loadMainViewController()
-            self?.dismiss(animated: false) {}
-            self?.navigationController?.present(mainView, animated: true, completion: {})
-            }).addDisposableTo(self.disposeBag)
+        let signInWithEmail = signInTap
+            .withLatestFrom(loginViewModel.credentialsValid)
+            .filter { $0 }
+            .flatMapLatest { [unowned self] valid -> Observable<AuthenticationStatus> in
+                self.loginViewModel.signInWithEmail(self.tfEmail.text!, password: self.tfPassword.text!)
+                    .observeOn(SerialDispatchQueueScheduler(qos: .userInteractive))
+            }
+            .observeOn(MainScheduler.instance)
+            
+        let signInWithFacebook = facebookTap
+            .flatMapLatest { [unowned self] _ -> Observable<AuthenticationStatus> in
+                self.loginViewModel.signInWithFacebook(viewcontroller: self)
+                    .observeOn(SerialDispatchQueueScheduler(qos: .userInteractive))
+            }
+            .observeOn(MainScheduler.instance)
+            
+        Observable.from([signInWithEmail, signInWithFacebook])
+            .merge().subscribe(onNext: { [unowned self] authStatus in
+                switch authStatus {
+                case .None:
+                    break
+                case .Authenticated:
+                    let mainView = UIStoryboard.loadMainViewController()
+                    self.dismiss(animated: false) {}
+                    self.navigationController?.present(mainView, animated: true, completion: {})
+                    break
+                case .Error(let error):
+                    self.showError(error)
+                    break
+                }
+            })
+            .addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,5 +91,35 @@ class LoginViewController : BaseViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.dismissKeyboard()
+    }
+    
+    fileprivate func showError(_ error: AuthenticationError) {
+        var title: String = ""
+        var message: String = ""
+        
+        switch error {
+        case .Unknown:
+            title = "An error occuried"
+            message = "Unknown error"
+            break
+        case .UserCancelled:
+            return
+        case .Server, .BadReponse:
+            title = "An error occuried"
+            message = "Server error"
+            break
+        case .BadCredentials:
+            title = "Bad credentials"
+            message = "This user don't exist"
+            break
+        case .Custom(let error):
+            title = "Sign in failed"
+            message = error.description
+            break
+        }
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }

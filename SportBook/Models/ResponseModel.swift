@@ -14,20 +14,20 @@ class ResponseModel {
     var code : Int = 0
     var status : String?
     var data : Data
-    var error : ApiError?
+    var error : SportBookError?
     
     required init(response: Response) {
         
         self.code = response.statusCode
+        self.data = response.data
         
         let jsonData = JSON(response.data)
         
         self.status = jsonData["status"].string
-        self.data = jsonData["data"]
         
         let errorMessage = jsonData["errors"]["full_messages"]
             .arrayValue.map { $0.stringValue }.joined(separator: ". ")
         
-        error = ApiError(message: errorMessage)
+        self.error = SportBookError.ApiRequest(errorMessage)
     }
 }

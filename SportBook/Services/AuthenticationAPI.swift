@@ -15,7 +15,7 @@ let endpointClosure = { (target: Authentication) -> Endpoint<Authentication> in
     
     switch target {
     case .signOut:
-        return defaultEndpoint.adding(newHTTPHeaderFields: UserManager.sharedInstance.toDictionary())
+        return defaultEndpoint.adding(newHTTPHeaderFields: AuthManager.sharedInstance.toDictionary())
     default:
          return defaultEndpoint
     }

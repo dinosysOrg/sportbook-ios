@@ -7,32 +7,31 @@
 //
 
 import Foundation
+import RxCocoa
 import RxSwift
 
-class SignupViewModel : AuthenticationDelegate {
+class SignupViewModel {
     
-    let disposeBag = DisposeBag()
+    let credentialsValid: Driver<Bool>
     
-    var email : String! = ""
+    init(emailText: Driver<String>, passwordText: Driver<String>, confirmPasswordText: Driver<String>) {
+        
+        let usernameValid = emailText
+            .distinctUntilChanged()
+            .throttle(0.3)
+            .map { Validation.emailValid(email: $0) }
+        
+        let passwordValid = passwordText
+            .distinctUntilChanged()
+            .throttle(0.3)
+            .map { $0.utf8.count > 6 }
+        
+        let repeatPasswordValid = Driver.combineLatest(passwordText, confirmPasswordText) { $0 == $1 }
+        
+        credentialsValid = Driver.combineLatest(usernameValid, passwordValid, repeatPasswordValid) { $0 && $1 && $2}
+    }
     
-    var password : String! = ""
-    
-    var confirmPassword : String! = ""
-    
-    func signup() -> Observable<Void> {
-        return Observable<Void>.create { observer in
-            //Valid data here
-            
-            AuthenticationProvider.request(.signUp(self.email, self.password))
-                .flatMap { response in
-                    return self.handleResponse(response)
-                }.subscribe(onError: { error in
-                    //observer.onError(error)
-                }, onCompleted: { _ in
-                    observer.onNext()
-                }).addDisposableTo(self.disposeBag)
-            
-            return Disposables.create()
-        }
+    func signUp(_ email: String, password: String) -> Observable<AuthenticationStatus> {
+        return AuthManager.sharedInstance.signUp(email, password: password)
     }
 }

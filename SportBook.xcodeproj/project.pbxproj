@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		B0DC3CE17A243AE17938B896 /* Pods_SportBookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B427DEF1612F4A55DC3CA76 /* Pods_SportBookUITests.framework */; };
 		C39BF3826B813B95FC71DAB7 /* Pods_SportBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42704F6E113E2491B3558520 /* Pods_SportBook.framework */; };
-		C93482011ED59A2700B069C1 /* AuthenticationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482001ED59A2700B069C1 /* AuthenticationDelegate.swift */; };
 		C93482031ED59B4100B069C1 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482021ED59B4100B069C1 /* ForgotPasswordViewModel.swift */; };
 		C93482061ED59B4800B069C1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482041ED59B4800B069C1 /* LoginViewModel.swift */; };
 		C93482071ED59B4800B069C1 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482051ED59B4800B069C1 /* SignupViewModel.swift */; };
+		C93BCC121ED7D53C008A99FC /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93BCC101ED7D53C008A99FC /* ErrorModel.swift */; };
+		C93BCC131ED7D53C008A99FC /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93BCC111ED7D53C008A99FC /* ResponseModel.swift */; };
+		C93BCC161ED7EDCB008A99FC /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93BCC151ED7EDCB008A99FC /* AuthManager.swift */; };
+		C93BCC181ED81338008A99FC /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93BCC171ED81338008A99FC /* Validation.swift */; };
 		C94941D71ECBF5DC00C21862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94941D61ECBF5DC00C21862 /* AppDelegate.swift */; };
 		C94941D91ECBF5DC00C21862 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94941D81ECBF5DC00C21862 /* MainViewController.swift */; };
 		C94941DE1ECBF5DC00C21862 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C94941DD1ECBF5DC00C21862 /* Assets.xcassets */; };
@@ -20,7 +23,6 @@
 		C94941F71ECBF5DD00C21862 /* SportBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94941F61ECBF5DD00C21862 /* SportBookUITests.swift */; };
 		C949420E1ECBF8CA00C21862 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C949420D1ECBF8CA00C21862 /* LaunchScreen.storyboard */; };
 		C94942101ECBF8EC00C21862 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C949420F1ECBF8EC00C21862 /* Main.storyboard */; };
-		C964896E1ED67C61009E9E92 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C964896D1ED67C61009E9E92 /* Validation.swift */; };
 		C96AC9771ECD85030055580B /* UIStoryboard+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9761ECD85030055580B /* UIStoryboard+Loader.swift */; };
 		C96AC9821ECD88900055580B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9811ECD88900055580B /* BaseViewController.swift */; };
 		C96AC9881ECD99000055580B /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C96AC9841ECD99000055580B /* Authentication.storyboard */; };
@@ -64,10 +66,13 @@
 		863EA37F482AD44FB37B2055 /* Pods-SportBookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportBookUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportBookUITests/Pods-SportBookUITests.release.xcconfig"; sourceTree = "<group>"; };
 		86AE5EE0368962AAE5CED1B3 /* Pods-SportBookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportBookUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportBookUITests/Pods-SportBookUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F2388BB8D1FCE93A98C9C0A /* Pods-SportBookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportBookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportBookTests/Pods-SportBookTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C93482001ED59A2700B069C1 /* AuthenticationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationDelegate.swift; sourceTree = "<group>"; };
 		C93482021ED59B4100B069C1 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		C93482041ED59B4800B069C1 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C93482051ED59B4800B069C1 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		C93BCC101ED7D53C008A99FC /* ErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		C93BCC111ED7D53C008A99FC /* ResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
+		C93BCC151ED7EDCB008A99FC /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		C93BCC171ED81338008A99FC /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		C94941D31ECBF5DC00C21862 /* SportBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94941D61ECBF5DC00C21862 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Application/AppDelegate.swift; sourceTree = "<group>"; };
 		C94941D81ECBF5DC00C21862 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +86,6 @@
 		C94941F81ECBF5DD00C21862 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C949420D1ECBF8CA00C21862 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C949420F1ECBF8EC00C21862 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		C964896D1ED67C61009E9E92 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		C96AC9761ECD85030055580B /* UIStoryboard+Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Loader.swift"; sourceTree = "<group>"; };
 		C96AC9811ECD88900055580B /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C96AC9841ECD99000055580B /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
@@ -94,7 +98,7 @@
 		C9E708781ED3E73A0062B0BA /* SportBookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportBookAPI.swift; sourceTree = "<group>"; };
 		C9E7087A1ED41C000062B0BA /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		C9E7087C1ED41CCF0062B0BA /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		C9E7087E1ED41CE00062B0BA /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		C9E7087E1ED41CE00062B0BA /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = ../Services/UserManager.swift; sourceTree = "<group>"; };
 		C9F429371ED5683700A304C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EE89B75FCAFF3E731AB7731A /* Pods-SportBookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportBookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportBookTests/Pods-SportBookTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +144,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C93BCC141ED7ED98008A99FC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C9E7087E1ED41CE00062B0BA /* UserManager.swift */,
+				C93BCC151ED7EDCB008A99FC /* AuthManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		C94941CA1ECBF5DC00C21862 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +185,7 @@
 				C94942061ECBF70100C21862 /* Views */,
 				C94942071ECBF70600C21862 /* ViewModels */,
 				C94942081ECBF70E00C21862 /* Services */,
+				C93BCC141ED7ED98008A99FC /* Managers */,
 				C94942091ECBF71300C21862 /* Helpers */,
 			);
 			path = SportBook;
@@ -208,6 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				C9E7087C1ED41CCF0062B0BA /* UserModel.swift */,
+				C93BCC101ED7D53C008A99FC /* ErrorModel.swift */,
+				C93BCC111ED7D53C008A99FC /* ResponseModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -235,8 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				C9E7086F1ED3DED30062B0BA /* API */,
-				C9E7087E1ED41CE00062B0BA /* UserManager.swift */,
-				C964896D1ED67C61009E9E92 /* Validation.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -245,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				C94942131ECBFC9100C21862 /* Extension */,
+				C93BCC171ED81338008A99FC /* Validation.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -331,7 +346,6 @@
 		C96AC9831ECD98410055580B /* AuthenticationViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				C93482001ED59A2700B069C1 /* AuthenticationDelegate.swift */,
 				C93482041ED59B4800B069C1 /* LoginViewModel.swift */,
 				C93482051ED59B4800B069C1 /* SignupViewModel.swift */,
 				C93482021ED59B4100B069C1 /* ForgotPasswordViewModel.swift */,
@@ -638,24 +652,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C93BCC121ED7D53C008A99FC /* ErrorModel.swift in Sources */,
 				C9E7087F1ED41CE00062B0BA /* UserManager.swift in Sources */,
+				C93BCC181ED81338008A99FC /* Validation.swift in Sources */,
 				C9E7087B1ED41C000062B0BA /* String+Extension.swift in Sources */,
 				C9F429381ED5683700A304C3 /* ProfileViewController.swift in Sources */,
 				C9E708731ED3DF0E0062B0BA /* TournamentAPI.swift in Sources */,
 				C96AC98A1ECD99000055580B /* LoginViewController.swift in Sources */,
 				C9E708771ED3E6630062B0BA /* SkillAPI.swift in Sources */,
 				C93482071ED59B4800B069C1 /* SignupViewModel.swift in Sources */,
+				C93BCC131ED7D53C008A99FC /* ResponseModel.swift in Sources */,
 				C93482031ED59B4100B069C1 /* ForgotPasswordViewModel.swift in Sources */,
-				C93482011ED59A2700B069C1 /* AuthenticationDelegate.swift in Sources */,
 				C96AC98B1ECD99000055580B /* SignupViewController.swift in Sources */,
 				C94941D91ECBF5DC00C21862 /* MainViewController.swift in Sources */,
 				C9E7087D1ED41CCF0062B0BA /* UserModel.swift in Sources */,
-				C964896E1ED67C61009E9E92 /* Validation.swift in Sources */,
 				C96AC9891ECD99000055580B /* ForgotPasswordViewController.swift in Sources */,
 				C9E708791ED3E73A0062B0BA /* SportBookAPI.swift in Sources */,
 				C9E708711ED3DEFC0062B0BA /* AuthenticationAPI.swift in Sources */,
 				C94941D71ECBF5DC00C21862 /* AppDelegate.swift in Sources */,
 				C96AC9821ECD88900055580B /* BaseViewController.swift in Sources */,
+				C93BCC161ED7EDCB008A99FC /* AuthManager.swift in Sources */,
 				C93482061ED59B4800B069C1 /* LoginViewModel.swift in Sources */,
 				C96AC9771ECD85030055580B /* UIStoryboard+Loader.swift in Sources */,
 			);

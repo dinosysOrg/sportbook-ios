@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxSwift
+import Moya
 
 struct SportBookAPI {
     private static let BaseURL = "http://sportbook-staging.herokuapp.com/api/"
@@ -15,3 +17,4 @@ struct SportBookAPI {
         return BaseURL + Version
     }
 }
+

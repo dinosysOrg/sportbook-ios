@@ -8,6 +8,22 @@
 
 import Foundation
 
-struct ApiError : Error {
-    var message : String = "Lỗi khi gửi yêu cầu đến server!!!"
+public enum SportBookError {
+    case Unknown
+    case ApiRequest(String)
+    case InvalidInput
+    case PasswordTooShort
+}
+
+extension SportBookError : Error, CustomStringConvertible {
+    public var description : String {
+        switch self {
+        case .ApiRequest(let message):
+            return message
+        case .InvalidInput:
+            return "Dữ liệu không hợp lệ!!!"
+        default:
+            return "Lỗi!!!"
+        }
+    }
 }
