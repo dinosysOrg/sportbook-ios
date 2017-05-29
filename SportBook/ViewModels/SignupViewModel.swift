@@ -12,23 +12,29 @@ import RxSwift
 
 class SignupViewModel {
     
+    let emailValid: Driver<Bool>
+    
+    let passwordValid: Driver<Bool>
+
+    let confirmPasswordValid: Driver<Bool>
+    
     let credentialsValid: Driver<Bool>
     
     init(emailText: Driver<String>, passwordText: Driver<String>, confirmPasswordText: Driver<String>) {
         
-        let usernameValid = emailText
+        emailValid = emailText
             .distinctUntilChanged()
             .throttle(0.3)
-            .map { Validation.emailValid(email: $0) }
+            .map { Validation.emailValid(email: $0) }.skip(1)
         
-        let passwordValid = passwordText
+        passwordValid = passwordText
             .distinctUntilChanged()
             .throttle(0.3)
-            .map { $0.utf8.count > 6 }
+            .map { $0.utf8.count > 6 }.skip(1)
         
-        let repeatPasswordValid = Driver.combineLatest(passwordText, confirmPasswordText) { $0 == $1 }
+        confirmPasswordValid = Driver.combineLatest(passwordText, confirmPasswordText) { $0 == $1 }
         
-        credentialsValid = Driver.combineLatest(usernameValid, passwordValid, repeatPasswordValid) { $0 && $1 && $2}
+        credentialsValid = Driver.combineLatest(emailValid, passwordValid, confirmPasswordValid) { $0 && $1 && $2}
     }
     
     func signUp(_ email: String, password: String) -> Observable<AuthenticationStatus> {

@@ -17,6 +17,7 @@ target 'SportBook' do
    pod 'Moya/RxSwift'
    pod 'FacebookCore'
    pod 'FacebookLogin'
+   pod 'SkyFloatingLabelTextField'
 
   # Pods for SportBook
 

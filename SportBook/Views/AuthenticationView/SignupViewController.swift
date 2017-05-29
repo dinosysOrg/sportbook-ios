@@ -11,14 +11,17 @@ import RxCocoa
 import RxSwift
 import RxGesture
 import RxKeyboard
+import SkyFloatingLabelTextField
 
 class SignupViewController : BaseViewController {
     
-    @IBOutlet weak var tfEmail: UITextField!
+    let overcastBlueColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
     
-    @IBOutlet weak var tfPassword: UITextField!
+    @IBOutlet weak var tfEmail: SkyFloatingLabelTextField!
     
-    @IBOutlet weak var tfConfirmPassword: UITextField!
+    @IBOutlet weak var tfPassword: SkyFloatingLabelTextField!
+    
+    @IBOutlet weak var tfConfirmPassword: SkyFloatingLabelTextField!
     
     @IBOutlet weak var btnSignup: UIButton!
     
@@ -27,6 +30,7 @@ class SignupViewController : BaseViewController {
     var signupViewModel : SignupViewModel!
     
     override func viewDidLoad() {
+        setupUI()
         
         signupViewModel = SignupViewModel(emailText: tfEmail.rx.text.orEmpty.asDriver(),
                                          passwordText: tfPassword.rx.text.orEmpty.asDriver(),
@@ -38,6 +42,23 @@ class SignupViewController : BaseViewController {
             })
             .addDisposableTo(disposeBag)
         
+        signupViewModel.emailValid
+            .drive(onNext: { [unowned self] valid in
+                self.tfEmail.errorMessage = valid ? "" : "Invalid email"
+            })
+            .addDisposableTo(disposeBag)
+        
+        signupViewModel.passwordValid
+            .drive(onNext: { [unowned self] valid in
+                self.tfPassword.errorMessage = valid ? "" : "Must be at least 7 characters"
+            })
+            .addDisposableTo(disposeBag)
+        
+        signupViewModel.confirmPasswordValid
+            .drive(onNext: { [unowned self] valid in
+                self.tfConfirmPassword.errorMessage = valid ? "" : "Confirm password does not match"
+            })
+            .addDisposableTo(disposeBag)
         
         let signUpTap = btnSignup.rx.tap
         
@@ -108,4 +129,22 @@ class SignupViewController : BaseViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
+    func setupUI() {
+        tfEmail.tintColor = overcastBlueColor
+        tfEmail.selectedTitleColor = overcastBlueColor
+        tfEmail.selectedLineColor = overcastBlueColor
+        tfEmail.errorColor = UIColor.red
+        
+        tfPassword.tintColor = overcastBlueColor
+        tfPassword.selectedTitleColor = overcastBlueColor
+        tfPassword.selectedLineColor = overcastBlueColor
+        tfPassword.errorColor = UIColor.red
+        
+        tfConfirmPassword.tintColor = overcastBlueColor
+        tfConfirmPassword.selectedTitleColor = overcastBlueColor
+        tfConfirmPassword.selectedLineColor = overcastBlueColor
+        tfConfirmPassword.errorColor = UIColor.red
+    }
+
 }

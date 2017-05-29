@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import RxGesture
 import RxKeyboard
+import SkyFloatingLabelTextField
 
 class LoginViewController : BaseViewController {
     
@@ -18,24 +19,39 @@ class LoginViewController : BaseViewController {
     
     var loginViewModel : LoginViewModel!
     
+    let overcastBlueColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
+    
     @IBOutlet weak var btnLogin: UIButton!
     
     @IBOutlet weak var btnSignup: UIButton!
     
     @IBOutlet weak var btnLoginFacebook: UIButton!
     
-    @IBOutlet weak var tfEmail: UITextField!
+    @IBOutlet weak var tfEmail: SkyFloatingLabelTextField!
     
-    @IBOutlet weak var tfPassword: UITextField!
+    @IBOutlet weak var tfPassword: SkyFloatingLabelTextField!
     
     override func viewDidLoad() {
+        self.setupUI()
         
         loginViewModel = LoginViewModel(emailText: tfEmail.rx.text.orEmpty.asDriver(),
-                                             passwordText: tfPassword.rx.text.orEmpty.asDriver())
+                                        passwordText: tfPassword.rx.text.orEmpty.asDriver())
         
         loginViewModel.credentialsValid
             .drive(onNext: { [unowned self] valid in
                 self.btnLogin.isEnabled = valid
+            })
+            .addDisposableTo(disposeBag)
+        
+        loginViewModel.emailValid
+            .drive(onNext: { [unowned self] valid in
+                self.tfEmail.errorMessage = valid ? "" : "Invalid email"
+            })
+            .addDisposableTo(disposeBag)
+        
+        loginViewModel.passwordValid
+            .drive(onNext: { [unowned self] valid in
+                self.tfPassword.errorMessage = valid ? "" : "Must be at least 7 characters"
             })
             .addDisposableTo(disposeBag)
         
@@ -56,14 +72,14 @@ class LoginViewController : BaseViewController {
                     .observeOn(SerialDispatchQueueScheduler(qos: .userInteractive))
             }
             .observeOn(MainScheduler.instance)
-            
+        
         let signInWithFacebook = facebookTap
             .flatMapLatest { [unowned self] _ -> Observable<AuthenticationStatus> in
                 self.loginViewModel.signInWithFacebook(viewcontroller: self)
                     .observeOn(SerialDispatchQueueScheduler(qos: .userInteractive))
             }
             .observeOn(MainScheduler.instance)
-            
+        
         Observable.from([signInWithEmail, signInWithFacebook])
             .merge().subscribe(onNext: { [unowned self] authStatus in
                 switch authStatus {
@@ -121,5 +137,17 @@ class LoginViewController : BaseViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    func setupUI() {
+        tfEmail.tintColor = overcastBlueColor
+        tfEmail.selectedTitleColor = overcastBlueColor
+        tfEmail.selectedLineColor = overcastBlueColor
+        tfEmail.errorColor = UIColor.red
+        
+        tfPassword.tintColor = overcastBlueColor
+        tfPassword.selectedTitleColor = overcastBlueColor
+        tfPassword.selectedLineColor = overcastBlueColor
+        tfPassword.errorColor = UIColor.red
     }
 }

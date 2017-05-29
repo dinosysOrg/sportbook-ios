@@ -18,21 +18,25 @@ class LoginViewModel {
     
     let disposeBag = DisposeBag()
     
+    let emailValid: Driver<Bool>
+    
+    let passwordValid: Driver<Bool>
+    
     let credentialsValid: Driver<Bool>
     
     init(emailText: Driver<String>, passwordText: Driver<String>) {
         
-        let usernameValid = emailText
+        emailValid = emailText
             .distinctUntilChanged()
             .throttle(0.3)
-            .map { Validation.emailValid(email: $0) }
+            .map { Validation.emailValid(email: $0) }.skip(1)
         
-        let passwordValid = passwordText
+        passwordValid = passwordText
             .distinctUntilChanged()
             .throttle(0.3)
-            .map { $0.utf8.count > 6 }
+            .map { $0.utf8.count > 6 }.skip(1)
         
-        credentialsValid = Driver.combineLatest(usernameValid, passwordValid) { $0 && $1 }
+        credentialsValid = Driver.combineLatest(emailValid, passwordValid) { $0 && $1 }
     }
     
     func signInWithEmail(_ email: String, password: String) -> Observable<AuthenticationStatus> {
