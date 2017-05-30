@@ -29,6 +29,7 @@
 		C96AC9891ECD99000055580B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9851ECD99000055580B /* ForgotPasswordViewController.swift */; };
 		C96AC98A1ECD99000055580B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9861ECD99000055580B /* LoginViewController.swift */; };
 		C96AC98B1ECD99000055580B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9871ECD99000055580B /* SignupViewController.swift */; };
+		C98FD1CA1EDD5127004BA4E3 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98FD1C91EDD5127004BA4E3 /* ThemeManager.swift */; };
 		C9E708711ED3DEFC0062B0BA /* AuthenticationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E708701ED3DEFC0062B0BA /* AuthenticationAPI.swift */; };
 		C9E708731ED3DF0E0062B0BA /* TournamentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E708721ED3DF0E0062B0BA /* TournamentAPI.swift */; };
 		C9E708771ED3E6630062B0BA /* SkillAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E708761ED3E6630062B0BA /* SkillAPI.swift */; };
@@ -92,6 +93,7 @@
 		C96AC9851ECD99000055580B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		C96AC9861ECD99000055580B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C96AC9871ECD99000055580B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		C98FD1C91EDD5127004BA4E3 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		C9E708701ED3DEFC0062B0BA /* AuthenticationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationAPI.swift; sourceTree = "<group>"; };
 		C9E708721ED3DF0E0062B0BA /* TournamentAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentAPI.swift; sourceTree = "<group>"; };
 		C9E708761ED3E6630062B0BA /* SkillAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillAPI.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				C9E7087E1ED41CE00062B0BA /* UserManager.swift */,
 				C93BCC151ED7EDCB008A99FC /* AuthManager.swift */,
+				C98FD1C91EDD5127004BA4E3 /* ThemeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C98FD1CA1EDD5127004BA4E3 /* ThemeManager.swift in Sources */,
 				C93BCC121ED7D53C008A99FC /* ErrorModel.swift in Sources */,
 				C9E7087F1ED41CE00062B0BA /* UserManager.swift in Sources */,
 				C93BCC181ED81338008A99FC /* Validation.swift in Sources */,

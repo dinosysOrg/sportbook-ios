@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 
-let endpointClosure = { (target: Authentication) -> Endpoint<Authentication> in
+let endpointClosure = { (target: AuthenticationAPI) -> Endpoint<AuthenticationAPI> in
     let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
     
     switch target {
@@ -21,19 +21,19 @@ let endpointClosure = { (target: Authentication) -> Endpoint<Authentication> in
     }
 }
 
-let AuthenticationProvider = RxMoyaProvider<Authentication>(endpointClosure: endpointClosure)
+let AuthenticationProvider = RxMoyaProvider<AuthenticationAPI>(endpointClosure: endpointClosure)
 
 // MARK: - Provider support
 
 //Delcaration of Authentication APIs
-public enum Authentication  {
+public enum AuthenticationAPI  {
     case signInWithEmail(String, String) //Signin with email and password
     case signInWithFacebook(String)
     case signUp(String, String) //Sign up with email and password
     case signOut //Sign up with email and password
 }
 
-extension Authentication : TargetType {
+extension AuthenticationAPI : TargetType {
     public var baseURL: URL { return URL(string: SportBookAPI.URL)! }
     
     //Path for each API

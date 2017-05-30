@@ -30,8 +30,6 @@ class SignupViewController : BaseViewController {
     var signupViewModel : SignupViewModel!
     
     override func viewDidLoad() {
-        setupUI()
-        
         signupViewModel = SignupViewModel(emailText: tfEmail.rx.text.orEmpty.asDriver(),
                                          passwordText: tfPassword.rx.text.orEmpty.asDriver(),
                                          confirmPasswordText: tfConfirmPassword.rx.text.orEmpty.asDriver())
@@ -129,22 +127,4 @@ class SignupViewController : BaseViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
-    
-    func setupUI() {
-        tfEmail.tintColor = overcastBlueColor
-        tfEmail.selectedTitleColor = overcastBlueColor
-        tfEmail.selectedLineColor = overcastBlueColor
-        tfEmail.errorColor = UIColor.red
-        
-        tfPassword.tintColor = overcastBlueColor
-        tfPassword.selectedTitleColor = overcastBlueColor
-        tfPassword.selectedLineColor = overcastBlueColor
-        tfPassword.errorColor = UIColor.red
-        
-        tfConfirmPassword.tintColor = overcastBlueColor
-        tfConfirmPassword.selectedTitleColor = overcastBlueColor
-        tfConfirmPassword.selectedLineColor = overcastBlueColor
-        tfConfirmPassword.errorColor = UIColor.red
-    }
-
 }

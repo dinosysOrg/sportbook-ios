@@ -48,7 +48,7 @@ class AuthManager {
     private init() {}
     
     func signIn(_ email: String, password: String) -> Observable<AuthenticationStatus> {
-        return AuthenticationProvider.request(Authentication.signInWithEmail(email,password)).flatMap(self.handleAuthResponse)
+        return AuthenticationProvider.request(.signInWithEmail(email,password)).flatMap(self.handleAuthResponse)
     }
     
     func signIn(_ fbToken: String) -> Observable<AuthenticationStatus> {

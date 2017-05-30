@@ -9,19 +9,19 @@
 import Foundation
 import Moya
 
-let TournamentProvider = MoyaProvider<Tournament>()
+let TournamentProvider = MoyaProvider<TournamentAPI>()
 
 // MARK: - Provider support
 
 //Declaration of Tournament APIs
-public enum Tournament  {
+public enum TournamentAPI  {
     case tournaments //Get all tournaments
     case tournament(String) //Get a tournament by Id
     case myTournaments //Get my tournaments
     case signupTournament(String, [Int], String, [Int]?) //Sign up for a tournament by Id
 }
 
-extension Tournament : TargetType {
+extension TournamentAPI : TargetType {
     public var baseURL: URL { return URL(string: SportBookAPI.URL)! }
     
     public var path: String {

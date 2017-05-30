@@ -18,13 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
+        //Apply Sportbook Theme
+        ThemeManager.applyTheme()
+        
+        //If authenticated, launch main view
         if AuthManager.sharedInstance.IsAuthenticated {
-            let mainVc = UIStoryboard.loadMainViewController()
+            let mainViewController = UIStoryboard.loadMainViewController()
             
             self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = mainVc
+            self.window?.rootViewController = mainViewController
             self.window?.makeKeyAndVisible()
         }
+        //Else launch default login view
         
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         

@@ -38,8 +38,8 @@ extension UIStoryboard {
         return loadFromMain("MainViewController") as! MainViewController
     }
     
-    class func loadLoginViewController() -> MainViewController {
-        return loadFromAuth("LoginViewController") as! MainViewController
+    class func loadLoginViewController() -> LoginViewController {
+        return loadFromAuth("LoginViewController") as! LoginViewController
     }
     
     // Add other app view controller load methods here ...

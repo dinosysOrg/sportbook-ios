@@ -9,16 +9,16 @@
 import Foundation
 import Moya
 
-let SkillProvider = MoyaProvider<Skill>()
+let SkillProvider = MoyaProvider<SkillAPI>()
 
 // MARK: - Provider support
 
 //Delcaration of Skill APIs
-public enum Skill  {
+public enum SkillAPI  {
     case skills //Get all skills
 }
 
-extension Skill : TargetType {
+extension SkillAPI : TargetType {
     public var baseURL: URL { return URL(string: SportBookAPI.URL)! }
     
     public var path: String {

@@ -19,8 +19,6 @@ class LoginViewController : BaseViewController {
     
     var loginViewModel : LoginViewModel!
     
-    let overcastBlueColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
-    
     @IBOutlet weak var btnLogin: UIButton!
     
     @IBOutlet weak var btnSignup: UIButton!
@@ -32,8 +30,6 @@ class LoginViewController : BaseViewController {
     @IBOutlet weak var tfPassword: SkyFloatingLabelTextField!
     
     override func viewDidLoad() {
-        self.setupUI()
-        
         loginViewModel = LoginViewModel(emailText: tfEmail.rx.text.orEmpty.asDriver(),
                                         passwordText: tfPassword.rx.text.orEmpty.asDriver())
         
@@ -86,9 +82,9 @@ class LoginViewController : BaseViewController {
                 case .None:
                     break
                 case .Authenticated:
-                    let mainView = UIStoryboard.loadMainViewController()
+                    let mainViewController = UIStoryboard.loadMainViewController()
                     self.dismiss(animated: false) {}
-                    self.navigationController?.present(mainView, animated: true, completion: {})
+                    self.navigationController?.present(mainViewController, animated: true, completion: {})
                     break
                 case .Error(let error):
                     self.showError(error)
@@ -137,17 +133,5 @@ class LoginViewController : BaseViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
-    }
-    
-    func setupUI() {
-        tfEmail.tintColor = overcastBlueColor
-        tfEmail.selectedTitleColor = overcastBlueColor
-        tfEmail.selectedLineColor = overcastBlueColor
-        tfEmail.errorColor = UIColor.red
-        
-        tfPassword.tintColor = overcastBlueColor
-        tfPassword.selectedTitleColor = overcastBlueColor
-        tfPassword.selectedLineColor = overcastBlueColor
-        tfPassword.errorColor = UIColor.red
     }
 }
