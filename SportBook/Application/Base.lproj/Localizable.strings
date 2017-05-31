@@ -10,6 +10,7 @@
 "application_name" = "Sport Book";
 "back" = "Back";
 "ok" = "OK";
+"bad_response" = "Can not extract data";
 
 // MARK: Authentication
 "sign_in" = "Sign in";

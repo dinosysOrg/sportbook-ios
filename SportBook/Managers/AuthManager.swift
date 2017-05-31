@@ -39,7 +39,7 @@ extension AuthenticationError : CustomStringConvertible {
         case .Custom(let message):
             return message
         default:
-            return "error_system"
+            return "error_system".localized
         }
     }
 }

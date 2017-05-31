@@ -10,6 +10,7 @@
 "application_name" = "Sport Book";
 "back" = "Quay lại";
 "ok" = "OK";
+"bad_response" = "Không thể trích xuất dữ liệu";
 
 // MARK: Authentication
 "sign_in" = "Đăng nhập";
@@ -31,7 +32,7 @@
 "error_title" = "Có lỗi xảy ra";
 "error_unknown" = "Lỗi chưa xác định";
 "error_server" = "Lỗi máy chủ";
-
+"error_system" = "Lỗi hệ thống";
 
 
 
