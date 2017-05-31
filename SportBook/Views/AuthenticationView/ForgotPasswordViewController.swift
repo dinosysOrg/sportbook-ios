@@ -6,16 +6,63 @@
 //  Copyright © 2017 dinosys. All rights reserved.
 //
 
-import Foundation
-
 import UIKit
+import RxSwift
+import RxCocoa
+import RxGesture
+import RxKeyboard
+import SkyFloatingLabelTextField
 
 class ForgotPasswordViewController : BaseViewController {
     
+    let disposeBag = DisposeBag()
+    
+    var forgotPasswordViewModel : ForgotPasswordViewModel!
+
+    @IBOutlet weak var tfEmail: SkyFloatingLabelTextField!
+    
+    @IBOutlet weak var btnResetPassword: UIButton!
+
     override func viewDidLoad() {
+        forgotPasswordViewModel = ForgotPasswordViewModel(emailText: tfEmail.rx.text.orEmpty.asDriver())
+        
+        forgotPasswordViewModel.emailValid
+            .drive(onNext: { [unowned self] valid in
+                self.tfEmail.errorMessage = valid ? "" : "invalid_email".localized
+            })
+            .addDisposableTo(disposeBag)
+        
+        let resetPasswordTap = btnResetPassword.rx.tap
+        
+        resetPasswordTap.subscribe(onNext: { [unowned self] _ in
+            self.dismissKeyboard()
+        }).addDisposableTo(disposeBag)
+        
+        resetPasswordTap
+            .withLatestFrom(forgotPasswordViewModel.emailValid)
+            .filter { $0 }
+            .flatMapLatest { [unowned self] valid -> Observable<AuthenticationStatus> in
+                self.forgotPasswordViewModel.resetPassword(self.tfEmail.text!)
+                    .observeOn(SerialDispatchQueueScheduler(qos: .userInteractive))
+            }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] authStatus in
+                switch authStatus {
+                case .PasswordReset:
+                    self.navigationController?.popViewController(animated: true)
+                    break
+                case .Error(let error):
+                    self.showError(error)
+                    break
+                default:
+                    break
+                }
+            })
+            .addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -12,8 +12,6 @@
 		C93482031ED59B4100B069C1 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482021ED59B4100B069C1 /* ForgotPasswordViewModel.swift */; };
 		C93482061ED59B4800B069C1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482041ED59B4800B069C1 /* LoginViewModel.swift */; };
 		C93482071ED59B4800B069C1 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482051ED59B4800B069C1 /* SignupViewModel.swift */; };
-		C93BCC121ED7D53C008A99FC /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93BCC101ED7D53C008A99FC /* ErrorModel.swift */; };
-		C93BCC131ED7D53C008A99FC /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93BCC111ED7D53C008A99FC /* ResponseModel.swift */; };
 		C93BCC161ED7EDCB008A99FC /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93BCC151ED7EDCB008A99FC /* AuthManager.swift */; };
 		C93BCC181ED81338008A99FC /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93BCC171ED81338008A99FC /* Validation.swift */; };
 		C94941D71ECBF5DC00C21862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94941D61ECBF5DC00C21862 /* AppDelegate.swift */; };
@@ -30,6 +28,7 @@
 		C96AC98A1ECD99000055580B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9861ECD99000055580B /* LoginViewController.swift */; };
 		C96AC98B1ECD99000055580B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9871ECD99000055580B /* SignupViewController.swift */; };
 		C98FD1CA1EDD5127004BA4E3 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98FD1C91EDD5127004BA4E3 /* ThemeManager.swift */; };
+		C9B27E831EDE6D93009532E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9B27E851EDE6D93009532E2 /* Localizable.strings */; };
 		C9E708711ED3DEFC0062B0BA /* AuthenticationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E708701ED3DEFC0062B0BA /* AuthenticationAPI.swift */; };
 		C9E708731ED3DF0E0062B0BA /* TournamentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E708721ED3DF0E0062B0BA /* TournamentAPI.swift */; };
 		C9E708771ED3E6630062B0BA /* SkillAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E708761ED3E6630062B0BA /* SkillAPI.swift */; };
@@ -70,8 +69,6 @@
 		C93482021ED59B4100B069C1 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		C93482041ED59B4800B069C1 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C93482051ED59B4800B069C1 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
-		C93BCC101ED7D53C008A99FC /* ErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
-		C93BCC111ED7D53C008A99FC /* ResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		C93BCC151ED7EDCB008A99FC /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		C93BCC171ED81338008A99FC /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		C94941D31ECBF5DC00C21862 /* SportBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +91,8 @@
 		C96AC9861ECD99000055580B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C96AC9871ECD99000055580B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		C98FD1C91EDD5127004BA4E3 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		C9B27E841EDE6D93009532E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C9B27E871EDE7411009532E2 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9E708701ED3DEFC0062B0BA /* AuthenticationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationAPI.swift; sourceTree = "<group>"; };
 		C9E708721ED3DF0E0062B0BA /* TournamentAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentAPI.swift; sourceTree = "<group>"; };
 		C9E708761ED3E6630062B0BA /* SkillAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillAPI.swift; sourceTree = "<group>"; };
@@ -217,6 +216,7 @@
 			children = (
 				C94941DD1ECBF5DC00C21862 /* Assets.xcassets */,
 				C94941D61ECBF5DC00C21862 /* AppDelegate.swift */,
+				C9B27E851EDE6D93009532E2 /* Localizable.strings */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -225,8 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				C9E7087C1ED41CCF0062B0BA /* UserModel.swift */,
-				C93BCC101ED7D53C008A99FC /* ErrorModel.swift */,
-				C93BCC111ED7D53C008A99FC /* ResponseModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -471,6 +469,7 @@
 			knownRegions = (
 				en,
 				Base,
+				vi,
 			);
 			mainGroup = C94941CA1ECBF5DC00C21862;
 			productRefGroup = C94941D41ECBF5DC00C21862 /* Products */;
@@ -489,6 +488,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B27E831EDE6D93009532E2 /* Localizable.strings in Resources */,
 				C96AC9881ECD99000055580B /* Authentication.storyboard in Resources */,
 				C949420E1ECBF8CA00C21862 /* LaunchScreen.storyboard in Resources */,
 				C94941DE1ECBF5DC00C21862 /* Assets.xcassets in Resources */,
@@ -656,7 +656,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C98FD1CA1EDD5127004BA4E3 /* ThemeManager.swift in Sources */,
-				C93BCC121ED7D53C008A99FC /* ErrorModel.swift in Sources */,
 				C9E7087F1ED41CE00062B0BA /* UserManager.swift in Sources */,
 				C93BCC181ED81338008A99FC /* Validation.swift in Sources */,
 				C9E7087B1ED41C000062B0BA /* String+Extension.swift in Sources */,
@@ -665,7 +664,6 @@
 				C96AC98A1ECD99000055580B /* LoginViewController.swift in Sources */,
 				C9E708771ED3E6630062B0BA /* SkillAPI.swift in Sources */,
 				C93482071ED59B4800B069C1 /* SignupViewModel.swift in Sources */,
-				C93BCC131ED7D53C008A99FC /* ResponseModel.swift in Sources */,
 				C93482031ED59B4100B069C1 /* ForgotPasswordViewModel.swift in Sources */,
 				C96AC98B1ECD99000055580B /* SignupViewController.swift in Sources */,
 				C94941D91ECBF5DC00C21862 /* MainViewController.swift in Sources */,
@@ -712,11 +710,25 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		C9B27E851EDE6D93009532E2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9B27E841EDE6D93009532E2 /* Base */,
+				C9B27E871EDE7411009532E2 /* vi */,
+			);
+			name = Localizable.strings;
+			path = Application;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		C94941F91ECBF5DD00C21862 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -767,6 +779,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

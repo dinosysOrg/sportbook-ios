@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  SportBook
+
+  Created by DucBM on 5/31/17.
+  Copyright © 2017 dinosys. All rights reserved.
+*/
+
+// MARK: Sportbook
+"application_name" = "Sport Book"
+"back" = "Back"
+
+// MARK: Authentication
+"sign_in" = "Sign in"
+"sign_out" = "Sign out"
+"sign_up" = "Sign up"
+"sign_in_facebook" = "Sign in by facebook"
+"forgot_password" = "Forgot password";
+"email" = "Email"
+"password" = "Password"
+"confirm_password" = "Confirm password"
+
+
+// MARK:
+
+
+
+

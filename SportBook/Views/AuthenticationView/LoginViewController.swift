@@ -25,6 +25,8 @@ class LoginViewController : BaseViewController {
     
     @IBOutlet weak var btnLoginFacebook: UIButton!
     
+    @IBOutlet weak var btnForgotPassword: UIButton!
+    
     @IBOutlet weak var tfEmail: SkyFloatingLabelTextField!
     
     @IBOutlet weak var tfPassword: SkyFloatingLabelTextField!
@@ -41,13 +43,13 @@ class LoginViewController : BaseViewController {
         
         loginViewModel.emailValid
             .drive(onNext: { [unowned self] valid in
-                self.tfEmail.errorMessage = valid ? "" : "Invalid email"
+                self.tfEmail.errorMessage = valid ? "" : "invalid_email".localized
             })
             .addDisposableTo(disposeBag)
         
         loginViewModel.passwordValid
             .drive(onNext: { [unowned self] valid in
-                self.tfPassword.errorMessage = valid ? "" : "Must be at least 7 characters"
+                self.tfPassword.errorMessage = valid ? "" : "password_minimum_length".localized
             })
             .addDisposableTo(disposeBag)
         
@@ -79,8 +81,6 @@ class LoginViewController : BaseViewController {
         Observable.from([signInWithEmail, signInWithFacebook])
             .merge().subscribe(onNext: { [unowned self] authStatus in
                 switch authStatus {
-                case .None:
-                    break
                 case .Authenticated:
                     let mainViewController = UIStoryboard.loadMainViewController()
                     self.dismiss(animated: false) {}
@@ -88,6 +88,8 @@ class LoginViewController : BaseViewController {
                     break
                 case .Error(let error):
                     self.showError(error)
+                    break
+                default:
                     break
                 }
             })
@@ -103,35 +105,5 @@ class LoginViewController : BaseViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.dismissKeyboard()
-    }
-    
-    fileprivate func showError(_ error: AuthenticationError) {
-        var title: String = ""
-        var message: String = ""
-        
-        switch error {
-        case .Unknown:
-            title = "An error occuried"
-            message = "Unknown error"
-            break
-        case .UserCancelled:
-            return
-        case .Server, .BadReponse:
-            title = "An error occuried"
-            message = "Server error"
-            break
-        case .BadCredentials:
-            title = "Bad credentials"
-            message = "This user don't exist"
-            break
-        case .Custom(let error):
-            title = "Sign in failed"
-            message = error.description
-            break
-        }
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 }

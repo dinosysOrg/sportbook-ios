@@ -43,7 +43,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fm6-k5-Qzb" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fm6-k5-Qzb" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                 <rect key="frame" x="20" y="187" width="335" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="sV2-pa-xkJ"/>
@@ -51,8 +51,13 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Email"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Email"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UWl-EH-SLm" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UWl-EH-SLm" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                 <rect key="frame" x="20" y="247" width="335" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="UAb-mq-zot"/>
@@ -60,6 +65,11 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Password"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Password"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Password"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdQ-wK-Vjp">
                                 <rect key="frame" x="20" y="307" width="163.5" height="40"/>
@@ -93,8 +103,18 @@
                                 <state key="normal" title="Login Facebook">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6H-kz-Hf6">
+                                <rect key="frame" x="20" y="403" width="335" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="X2G-iW-ntT"/>
+                                </constraints>
+                                <state key="normal" title="Forgot Password">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <action selector="btnFbLoginTapped:" destination="PaH-5B-auk" eventType="touchUpInside" id="C7x-JQ-TX9"/>
+                                    <segue destination="DRv-6K-4y5" kind="show" id="MKh-72-rLL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -104,6 +124,7 @@
                             <constraint firstItem="6EK-jE-nTP" firstAttribute="top" secondItem="UQT-1U-txA" secondAttribute="bottom" constant="8" id="Cqk-i6-MrO"/>
                             <constraint firstItem="CfS-BP-iqU" firstAttribute="leading" secondItem="ool-PD-UXV" secondAttribute="leading" constant="20" id="Hut-fv-odo"/>
                             <constraint firstItem="FdQ-wK-Vjp" firstAttribute="top" secondItem="UWl-EH-SLm" secondAttribute="bottom" constant="20" id="L85-dg-f23"/>
+                            <constraint firstItem="X6H-kz-Hf6" firstAttribute="top" secondItem="6EK-jE-nTP" secondAttribute="bottom" constant="8" id="LNn-oW-mgQ"/>
                             <constraint firstAttribute="trailing" secondItem="UWl-EH-SLm" secondAttribute="trailing" constant="20" id="Ltc-ex-GQH"/>
                             <constraint firstItem="fm6-k5-Qzb" firstAttribute="leading" secondItem="ool-PD-UXV" secondAttribute="leading" constant="20" id="Lxc-jq-w3T"/>
                             <constraint firstItem="6EK-jE-nTP" firstAttribute="leading" secondItem="ool-PD-UXV" secondAttribute="leading" constant="20" id="Lyc-W4-Xua"/>
@@ -114,14 +135,17 @@
                             <constraint firstAttribute="trailing" secondItem="fm6-k5-Qzb" secondAttribute="trailing" constant="20" id="a8f-An-1ko"/>
                             <constraint firstAttribute="trailing" secondItem="6EK-jE-nTP" secondAttribute="trailing" constant="20" id="bUq-fN-yhN"/>
                             <constraint firstAttribute="trailing" secondItem="UQT-1U-txA" secondAttribute="trailing" constant="20" id="bz2-6t-yEk"/>
+                            <constraint firstAttribute="trailing" secondItem="X6H-kz-Hf6" secondAttribute="trailing" constant="20" id="cxo-ez-Ebn"/>
                             <constraint firstItem="UQT-1U-txA" firstAttribute="leading" secondItem="FdQ-wK-Vjp" secondAttribute="trailing" constant="8" id="gJg-6G-fIe"/>
                             <constraint firstItem="FdQ-wK-Vjp" firstAttribute="leading" secondItem="ool-PD-UXV" secondAttribute="leading" constant="20" id="lNp-iA-urV"/>
                             <constraint firstItem="FdQ-wK-Vjp" firstAttribute="width" secondItem="UQT-1U-txA" secondAttribute="width" id="pJY-Pq-QIs"/>
+                            <constraint firstItem="X6H-kz-Hf6" firstAttribute="leading" secondItem="ool-PD-UXV" secondAttribute="leading" constant="20" id="sDl-XH-87K"/>
                             <constraint firstItem="UQT-1U-txA" firstAttribute="top" secondItem="UWl-EH-SLm" secondAttribute="bottom" constant="20" id="uZX-DS-Rjw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qie-dO-1jH"/>
                     <connections>
+                        <outlet property="btnForgotPassword" destination="X6H-kz-Hf6" id="IJV-yM-hX2"/>
                         <outlet property="btnLogin" destination="FdQ-wK-Vjp" id="17M-1u-7Fq"/>
                         <outlet property="btnLoginFacebook" destination="6EK-jE-nTP" id="al9-yZ-6PI"/>
                         <outlet property="btnSignup" destination="UQT-1U-txA" id="wU6-FJ-dom"/>
@@ -213,7 +237,7 @@
             </objects>
             <point key="canvasLocation" x="729" y="-253"/>
         </scene>
-        <!--Forgot Password View Controller-->
+        <!--Forgot Password-->
         <scene sceneID="71c-j9-jEe">
             <objects>
                 <viewController storyboardIdentifier="ForgotPasswordViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DRv-6K-4y5" customClass="ForgotPasswordViewController" customModule="SportBook" customModuleProvider="target" sceneMemberID="viewController">
@@ -224,9 +248,47 @@
                     <view key="view" contentMode="scaleToFill" id="EdF-i6-J0X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FJ0-ib-Obv" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                <rect key="frame" x="20" y="104" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="aFy-4u-0LD"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Email"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Email"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCK-B1-gBn">
+                                <rect key="frame" x="20" y="160" width="335" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="jzP-nc-2De"/>
+                                </constraints>
+                                <state key="normal" title="Reset Password">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WCK-B1-gBn" firstAttribute="leading" secondItem="EdF-i6-J0X" secondAttribute="leading" constant="20" id="M0k-bh-AoO"/>
+                            <constraint firstItem="WCK-B1-gBn" firstAttribute="top" secondItem="FJ0-ib-Obv" secondAttribute="bottom" constant="16" id="ZtB-Vw-DL0"/>
+                            <constraint firstItem="FJ0-ib-Obv" firstAttribute="leading" secondItem="EdF-i6-J0X" secondAttribute="leading" constant="20" id="feD-bG-Lvd"/>
+                            <constraint firstItem="FJ0-ib-Obv" firstAttribute="top" secondItem="Bmk-oq-qrz" secondAttribute="bottom" constant="40" id="qNk-62-zsi"/>
+                            <constraint firstAttribute="trailing" secondItem="FJ0-ib-Obv" secondAttribute="trailing" constant="20" id="tjr-6j-9ep"/>
+                            <constraint firstAttribute="trailing" secondItem="WCK-B1-gBn" secondAttribute="trailing" constant="20" id="yy0-g1-aAb"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="6cc-mn-SRE"/>
+                    <navigationItem key="navigationItem" title="Forgot Password" id="6cc-mn-SRE"/>
+                    <connections>
+                        <outlet property="btnResetPassword" destination="WCK-B1-gBn" id="WTi-CV-4tP"/>
+                        <outlet property="tfEmail" destination="FJ0-ib-Obv" id="OW5-zh-rP2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jUO-fs-8dR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

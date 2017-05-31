@@ -22,6 +22,9 @@ public enum AuthenticationError {
 
 public enum AuthenticationStatus {
     case Authenticated
+    case SignedUp
+    case SignedOut
+    case PasswordReset
     case Error(AuthenticationError)
     case None
 }
@@ -30,13 +33,13 @@ extension AuthenticationError : CustomStringConvertible {
     public var description : String {
         switch self {
         case .BadReponse:
-            return "Dữ liệu phản hồi lỗi!!!"
+            return "bad_response".localized
         case .BadCredentials:
-            return "Sai thông tin đăng nhập!!!"
+            return "bad_credentials".localized
         case .Custom(let message):
             return message
         default:
-            return "Lỗi hệ thống!!!"
+            return "error_system"
         }
     }
 }
@@ -48,19 +51,29 @@ class AuthManager {
     private init() {}
     
     func signIn(_ email: String, password: String) -> Observable<AuthenticationStatus> {
-        return AuthenticationProvider.request(.signInWithEmail(email,password)).flatMap(self.handleAuthResponse)
+        return AuthenticationProvider.request(.signInWithEmail(email,password)).flatMap(self.handleSignInResponse)
     }
     
     func signIn(_ fbToken: String) -> Observable<AuthenticationStatus> {
-        return AuthenticationProvider.request(.signInWithFacebook(fbToken)).flatMap(self.handleAuthResponse)
+        return AuthenticationProvider.request(.signInWithFacebook(fbToken)).flatMap(self.handleSignInResponse)
     }
     
     func signUp(_ email: String, password: String) -> Observable<AuthenticationStatus>{
         return AuthenticationProvider.request(.signUp(email, password))
-            .flatMap(self.handleAuthResponse)
+            .flatMap(self.handleSignUpResponse)
     }
     
-    func handleAuthResponse(_ response : Response) -> Observable<AuthenticationStatus> {
+    func signOut() -> Observable<AuthenticationStatus>{
+        return AuthenticationProvider.request(.signOut)
+            .flatMap(self.handleSignOutResponse)
+    }
+    
+    func resetPassword(_ email: String) -> Observable<AuthenticationStatus>{
+        return AuthenticationProvider.request(.forgotPassword(email))
+            .flatMap(self.handleResetPasswordResponse)
+    }
+    
+    func handleSignInResponse(_ response: Response) -> Observable<AuthenticationStatus> {
         return Observable<AuthenticationStatus>.create { observer in
             
             if 200..<300 ~= response.statusCode {
@@ -85,11 +98,57 @@ class AuthManager {
         }
     }
     
-    func signOut() {
-        self.AccessToken = nil
-        self.Client = nil
-        self.Expiry = nil
-        self.UID = nil
+    func handleSignUpResponse(_ response: Response) -> Observable<AuthenticationStatus> {
+        return Observable<AuthenticationStatus>.create { observer in
+            
+            if 200..<300 ~= response.statusCode {
+                observer.onNext(AuthenticationStatus.SignedUp)
+            } else {
+                let errorMessage = JSON(response)["errors"]["full_messages"]
+                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                
+                observer.onNext(AuthenticationStatus.Error(AuthenticationError.Custom(errorMessage)))
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func handleSignOutResponse(_ response: Response) -> Observable<AuthenticationStatus> {
+        return Observable<AuthenticationStatus>.create { observer in
+            
+            self.AccessToken = nil
+            self.Client = nil
+            self.Expiry = nil
+            self.UID = nil
+            
+            if 200..<300 ~= response.statusCode {
+                observer.onNext(AuthenticationStatus.SignedOut)
+            } else {
+                let errorMessage = JSON(response)["errors"]["full_messages"]
+                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                
+                observer.onNext(AuthenticationStatus.Error(AuthenticationError.Custom(errorMessage)))
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func handleResetPasswordResponse(_ response: Response) -> Observable<AuthenticationStatus> {
+        return Observable<AuthenticationStatus>.create { observer in
+            
+            if 200..<300 ~= response.statusCode {
+                observer.onNext(AuthenticationStatus.PasswordReset)
+            } else {
+                let errorMessage = JSON(response)["errors"]["full_messages"]
+                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                
+                observer.onNext(AuthenticationStatus.Error(AuthenticationError.Custom(errorMessage)))
+            }
+            
+            return Disposables.create()
+        }
     }
 }
 

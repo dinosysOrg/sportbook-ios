@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  SportBook
+
+  Created by DucBM on 5/31/17.
+  Copyright © 2017 dinosys. All rights reserved.
+*/
+
+// MARK: Sportbook
+"application_name" = "Sport Book";
+"back" = "Quay lại";
+"ok" = "OK";
+
+// MARK: Authentication
+"sign_in" = "Đăng nhập";
+"sign_out" = "Đăng xuất";
+"sign_up" = "Đăng ký";
+"sign_in_facebook" = "Đăng nhập bằng facebook";
+"forgot_password" = "Quên mật khẩu";
+"email" = "Email";
+"password" = "Mật khẩu";
+"confirm_password" = "Xác nhận mật khẩu";
+"invalid_email" = "Email không hợp lệ";
+"password_minimum_length" = "Mật khẩu ít nhất 7 ký tự";
+"password_not_match" = "Mật khẩu không trùng";
+"sign_in_fail" = "Đăng nhập thất bại";
+"bad_credentials" = "Thông tin đăng nhập không đúng";
+"user_not_exist" = "Người dùng không tốn tại trong hệ thống";
+
+// MARK Error:
+"error_title" = "Có lỗi xảy ra";
+"error_unknown" = "Lỗi chưa xác định";
+"error_server" = "Lỗi máy chủ";
+
+
+
+
