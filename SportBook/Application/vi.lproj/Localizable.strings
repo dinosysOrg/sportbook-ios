@@ -10,7 +10,11 @@
 "application_name" = "Sport Book";
 "back" = "Quay lại";
 "ok" = "OK";
-"bad_response" = "Không thể trích xuất dữ liệu";
+"cancel" = "Hủy bỏ";
+
+"tournament" = "Giải đấu";
+"statistic" = "Thống kê";
+"profile" = "Cá nhân"; 
 
 // MARK: Authentication
 "sign_in" = "Đăng nhập";
@@ -33,6 +37,5 @@
 "error_unknown" = "Lỗi chưa xác định";
 "error_server" = "Lỗi máy chủ";
 "error_system" = "Lỗi hệ thống";
-
-
+"error_bad_response" = "Không thể trích xuất dữ liệu";
 

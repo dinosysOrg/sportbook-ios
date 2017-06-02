@@ -69,12 +69,12 @@ class LoginViewModel {
                 //If user cancelled notify false and message
                 case .cancelled:
                     //Notify cancelled error
-                    observer.onNext(AuthenticationStatus.Error(AuthenticationError.UserCancelled))
+                    observer.onNext(AuthenticationStatus.Error(SportBookError.UserCancelled))
                     break
                 //If failed to login notify false and error message
                 case .failed(_):
                     //Notify request failed error
-                    observer.onNext(AuthenticationStatus.Error(AuthenticationError.Unknown))
+                    observer.onNext(AuthenticationStatus.Error(SportBookError.Unknown))
                     break
                 }
             })

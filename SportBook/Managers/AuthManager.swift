@@ -11,37 +11,13 @@ import RxSwift
 import Moya
 import SwiftyJSON
 
-public enum AuthenticationError {
-    case Unknown
-    case UserCancelled
-    case Server
-    case BadReponse
-    case BadCredentials
-    case Custom(String)
-}
-
 public enum AuthenticationStatus {
     case Authenticated
     case SignedUp
     case SignedOut
     case PasswordReset
-    case Error(AuthenticationError)
+    case Error(SportBookError)
     case None
-}
-
-extension AuthenticationError : CustomStringConvertible {
-    public var description : String {
-        switch self {
-        case .BadReponse:
-            return "bad_response".localized
-        case .BadCredentials:
-            return "bad_credentials".localized
-        case .Custom(let message):
-            return message
-        default:
-            return "error_system".localized
-        }
-    }
 }
 
 class AuthManager {
@@ -91,7 +67,7 @@ class AuthManager {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
                     .arrayValue.map { $0.stringValue }.joined(separator: ". ")
                 
-                observer.onNext(AuthenticationStatus.Error(AuthenticationError.Custom(errorMessage)))
+                observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(errorMessage)))
             }
             
             return Disposables.create()
@@ -107,7 +83,7 @@ class AuthManager {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
                     .arrayValue.map { $0.stringValue }.joined(separator: ". ")
                 
-                observer.onNext(AuthenticationStatus.Error(AuthenticationError.Custom(errorMessage)))
+                observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(errorMessage)))
             }
             
             return Disposables.create()
@@ -128,7 +104,7 @@ class AuthManager {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
                     .arrayValue.map { $0.stringValue }.joined(separator: ". ")
                 
-                observer.onNext(AuthenticationStatus.Error(AuthenticationError.Custom(errorMessage)))
+                observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(errorMessage)))
             }
             
             return Disposables.create()
@@ -144,7 +120,7 @@ class AuthManager {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
                     .arrayValue.map { $0.stringValue }.joined(separator: ". ")
                 
-                observer.onNext(AuthenticationStatus.Error(AuthenticationError.Custom(errorMessage)))
+                observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(errorMessage)))
             }
             
             return Disposables.create()

@@ -10,7 +10,11 @@
 "application_name" = "Sport Book";
 "back" = "Back";
 "ok" = "OK";
-"bad_response" = "Can not extract data";
+"cancel" = "Cancel";
+
+"tournament" = "Tournament";
+"statistic" = "Statistic";
+"profile" = "Profile";
 
 // MARK: Authentication
 "sign_in" = "Sign in";
@@ -33,7 +37,7 @@
 "error_unknown" = "Unknow error";
 "error_server" = "Server error";
 "error_system" = "System error";
-
+"error_bad_response" = "Can not extract data";
 
 
 

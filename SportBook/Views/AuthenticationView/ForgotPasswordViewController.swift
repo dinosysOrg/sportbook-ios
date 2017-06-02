@@ -22,6 +22,10 @@ class ForgotPasswordViewController : BaseViewController {
     @IBOutlet weak var tfEmail: SkyFloatingLabelTextField!
     
     @IBOutlet weak var btnResetPassword: UIButton!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
     override func viewDidLoad() {
         forgotPasswordViewModel = ForgotPasswordViewModel(emailText: tfEmail.rx.text.orEmpty.asDriver())
@@ -49,10 +53,11 @@ class ForgotPasswordViewController : BaseViewController {
             .subscribe(onNext: { [unowned self] authStatus in
                 switch authStatus {
                 case .PasswordReset:
+                    //Notify user open mail and do reset password then back to sign up page
                     self.navigationController?.popViewController(animated: true)
                     break
                 case .Error(let error):
-                    self.showError(error)
+                    ErrorManager.sharedInstance.showError(viewController: self, error: error)
                     break
                 default:
                     break

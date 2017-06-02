@@ -27,6 +27,10 @@ class SignupViewController : BaseViewController {
     
     var signupViewModel : SignupViewModel!
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         signupViewModel = SignupViewModel(emailText: tfEmail.rx.text.orEmpty.asDriver(),
                                          passwordText: tfPassword.rx.text.orEmpty.asDriver(),
@@ -76,7 +80,7 @@ class SignupViewController : BaseViewController {
                     self.navigationController?.popViewController(animated: true)
                     break
                 case .Error(let error):
-                    self.showError(error)
+                    ErrorManager.sharedInstance.showError(viewController: self, error: error)
                     break
                 default:
                     break

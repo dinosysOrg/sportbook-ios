@@ -31,6 +31,10 @@ class LoginViewController : BaseViewController {
     
     @IBOutlet weak var tfPassword: SkyFloatingLabelTextField!
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         loginViewModel = LoginViewModel(emailText: tfEmail.rx.text.orEmpty.asDriver(),
                                         passwordText: tfPassword.rx.text.orEmpty.asDriver())
@@ -87,7 +91,7 @@ class LoginViewController : BaseViewController {
                     self.navigationController?.present(mainViewController, animated: true, completion: {})
                     break
                 case .Error(let error):
-                    self.showError(error)
+                    ErrorManager.sharedInstance.showError(viewController: self, error: error)
                     break
                 default:
                     break

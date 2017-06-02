@@ -1,20 +1,20 @@
 //
-//  ProfileViewController.swift
+//  TournamentViewController.swift
 //  SportBook
 //
-//  Created by DucBM on 5/24/17.
+//  Created by DucBM on 6/1/17.
 //  Copyright © 2017 dinosys. All rights reserved.
 //
 
 import UIKit
 
-class ProfileViewController : BaseViewController {
+class TournamentViewController : BaseViewController {
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.title = "profile".localized
-        self.tabBarItem = UITabBarItem(title: "profile".localized, image: nil, selectedImage: nil)
+        self.title = "tournament".localized
+        self.tabBarItem = UITabBarItem(title: "tournament".localized, image: nil, selectedImage: nil)
         self.tabBarItem.tag = 0
     }
     

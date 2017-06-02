@@ -1,20 +1,20 @@
 //
-//  ProfileViewController.swift
+//  Statistic.swift
 //  SportBook
 //
-//  Created by DucBM on 5/24/17.
+//  Created by DucBM on 6/1/17.
 //  Copyright © 2017 dinosys. All rights reserved.
 //
 
 import UIKit
 
-class ProfileViewController : BaseViewController {
+class StatisticViewController : BaseViewController {
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.title = "profile".localized
-        self.tabBarItem = UITabBarItem(title: "profile".localized, image: nil, selectedImage: nil)
+        self.title = "statistic".localized
+        self.tabBarItem = UITabBarItem(title: "statistic".localized, image: nil, selectedImage: nil)
         self.tabBarItem.tag = 0
     }
     

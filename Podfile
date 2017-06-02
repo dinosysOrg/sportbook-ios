@@ -18,6 +18,8 @@ target 'SportBook' do
    pod 'FacebookCore'
    pod 'FacebookLogin'
    pod 'SkyFloatingLabelTextField'
+   pod 'Fabric'
+   pod 'Crashlytics'
 
   # Pods for SportBook
 
