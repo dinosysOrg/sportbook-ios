@@ -36,7 +36,7 @@ class LoginViewModel {
             .throttle(0.3)
             .map { $0.utf8.count > 6 }.skip(1)
         
-        credentialsValid = Driver.combineLatest(emailValid, passwordValid) { $0 && $1 }
+        credentialsValid = Driver.combineLatest(emailValid, passwordValid) { $0 && $1 }.startWith(false)
     }
     
     func signInWithEmail(_ email: String, password: String) -> Observable<AuthenticationStatus> {
@@ -72,9 +72,9 @@ class LoginViewModel {
                     observer.onNext(AuthenticationStatus.Error(SportBookError.UserCancelled))
                     break
                 //If failed to login notify false and error message
-                case .failed(_):
+                case .failed(let error):
                     //Notify request failed error
-                    observer.onNext(AuthenticationStatus.Error(SportBookError.Unknown))
+                    observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(error.localizedDescription)))  
                     break
                 }
             })

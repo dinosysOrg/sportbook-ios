@@ -33,6 +33,7 @@
 "user_not_exist" = "This user doesn't exist";
 
 // MARK Error:
+"connection_failure" = "Can not connect to server";
 "error_title" = "An error occuried";
 "error_unknown" = "Unknow error";
 "error_server" = "Server error";

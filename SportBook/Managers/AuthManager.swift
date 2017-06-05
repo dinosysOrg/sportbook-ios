@@ -23,36 +23,46 @@ public enum AuthenticationStatus {
 class AuthManager {
     
     static var sharedInstance = AuthManager()
+    private let maxAttempts = 3
     
     private init() {}
     
     func signIn(_ email: String, password: String) -> Observable<AuthenticationStatus> {
-        return AuthenticationProvider.request(.signInWithEmail(email,password)).flatMap(self.handleSignInResponse)
+        return AuthenticationProvider.request(.signInWithEmail(email,password))
+            .retry(maxAttempts).catchErrorJustReturn(Response(statusCode: 0, data: Data()))
+            .flatMap(self.handleSignInResponse)
     }
     
     func signIn(_ fbToken: String) -> Observable<AuthenticationStatus> {
-        return AuthenticationProvider.request(.signInWithFacebook(fbToken)).flatMap(self.handleSignInResponse)
+        return AuthenticationProvider.request(.signInWithFacebook(fbToken))
+            .retry(maxAttempts).catchErrorJustReturn(Response(statusCode: 0, data: Data()))
+            .flatMap(self.handleSignInResponse)
     }
     
     func signUp(_ email: String, password: String) -> Observable<AuthenticationStatus>{
         return AuthenticationProvider.request(.signUp(email, password))
+            .retry(maxAttempts).catchErrorJustReturn(Response(statusCode: 0, data: Data()))
             .flatMap(self.handleSignUpResponse)
     }
     
     func signOut() -> Observable<AuthenticationStatus>{
         return AuthenticationProvider.request(.signOut)
+            .retry(maxAttempts).catchErrorJustReturn(Response(statusCode: 0, data: Data()))
             .flatMap(self.handleSignOutResponse)
     }
     
     func resetPassword(_ email: String) -> Observable<AuthenticationStatus>{
         return AuthenticationProvider.request(.forgotPassword(email))
+            .retry(maxAttempts).catchErrorJustReturn(Response(statusCode: 0, data: Data()))
             .flatMap(self.handleResetPasswordResponse)
     }
     
     func handleSignInResponse(_ response: Response) -> Observable<AuthenticationStatus> {
         return Observable<AuthenticationStatus>.create { observer in
             
-            if 200..<300 ~= response.statusCode {
+            if response.statusCode == 0 {
+                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+            } else if 200..<300 ~= response.statusCode {
                 
                 if let httpResponse = response.response as? HTTPURLResponse  {
                     if let headerFields = httpResponse.allHeaderFields as? [String: Any] {
@@ -77,7 +87,9 @@ class AuthManager {
     func handleSignUpResponse(_ response: Response) -> Observable<AuthenticationStatus> {
         return Observable<AuthenticationStatus>.create { observer in
             
-            if 200..<300 ~= response.statusCode {
+            if response.statusCode == 0 {
+                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+            } else if 200..<300 ~= response.statusCode {
                 observer.onNext(AuthenticationStatus.SignedUp)
             } else {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
@@ -98,7 +110,9 @@ class AuthManager {
             self.Expiry = nil
             self.UID = nil
             
-            if 200..<300 ~= response.statusCode {
+            if response.statusCode == 0 {
+                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+            } else if 200..<300 ~= response.statusCode {
                 observer.onNext(AuthenticationStatus.SignedOut)
             } else {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
@@ -114,9 +128,12 @@ class AuthManager {
     func handleResetPasswordResponse(_ response: Response) -> Observable<AuthenticationStatus> {
         return Observable<AuthenticationStatus>.create { observer in
             
-            if 200..<300 ~= response.statusCode {
+            if response.statusCode == 0 {
+                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+            } else if 200..<300 ~= response.statusCode {
                 observer.onNext(AuthenticationStatus.PasswordReset)
-            } else {
+            } 
+            else {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
                     .arrayValue.map { $0.stringValue }.joined(separator: ". ")
                 

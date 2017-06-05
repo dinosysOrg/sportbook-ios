@@ -36,6 +36,12 @@ class ForgotPasswordViewController : BaseViewController {
             })
             .addDisposableTo(disposeBag)
         
+        forgotPasswordViewModel.emailValid.startWith(false)
+            .drive(onNext: { [unowned self] valid in
+                self.btnResetPassword.isEnabled = valid
+            })
+            .addDisposableTo(disposeBag)
+        
         let resetPasswordTap = btnResetPassword.rx.tap
         
         resetPasswordTap.subscribe(onNext: { [unowned self] _ in

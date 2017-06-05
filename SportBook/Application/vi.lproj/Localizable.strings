@@ -33,6 +33,7 @@
 "user_not_exist" = "Người dùng không tốn tại trong hệ thống";
 
 // MARK Error:
+"connection_failure" = "Không thể kết nối với máy chủ";
 "error_title" = "Có lỗi xảy ra";
 "error_unknown" = "Lỗi chưa xác định";
 "error_server" = "Lỗi máy chủ";

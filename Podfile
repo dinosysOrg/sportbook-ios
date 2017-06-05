@@ -14,6 +14,7 @@ target 'SportBook' do
    pod 'RxCocoa'
    pod "RxGesture"
    pod 'RxKeyboard'
+   pod 'RxReachability'
    pod 'Moya/RxSwift'
    pod 'FacebookCore'
    pod 'FacebookLogin'

@@ -34,7 +34,7 @@ class SignupViewModel {
         
         confirmPasswordValid = Driver.combineLatest(passwordText, confirmPasswordText) { $0 == $1 }
         
-        credentialsValid = Driver.combineLatest(emailValid, passwordValid, confirmPasswordValid) { $0 && $1 && $2}
+        credentialsValid = Driver.combineLatest(emailValid, passwordValid, confirmPasswordValid) { $0 && $1 && $2}.startWith(false)
     }
     
     func signUp(_ email: String, password: String) -> Observable<AuthenticationStatus> {
