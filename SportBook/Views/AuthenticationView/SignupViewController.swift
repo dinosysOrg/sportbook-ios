@@ -72,6 +72,9 @@ class SignupViewController : BaseViewController {
             .flatMapLatest { [unowned self] valid -> Observable<AuthenticationStatus> in
                 self.signupViewModel.signUp(self.tfEmail.text!, password: self.tfPassword.text!)
                     .observeOn(SerialDispatchQueueScheduler(qos: .userInteractive))
+                    .catchError { error -> Observable<AuthenticationStatus> in
+                        return Observable.of(AuthenticationStatus.Error(error as! SportBookError))
+                }
             }
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] authStatus in

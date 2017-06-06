@@ -77,7 +77,7 @@ class AuthManager {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
                     .arrayValue.map { $0.stringValue }.joined(separator: ". ")
                 
-                observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(errorMessage)))
+                observer.onError(SportBookError.Custom(errorMessage))
             }
             
             return Disposables.create()
@@ -95,7 +95,7 @@ class AuthManager {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
                     .arrayValue.map { $0.stringValue }.joined(separator: ". ")
                 
-                observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(errorMessage)))
+                observer.onError(SportBookError.Custom(errorMessage))
             }
             
             return Disposables.create()
@@ -118,7 +118,7 @@ class AuthManager {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
                     .arrayValue.map { $0.stringValue }.joined(separator: ". ")
                 
-                observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(errorMessage)))
+                observer.onError(SportBookError.Custom(errorMessage))
             }
             
             return Disposables.create()
@@ -132,12 +132,12 @@ class AuthManager {
                 observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
             } else if 200..<300 ~= response.statusCode {
                 observer.onNext(AuthenticationStatus.PasswordReset)
-            } 
+            }
             else {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
                     .arrayValue.map { $0.stringValue }.joined(separator: ". ")
                 
-                observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(errorMessage)))
+                observer.onError(SportBookError.Custom(errorMessage))
             }
             
             return Disposables.create()

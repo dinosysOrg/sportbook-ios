@@ -62,9 +62,13 @@ class LoginViewModel {
                 switch result {
                 //If success return notify and acess token
                 case .success(_, _, let accessToken):
-                    AuthManager.sharedInstance.signIn(accessToken.authenticationToken).subscribe(onNext: { authStatus in
-                        observer.onNext(authStatus)
-                    }).addDisposableTo(self.disposeBag)
+                    AuthManager.sharedInstance.signIn(accessToken.authenticationToken)
+                        .catchError { error -> Observable<AuthenticationStatus> in
+                            return Observable.of(AuthenticationStatus.Error(.ConnectionFailure))
+                        }
+                        .subscribe(onNext: { authStatus in
+                            observer.onNext(authStatus)
+                        }).addDisposableTo(self.disposeBag)
                     break
                 //If user cancelled notify false and message
                 case .cancelled:
@@ -74,7 +78,7 @@ class LoginViewModel {
                 //If failed to login notify false and error message
                 case .failed(let error):
                     //Notify request failed error
-                    observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(error.localizedDescription)))  
+                    observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(error.localizedDescription)))
                     break
                 }
             })

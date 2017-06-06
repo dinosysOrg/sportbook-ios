@@ -70,17 +70,21 @@ class LoginViewController : BaseViewController {
             .withLatestFrom(loginViewModel.credentialsValid)
             .filter { $0 }
             .flatMapLatest { [unowned self] valid -> Observable<AuthenticationStatus> in
-                self.loginViewModel.signInWithEmail(self.tfEmail.text!, password: self.tfPassword.text!)
+                return self.loginViewModel.signInWithEmail(self.tfEmail.text!, password: self.tfPassword.text!)
                     .observeOn(SerialDispatchQueueScheduler(qos: .userInteractive))
+                    .catchError { error -> Observable<AuthenticationStatus> in
+                        return Observable.of(AuthenticationStatus.Error(error as! SportBookError))
             }
             .observeOn(MainScheduler.instance)
+        }
         
         let signInWithFacebook = facebookTap
             .flatMapLatest { [unowned self] _ -> Observable<AuthenticationStatus> in
-                self.loginViewModel.signInWithFacebook(viewcontroller: self)
+                return self.loginViewModel.signInWithFacebook(viewcontroller: self)
                     .observeOn(SerialDispatchQueueScheduler(qos: .userInteractive))
             }
             .observeOn(MainScheduler.instance)
+       
         
         Observable.from([signInWithEmail, signInWithFacebook])
             .merge().subscribe(onNext: { [unowned self] authStatus in

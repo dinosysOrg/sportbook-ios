@@ -54,6 +54,9 @@ class ForgotPasswordViewController : BaseViewController {
             .flatMapLatest { [unowned self] valid -> Observable<AuthenticationStatus> in
                 self.forgotPasswordViewModel.resetPassword(self.tfEmail.text!)
                     .observeOn(SerialDispatchQueueScheduler(qos: .userInteractive))
+                    .catchError { error -> Observable<AuthenticationStatus> in
+                        return Observable.of(AuthenticationStatus.Error(error as! SportBookError))
+                }
             }
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] authStatus in
