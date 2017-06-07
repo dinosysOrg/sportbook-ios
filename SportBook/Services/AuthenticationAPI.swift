@@ -17,7 +17,7 @@ let endpointClosure = { (target: AuthenticationAPI) -> Endpoint<AuthenticationAP
     case .signOut:
         return defaultEndpoint.adding(newHTTPHeaderFields: AuthManager.sharedInstance.toDictionary())
     default:
-         return defaultEndpoint
+        return defaultEndpoint
     }
 }
 
@@ -31,6 +31,7 @@ public enum AuthenticationAPI  {
     case signInWithFacebook(String)
     case signUp(String, String) //Sign up with email and password
     case signOut //Sign up with email and password
+    case forgotPassword(String) //Reset password
 }
 
 extension AuthenticationAPI : TargetType {
@@ -44,9 +45,11 @@ extension AuthenticationAPI : TargetType {
         case .signInWithEmail(_, _):
             return "/auth/sign_in"
         case .signInWithFacebook(_):
-            return "/auth/sign_in"
+            return "/auth/sign_in_with_facebook"
         case .signOut:
             return "/auth/sign_out"
+        case .forgotPassword(_):
+            return "/auth/password"
         }
     }
     
@@ -70,7 +73,9 @@ extension AuthenticationAPI : TargetType {
             return ["email": email,
                     "password": password]
         case .signInWithFacebook(let accessToken):
-            return ["shortentoken" : accessToken]
+            return ["access_token" : accessToken]
+        case .forgotPassword(let email):
+            return ["email" : email]
         default:
             return nil
         }

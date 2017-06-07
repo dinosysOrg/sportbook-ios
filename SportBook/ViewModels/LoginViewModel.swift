@@ -36,7 +36,7 @@ class LoginViewModel {
             .throttle(0.3)
             .map { $0.utf8.count > 6 }.skip(1)
         
-        credentialsValid = Driver.combineLatest(emailValid, passwordValid) { $0 && $1 }
+        credentialsValid = Driver.combineLatest(emailValid, passwordValid) { $0 && $1 }.startWith(false)
     }
     
     func signInWithEmail(_ email: String, password: String) -> Observable<AuthenticationStatus> {
@@ -62,19 +62,23 @@ class LoginViewModel {
                 switch result {
                 //If success return notify and acess token
                 case .success(_, _, let accessToken):
-                    AuthManager.sharedInstance.signIn(accessToken.authenticationToken).subscribe(onNext: { authStatus in
-                        observer.onNext(authStatus)
-                    }).addDisposableTo(self.disposeBag)
+                    AuthManager.sharedInstance.signIn(accessToken.authenticationToken)
+                        .catchError { error -> Observable<AuthenticationStatus> in
+                            return Observable.of(AuthenticationStatus.Error(.ConnectionFailure))
+                        }
+                        .subscribe(onNext: { authStatus in
+                            observer.onNext(authStatus)
+                        }).addDisposableTo(self.disposeBag)
                     break
                 //If user cancelled notify false and message
                 case .cancelled:
                     //Notify cancelled error
-                    observer.onNext(AuthenticationStatus.Error(AuthenticationError.UserCancelled))
+                    observer.onNext(AuthenticationStatus.Error(SportBookError.UserCancelled))
                     break
                 //If failed to login notify false and error message
-                case .failed(_):
+                case .failed(let error):
                     //Notify request failed error
-                    observer.onNext(AuthenticationStatus.Error(AuthenticationError.Unknown))
+                    observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(error.localizedDescription)))
                     break
                 }
             })

@@ -15,8 +15,6 @@ import SkyFloatingLabelTextField
 
 class SignupViewController : BaseViewController {
     
-    let overcastBlueColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
-    
     @IBOutlet weak var tfEmail: SkyFloatingLabelTextField!
     
     @IBOutlet weak var tfPassword: SkyFloatingLabelTextField!
@@ -28,6 +26,10 @@ class SignupViewController : BaseViewController {
     let disposeBag = DisposeBag()
     
     var signupViewModel : SignupViewModel!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         signupViewModel = SignupViewModel(emailText: tfEmail.rx.text.orEmpty.asDriver(),
@@ -42,19 +44,19 @@ class SignupViewController : BaseViewController {
         
         signupViewModel.emailValid
             .drive(onNext: { [unowned self] valid in
-                self.tfEmail.errorMessage = valid ? "" : "Invalid email"
+                self.tfEmail.errorMessage = valid ? "" : "invalid_email".localized
             })
             .addDisposableTo(disposeBag)
         
         signupViewModel.passwordValid
             .drive(onNext: { [unowned self] valid in
-                self.tfPassword.errorMessage = valid ? "" : "Must be at least 7 characters"
+                self.tfPassword.errorMessage = valid ? "" : "password_minimum_length".localized
             })
             .addDisposableTo(disposeBag)
         
         signupViewModel.confirmPasswordValid
             .drive(onNext: { [unowned self] valid in
-                self.tfConfirmPassword.errorMessage = valid ? "" : "Confirm password does not match"
+                self.tfConfirmPassword.errorMessage = valid ? "" : "password_not_match".localized
             })
             .addDisposableTo(disposeBag)
         
@@ -70,17 +72,20 @@ class SignupViewController : BaseViewController {
             .flatMapLatest { [unowned self] valid -> Observable<AuthenticationStatus> in
                 self.signupViewModel.signUp(self.tfEmail.text!, password: self.tfPassword.text!)
                     .observeOn(SerialDispatchQueueScheduler(qos: .userInteractive))
+                    .catchError { error -> Observable<AuthenticationStatus> in
+                        return Observable.of(AuthenticationStatus.Error(error as! SportBookError))
+                }
             }
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] authStatus in
                 switch authStatus {
-                case .None:
-                    break
-                case .Authenticated:
+                case .SignedUp:
                     self.navigationController?.popViewController(animated: true)
                     break
                 case .Error(let error):
-                    self.showError(error)
+                    ErrorManager.sharedInstance.showError(viewController: self, error: error)
+                    break
+                default:
                     break
                 }
             })
@@ -96,35 +101,5 @@ class SignupViewController : BaseViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.dismissKeyboard()
-    }
-    
-    fileprivate func showError(_ error: AuthenticationError) {
-        var title: String = ""
-        var message: String = ""
-        
-        switch error {
-        case .Unknown:
-            title = "An error occuried"
-            message = "Unknown error"
-            break
-        case .UserCancelled:
-            return
-        case .Server, .BadReponse:
-            title = "An error occuried"
-            message = "Server error"
-            break
-        case .BadCredentials:
-            title = "Bad credentials"
-            message = "This user don't exist"
-            break
-        case .Custom(let error):
-            title = "Sign up failed"
-            message = error.description
-            break
-        }
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 }

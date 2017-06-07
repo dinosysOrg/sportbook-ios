@@ -19,15 +19,10 @@ class ThemeManager {
         proxyNormalTextField.selectedTitleColor = SportBookColors.overcastBlue
         proxyNormalTextField.selectedLineColor = SportBookColors.overcastBlue
         proxyNormalTextField.errorColor = UIColor.red
-        
-        let proxyNormalButton = UIButton.appearance()
-        proxyNormalButton.backgroundColor = UIColor.blue
-        proxyNormalButton.setTitleColor(UIColor.white, for: .normal)
     }
 }
 
 class SportBookColors {
-    
     static let overcastBlue = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
 }
 

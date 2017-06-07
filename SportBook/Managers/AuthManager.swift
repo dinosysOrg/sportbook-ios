@@ -11,59 +11,58 @@ import RxSwift
 import Moya
 import SwiftyJSON
 
-public enum AuthenticationError {
-    case Unknown
-    case UserCancelled
-    case Server
-    case BadReponse
-    case BadCredentials
-    case Custom(String)
-}
-
 public enum AuthenticationStatus {
     case Authenticated
-    case Error(AuthenticationError)
+    case SignedUp
+    case SignedOut
+    case PasswordReset
+    case Error(SportBookError)
     case None
-}
-
-extension AuthenticationError : CustomStringConvertible {
-    public var description : String {
-        switch self {
-        case .BadReponse:
-            return "Dữ liệu phản hồi lỗi!!!"
-        case .BadCredentials:
-            return "Sai thông tin đăng nhập!!!"
-        case .Custom(let message):
-            return message
-        default:
-            return "Lỗi hệ thống!!!"
-        }
-    }
 }
 
 class AuthManager {
     
     static var sharedInstance = AuthManager()
+    private let maxAttempts = 3
     
     private init() {}
     
     func signIn(_ email: String, password: String) -> Observable<AuthenticationStatus> {
-        return AuthenticationProvider.request(.signInWithEmail(email,password)).flatMap(self.handleAuthResponse)
+        return AuthenticationProvider.request(.signInWithEmail(email,password))
+            .retry(maxAttempts).catchErrorJustReturn(Response(statusCode: 0, data: Data()))
+            .flatMap(self.handleSignInResponse)
     }
     
     func signIn(_ fbToken: String) -> Observable<AuthenticationStatus> {
-        return AuthenticationProvider.request(.signInWithFacebook(fbToken)).flatMap(self.handleAuthResponse)
+        return AuthenticationProvider.request(.signInWithFacebook(fbToken))
+            .retry(maxAttempts).catchErrorJustReturn(Response(statusCode: 0, data: Data()))
+            .flatMap(self.handleSignInResponse)
     }
     
     func signUp(_ email: String, password: String) -> Observable<AuthenticationStatus>{
         return AuthenticationProvider.request(.signUp(email, password))
-            .flatMap(self.handleAuthResponse)
+            .retry(maxAttempts).catchErrorJustReturn(Response(statusCode: 0, data: Data()))
+            .flatMap(self.handleSignUpResponse)
     }
     
-    func handleAuthResponse(_ response : Response) -> Observable<AuthenticationStatus> {
+    func signOut() -> Observable<AuthenticationStatus>{
+        return AuthenticationProvider.request(.signOut)
+            .retry(maxAttempts).catchErrorJustReturn(Response(statusCode: 0, data: Data()))
+            .flatMap(self.handleSignOutResponse)
+    }
+    
+    func resetPassword(_ email: String) -> Observable<AuthenticationStatus>{
+        return AuthenticationProvider.request(.forgotPassword(email))
+            .retry(maxAttempts).catchErrorJustReturn(Response(statusCode: 0, data: Data()))
+            .flatMap(self.handleResetPasswordResponse)
+    }
+    
+    func handleSignInResponse(_ response: Response) -> Observable<AuthenticationStatus> {
         return Observable<AuthenticationStatus>.create { observer in
             
-            if 200..<300 ~= response.statusCode {
+            if response.statusCode == 0 {
+                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+            } else if 200..<300 ~= response.statusCode {
                 
                 if let httpResponse = response.response as? HTTPURLResponse  {
                     if let headerFields = httpResponse.allHeaderFields as? [String: Any] {
@@ -78,18 +77,71 @@ class AuthManager {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
                     .arrayValue.map { $0.stringValue }.joined(separator: ". ")
                 
-                observer.onNext(AuthenticationStatus.Error(AuthenticationError.Custom(errorMessage)))
+                observer.onError(SportBookError.Custom(errorMessage))
             }
             
             return Disposables.create()
         }
     }
     
-    func signOut() {
-        self.AccessToken = nil
-        self.Client = nil
-        self.Expiry = nil
-        self.UID = nil
+    func handleSignUpResponse(_ response: Response) -> Observable<AuthenticationStatus> {
+        return Observable<AuthenticationStatus>.create { observer in
+            
+            if response.statusCode == 0 {
+                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+            } else if 200..<300 ~= response.statusCode {
+                observer.onNext(AuthenticationStatus.SignedUp)
+            } else {
+                let errorMessage = JSON(response)["errors"]["full_messages"]
+                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                
+                observer.onError(SportBookError.Custom(errorMessage))
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func handleSignOutResponse(_ response: Response) -> Observable<AuthenticationStatus> {
+        return Observable<AuthenticationStatus>.create { observer in
+            
+            self.AccessToken = nil
+            self.Client = nil
+            self.Expiry = nil
+            self.UID = nil
+            
+            if response.statusCode == 0 {
+                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+            } else if 200..<300 ~= response.statusCode {
+                observer.onNext(AuthenticationStatus.SignedOut)
+            } else {
+                let errorMessage = JSON(response)["errors"]["full_messages"]
+                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                
+                observer.onError(SportBookError.Custom(errorMessage))
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func handleResetPasswordResponse(_ response: Response) -> Observable<AuthenticationStatus> {
+        return Observable<AuthenticationStatus>.create { observer in
+            
+            if response.statusCode == 0 {
+                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+            } else if 200..<300 ~= response.statusCode {
+                observer.onNext(AuthenticationStatus.PasswordReset)
+            }
+            else {
+                let errorMessage = JSON(response)["errors"]["full_messages"]
+                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                
+                observer.onError(SportBookError.Custom(errorMessage))
+            }
+            
+            return Disposables.create()
+        }
     }
 }
 

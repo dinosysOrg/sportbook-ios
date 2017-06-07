@@ -12,4 +12,8 @@ extension String {
     var urlEscaped: String {
         return self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
     }
+    
+    var localized: String {
+        return NSLocalizedString(self, comment: "")
+    }
 }
