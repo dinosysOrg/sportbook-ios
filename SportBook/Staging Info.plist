@@ -6,8 +6,6 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>SportBook</string>
-	<key>CFBundleDocumentTypes</key>
-	<array/>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -52,7 +50,7 @@
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
-	<string>103873786863872</string>
+	<string>219332025244844</string>
 	<key>FacebookDisplayName</key>
 	<string>Sport Book</string>
 	<key>LSApplicationQueriesSchemes</key>

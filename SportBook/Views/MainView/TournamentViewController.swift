@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class TournamentViewController : BaseViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,5 +30,4 @@ class TournamentViewController : BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
     }
-    
 }

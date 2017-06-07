@@ -10,13 +10,23 @@ import UIKit
 import FacebookCore
 import Fabric
 import Crashlytics
+import RxSwift
+import RxReachability
+import ReachabilitySwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    var reachability: Reachability?
+    
+    let disposeBag = DisposeBag()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        reachability = Reachability()
+        try? reachability?.startNotifier()
+        
         // Override point for customization after application launch.
         Fabric.with([Answers.self, Crashlytics.self])
         
@@ -34,6 +44,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Else launch default login view
         
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        Reachability.rx.isConnected
+            .subscribe(onNext: {
+                print("Is connected")
+                 //Handle if network connected
+            })
+            .addDisposableTo(disposeBag)
+        
+        Reachability.rx.isDisconnected
+            .subscribe(onNext: {
+                print("Is disconnected")
+                //Handle if network disconnected
+            })
+            .addDisposableTo(disposeBag)
         
         return true
     }
@@ -71,6 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        try? reachability?.stopNotifier()
     }
 
 
