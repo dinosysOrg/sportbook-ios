@@ -1121,7 +1121,7 @@
 				DEVELOPMENT_TEAM = 3EKY8KF8UW;
 				INFOPLIST_FILE = "$(SRCROOT)/SportBook/Staging Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dinosys.sportbook;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-staging";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1135,7 +1135,7 @@
 				DEVELOPMENT_TEAM = 3EKY8KF8UW;
 				INFOPLIST_FILE = "$(SRCROOT)/SportBook/Staging Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dinosys.sportbook;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-staging";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1207,7 +1207,7 @@
 				DEVELOPMENT_TEAM = 3EKY8KF8UW;
 				INFOPLIST_FILE = "$(SRCROOT)/Production Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dinosys.sportbook;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-production";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1221,7 +1221,7 @@
 				DEVELOPMENT_TEAM = 3EKY8KF8UW;
 				INFOPLIST_FILE = "$(SRCROOT)/Production Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dinosys.sportbook;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-production";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
