@@ -13,7 +13,7 @@
         <!--Tournament-->
         <scene sceneID="sQZ-f5-MCQ">
             <objects>
-                <viewController storyboardIdentifier="TournamentViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GX2-lm-MIX" userLabel="Tournament" customClass="TournamentViewController" customModule="SportBook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TournamentViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GX2-lm-MIX" userLabel="Tournament" customClass="TournamentViewController" customModule="SportBook_Production" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kyX-pJ-kHo"/>
                         <viewControllerLayoutGuide type="bottom" id="9SQ-kY-RkN"/>
@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyTournamentCell" rowHeight="200" id="r5Q-z6-lLs" customClass="MyTournamentCell" customModule="SportBook" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyTournamentCell" rowHeight="200" id="r5Q-z6-lLs" customClass="MyTournamentCell" customModule="SportBook_Production" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r5Q-z6-lLs" id="dkI-Dc-CKn">
@@ -55,7 +55,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TournamentCell" rowHeight="200" id="0kL-S7-Wij" customClass="TournamentCell" customModule="SportBook" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TournamentCell" rowHeight="200" id="0kL-S7-Wij" customClass="TournamentCell" customModule="SportBook_Production" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="228" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0kL-S7-Wij" id="rgR-Z9-2kQ">
@@ -137,8 +137,17 @@
                                                 <constraint firstItem="hme-6v-Dtu" firstAttribute="top" secondItem="Fe0-fC-Gt7" secondAttribute="bottom" id="Sqg-q3-flV"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblRegisterTime" destination="BoS-lM-dlZ" id="M0L-vX-giX"/>
+                                            <outlet property="lblTournamentName" destination="wBS-vq-7aI" id="nr0-nd-j7G"/>
+                                            <outlet property="lblTournamentTime" destination="MOj-ct-9cW" id="XYj-bF-DlM"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="GX2-lm-MIX" id="BYq-gt-Wfq"/>
+                                    <outlet property="delegate" destination="GX2-lm-MIX" id="si4-bj-O8X"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -162,7 +171,7 @@
         <!--Statistic-->
         <scene sceneID="E66-9D-KTu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="DGR-u5-Ohi" userLabel="Statistic" customClass="StatisticViewController" customModule="SportBook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="DGR-u5-Ohi" userLabel="Statistic" customClass="StatisticViewController" customModule="SportBook_Production" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qNE-Aq-tJT"/>
                         <viewControllerLayoutGuide type="bottom" id="f7e-2v-QOR"/>
@@ -194,7 +203,7 @@
         <!--Profile-->
         <scene sceneID="aU6-0g-o1A">
             <objects>
-                <viewController storyboardIdentifier="ProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="933-23-MOg" userLabel="Profile" customClass="ProfileViewController" customModule="SportBook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="933-23-MOg" userLabel="Profile" customClass="ProfileViewController" customModule="SportBook_Production" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3jf-gT-5ev"/>
                         <viewControllerLayoutGuide type="bottom" id="4Ym-6z-Mgg"/>
@@ -248,7 +257,7 @@
         <!--Main View Controller-->
         <scene sceneID="QdR-lm-vdg">
             <objects>
-                <tabBarController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kCE-cf-4YK" customClass="MainViewController" customModule="SportBook" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kCE-cf-4YK" customClass="MainViewController" customModule="SportBook_Production" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="V1G-bL-cQ2"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="omE-C9-mi2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>

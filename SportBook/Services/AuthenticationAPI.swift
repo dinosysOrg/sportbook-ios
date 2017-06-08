@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 
-let endpointClosure = { (target: AuthenticationAPI) -> Endpoint<AuthenticationAPI> in
+let authEndpointClosure = { (target: AuthenticationAPI) -> Endpoint<AuthenticationAPI> in
     let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
     
     switch target {
@@ -21,7 +21,7 @@ let endpointClosure = { (target: AuthenticationAPI) -> Endpoint<AuthenticationAP
     }
 }
 
-let AuthenticationProvider = RxMoyaProvider<AuthenticationAPI>(endpointClosure: endpointClosure)
+let AuthenticationProvider = RxMoyaProvider<AuthenticationAPI>(endpointClosure: authEndpointClosure)
 
 // MARK: - Provider support
 

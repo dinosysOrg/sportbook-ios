@@ -9,7 +9,14 @@
 import Foundation
 import Moya
 
-let TournamentProvider = MoyaProvider<TournamentAPI>()
+let tournamentEndpointClosure = { (target: TournamentAPI) -> Endpoint<TournamentAPI> in
+    let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
+    
+    return defaultEndpoint.adding(newHTTPHeaderFields: AuthManager.sharedInstance.toDictionary())
+}
+
+
+let TournamentProvider = RxMoyaProvider<TournamentAPI>(endpointClosure: tournamentEndpointClosure)
 
 // MARK: - Provider support
 
@@ -49,10 +56,10 @@ extension TournamentAPI : TargetType {
     public var parameters: [String: Any]? {
         switch self {
         case .signupTournament(_, let venueRanking, let teamName, let members):
-           return [
-            "name" : teamName, //Team Name
-            "venue_ranking " : venueRanking, //Venue ranking for team
-            "user_ids" : members ?? [] //Arrays user for creating team
+            return [
+                "name" : teamName, //Team Name
+                "venue_ranking " : venueRanking, //Venue ranking for team
+                "user_ids" : members ?? [] //Arrays user for creating team
             ]
         default:
             return nil
