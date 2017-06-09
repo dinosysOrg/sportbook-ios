@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TournamentViewController : BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class TournamentViewController : BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,6 +23,8 @@ class TournamentViewController : BaseViewController, UITableViewDelegate, UITabl
     let tournamentSection = 1
     
     let tournamentCellHeight : CGFloat = 200
+    
+    let tournamentFooterHeight : CGFloat = 0.01
     
     let disposeBag = DisposeBag()
     
@@ -58,8 +60,11 @@ class TournamentViewController : BaseViewController, UITableViewDelegate, UITabl
             self?.tableView.reloadData()
         }).addDisposableTo(disposeBag)
     }
-    
-     // MARK: - Table View
+}
+
+// MARK: Table View
+extension TournamentViewController : UITableViewDelegate, UITableViewDataSource{
+ 
     func numberOfSections(in tableView: UITableView) -> Int {
         return tournamentSection
     }
@@ -94,6 +99,7 @@ class TournamentViewController : BaseViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
+        return tournamentFooterHeight
     }
+
 }
