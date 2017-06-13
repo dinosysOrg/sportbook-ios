@@ -33,16 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Apply Sportbook Theme
         ThemeManager.applyTheme()
         
-        //If authenticated, launch main view
-        if AuthManager.sharedInstance.IsAuthenticated {
-            let mainViewController = UIStoryboard.loadMainViewController()
-            
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = mainViewController
-            self.window?.makeKeyAndVisible()
-        }
-        //Else launch default login view
-        
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         Reachability.rx.isConnected

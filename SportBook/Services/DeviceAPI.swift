@@ -1,37 +1,37 @@
 //
-//  SkillAPI.swift
+//  DeviceAPI.swift
 //  SportBook
 //
-//  Created by DucBM on 5/23/17.
+//  Created by DucBM on 6/12/17.
 //  Copyright © 2017 dinosys. All rights reserved.
 //
 
 import Foundation
 import Moya
 
-let SkillProvider = RxMoyaProvider<SkillAPI>()
+let DeviceProvider = MoyaProvider<DeviceAPI>()
 
 // MARK: - Provider support
 
-//Delcaration of Skill APIs
-public enum SkillAPI  {
-    case skills //Get all skills
+//Delcaration of Device APIs
+public enum DeviceAPI  {
+    case create(Int, String, Int) //Store device token
 }
 
-extension SkillAPI : TargetType {
+extension DeviceAPI : TargetType {
     public var baseURL: URL { return URL(string: SportBookAPI.URL)! }
     
     public var path: String {
         switch self {
-        case .skills:
-            return "/skills/"
+        case .create(_,_,_):
+            return "/devices/create"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .skills:
-            return .get
+        case .create(_,_,_):
+            return .post
         }
     }
     

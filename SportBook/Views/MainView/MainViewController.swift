@@ -14,6 +14,13 @@ class MainViewController: UITabBarController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {        //If unauthenticated, present login view
+        if !AuthManager.sharedInstance.IsAuthenticated {
+            let loginViewController = UIStoryboard.loadLoginViewController()
+            self.present(loginViewController, animated: false, completion: {})
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

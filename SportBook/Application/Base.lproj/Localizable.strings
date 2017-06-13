@@ -16,6 +16,15 @@
 "statistic" = "Statistic";
 "profile" = "Profile";
 
+// MARK: Profile
+"name" = "Name";
+"email" = "Email";
+"phone" = "Phone";
+"phone_number" = "Phone Number";
+"address" = "Address";
+"birthdate" = "Birthdate";
+"club" = "Club";
+
 // MARK: Authentication
 "sign_in" = "Sign in";
 "sign_out" = "Sign out";

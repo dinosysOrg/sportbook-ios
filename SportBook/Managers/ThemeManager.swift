@@ -19,6 +19,9 @@ class ThemeManager {
         proxyNormalTextField.selectedTitleColor = SportBookColors.overcastBlue
         proxyNormalTextField.selectedLineColor = SportBookColors.overcastBlue
         proxyNormalTextField.errorColor = UIColor.red
+        
+        let proxyNormalImageView = UIImageView.appearance()
+        proxyNormalImageView.image = UIImage(named: "placeholder.jpeg")
     }
 }
 

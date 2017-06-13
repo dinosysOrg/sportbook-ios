@@ -20,8 +20,10 @@ class TournamentViewModel {
     func getTournaments() -> Observable<Void> {
         return Observable<Void>.create { observer in
              TournamentProvider.request(.tournaments)
-                .shareReplay(1).subscribe(onNext: { response in
-                    if 200..<300 ~= response.statusCode {
+                .subscribe(onNext: { response in
+                    if 401 == response.statusCode {
+                        observer.onError(SportBookError.Unauthenticated)
+                    } else if 200..<300 ~= response.statusCode {
                         let jsonObject = JSON(response.data)
                         
                         let tournamentArray = jsonObject["_embedded"]["tournaments"].arrayValue
@@ -39,10 +41,6 @@ class TournamentViewModel {
                     }
                 }, onError: { _ in
                     observer.onError(SportBookError.ConnectionFailure)
-                }, onCompleted: {
-                    observer.onCompleted()
-                }, onDisposed: {
-                    observer.onCompleted()
                 }).addDisposableTo(self.disposeBag)
             
             return Disposables.create()

@@ -22,4 +22,12 @@ class TournamentCell : UITableViewCell {
         
         lblTournamentTime.text = tournament.startDate
     }
+    
+    func setSampleData() {
+        lblTournamentName.text = "Giải Vô địch Billiards Carom Ba Băng Quận 4"
+        
+        lblRegisterTime.text = "20-6-2017"
+
+        lblTournamentTime.text = "7-7-2017"
+    }
 }
