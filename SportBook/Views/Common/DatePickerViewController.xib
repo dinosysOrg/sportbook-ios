@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DatePickerViewController" customModule="SportBook_Staging" customModuleProvider="target">
+            <connections>
+                <outlet property="btnCancel" destination="whS-JD-osi" id="hsb-a3-zg3"/>
+                <outlet property="btnDone" destination="7nC-OG-X5p" id="m3A-1l-cRN"/>
+                <outlet property="datePicker" destination="5yU-Ji-I2d" id="Tt8-5k-CQP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6C-96-cR7" userLabel="Container View">
+                    <rect key="frame" x="0.0" y="400" width="375" height="267"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cL7-Ta-7q5" userLabel="Button View">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whS-JD-osi">
+                                    <rect key="frame" x="8" y="7" width="63" height="36"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <state key="normal" title="Cancel"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nC-OG-X5p">
+                                    <rect key="frame" x="319" y="7" width="48" height="36"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <state key="normal" title="Done"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.96078431369999995" green="0.96862745100000003" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="7nC-OG-X5p" secondAttribute="trailing" constant="8" id="2lE-Cx-CQl"/>
+                                <constraint firstItem="whS-JD-osi" firstAttribute="centerY" secondItem="cL7-Ta-7q5" secondAttribute="centerY" id="Gvj-A4-YsQ"/>
+                                <constraint firstItem="7nC-OG-X5p" firstAttribute="centerY" secondItem="cL7-Ta-7q5" secondAttribute="centerY" id="OCo-jf-vpH"/>
+                                <constraint firstAttribute="height" constant="50" id="Vfl-6v-fuL"/>
+                                <constraint firstItem="whS-JD-osi" firstAttribute="leading" secondItem="cL7-Ta-7q5" secondAttribute="leading" constant="8" id="yPE-NS-QpC"/>
+                            </constraints>
+                        </view>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5yU-Ji-I2d">
+                            <rect key="frame" x="0.0" y="50" width="375" height="217"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <date key="date" timeIntervalSinceReferenceDate="519203813.02176499">
+                                <!--2017-06-15 07:16:53 +0000-->
+                            </date>
+                        </datePicker>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="cL7-Ta-7q5" firstAttribute="top" secondItem="d6C-96-cR7" secondAttribute="top" id="1gI-Lh-urF"/>
+                        <constraint firstItem="5yU-Ji-I2d" firstAttribute="top" secondItem="cL7-Ta-7q5" secondAttribute="bottom" id="E2n-Jm-fQ9"/>
+                        <constraint firstItem="5yU-Ji-I2d" firstAttribute="leading" secondItem="d6C-96-cR7" secondAttribute="leading" id="HwT-2j-U6Z"/>
+                        <constraint firstAttribute="trailing" secondItem="5yU-Ji-I2d" secondAttribute="trailing" id="Qlv-gL-wGM"/>
+                        <constraint firstAttribute="bottom" secondItem="5yU-Ji-I2d" secondAttribute="bottom" id="fkD-sb-uEt"/>
+                        <constraint firstItem="cL7-Ta-7q5" firstAttribute="leading" secondItem="d6C-96-cR7" secondAttribute="leading" id="wZL-bE-mLc"/>
+                        <constraint firstAttribute="trailing" secondItem="cL7-Ta-7q5" secondAttribute="trailing" id="zRy-F9-UX4"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="d6C-96-cR7" secondAttribute="bottom" id="FNH-Ne-v4z"/>
+                <constraint firstAttribute="trailing" secondItem="d6C-96-cR7" secondAttribute="trailing" id="cZO-qh-RYK"/>
+                <constraint firstItem="d6C-96-cR7" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.4" id="u15-k8-NLy"/>
+                <constraint firstItem="d6C-96-cR7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="z5u-ww-iuS"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

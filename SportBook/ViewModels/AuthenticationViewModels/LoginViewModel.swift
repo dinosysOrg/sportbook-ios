@@ -16,7 +16,7 @@ import FacebookLogin
 
 class LoginViewModel {
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     let emailValid: Driver<Bool>
     
