@@ -10,7 +10,6 @@
 		0D4320EF5EC4B7E862342FA0 /* Pods_SportBook_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E38B7F8DD6CD187416E578 /* Pods_SportBook_Staging.framework */; };
 		B0DC3CE17A243AE17938B896 /* Pods_SportBookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B427DEF1612F4A55DC3CA76 /* Pods_SportBookUITests.framework */; };
 		B1FBEB55F0F8990FE6399DE3 /* Pods_SportBook_Production.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038C250897C145A71AF193F /* Pods_SportBook_Production.framework */; };
-		C39BF3826B813B95FC71DAB7 /* Pods_SportBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42704F6E113E2491B3558520 /* Pods_SportBook.framework */; };
 		C93482031ED59B4100B069C1 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482021ED59B4100B069C1 /* ForgotPasswordViewModel.swift */; };
 		C93482061ED59B4800B069C1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482041ED59B4800B069C1 /* LoginViewModel.swift */; };
 		C93482071ED59B4800B069C1 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482051ED59B4800B069C1 /* SignupViewModel.swift */; };
@@ -45,7 +44,6 @@
 		C9B27E8D1EDED89B009532E2 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B27E8C1EDED89B009532E2 /* ErrorManager.swift */; };
 		C9B65D6A1EE7B21400C6F84C /* TournamentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D691EE7B21400C6F84C /* TournamentViewModel.swift */; };
 		C9B65D6C1EE7B21E00C6F84C /* MyTournamentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D6B1EE7B21E00C6F84C /* MyTournamentViewModel.swift */; };
-		C9B65D6E1EE7B23000C6F84C /* TournamentSignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D6D1EE7B23000C6F84C /* TournamentSignUpViewModel.swift */; };
 		C9B65D701EE7B23D00C6F84C /* TournamentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D6F1EE7B23D00C6F84C /* TournamentDetailViewModel.swift */; };
 		C9B65D721EE7B63300C6F84C /* TournamentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D711EE7B63300C6F84C /* TournamentModel.swift */; };
 		C9B65D741EE7DDD700C6F84C /* CachedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D731EE7DDD700C6F84C /* CachedManager.swift */; };
@@ -67,7 +65,6 @@
 		C9D844761EE7FB0E00C77FD0 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482021ED59B4100B069C1 /* ForgotPasswordViewModel.swift */; };
 		C9D844771EE7FB0E00C77FD0 /* MyTournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97522D11EE6533A00104336 /* MyTournamentViewController.swift */; };
 		C9D844781EE7FB0E00C77FD0 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9871ECD99000055580B /* SignupViewController.swift */; };
-		C9D844791EE7FB0E00C77FD0 /* TournamentSignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D6D1EE7B23000C6F84C /* TournamentSignUpViewModel.swift */; };
 		C9D8447A1EE7FB0E00C77FD0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94941D81ECBF5DC00C21862 /* MainViewController.swift */; };
 		C9D8447B1EE7FB0E00C77FD0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7087C1ED41CCF0062B0BA /* UserModel.swift */; };
 		C9D8447C1EE7FB0E00C77FD0 /* TournamentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97522D31EE6573200104336 /* TournamentDetailViewController.swift */; };
@@ -85,7 +82,6 @@
 		C9D844881EE7FB0E00C77FD0 /* TournamentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D691EE7B21400C6F84C /* TournamentViewModel.swift */; };
 		C9D844891EE7FB0E00C77FD0 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482041ED59B4800B069C1 /* LoginViewModel.swift */; };
 		C9D8448A1EE7FB0E00C77FD0 /* UIStoryboard+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9761ECD85030055580B /* UIStoryboard+Loader.swift */; };
-		C9D8448C1EE7FB0E00C77FD0 /* Pods_SportBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42704F6E113E2491B3558520 /* Pods_SportBook.framework */; };
 		C9D8448E1EE7FB0E00C77FD0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9B27E851EDE6D93009532E2 /* Localizable.strings */; };
 		C9D8448F1EE7FB0E00C77FD0 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C96AC9841ECD99000055580B /* Authentication.storyboard */; };
 		C9D844901EE7FB0E00C77FD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C949420D1ECBF8CA00C21862 /* LaunchScreen.storyboard */; };
@@ -99,6 +95,19 @@
 		C9E7087D1ED41CCF0062B0BA /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7087C1ED41CCF0062B0BA /* UserModel.swift */; };
 		C9E7087F1ED41CE00062B0BA /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7087E1ED41CE00062B0BA /* UserManager.swift */; };
 		C9F429381ED5683700A304C3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F429371ED5683700A304C3 /* ProfileViewController.swift */; };
+		C9FA8A601EF244A100AA73D5 /* SkillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C231EEE93CE000DC4B2 /* SkillModel.swift */; };
+		C9FA8A611EF244A100AA73D5 /* SkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C211EEE9397000DC4B2 /* SkillCell.swift */; };
+		C9FA8A621EF244A100AA73D5 /* SignUpTournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98CEBC51EEE53C900D9A908 /* SignUpTournamentViewController.swift */; };
+		C9FA8A631EF244A100AA73D5 /* TeamAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C251EEEA9CD000DC4B2 /* TeamAPI.swift */; };
+		C9FA8A641EF244A100AA73D5 /* InvitationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C271EEEA9E0000DC4B2 /* InvitationAPI.swift */; };
+		C9FA8A651EF244A100AA73D5 /* DeviceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C291EEEA9E9000DC4B2 /* DeviceAPI.swift */; };
+		C9FA8A681EF24A1000AA73D5 /* Staging Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C94941E21ECBF5DC00C21862 /* Staging Info.plist */; };
+		C9FA8A691EF24A1F00AA73D5 /* Production Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9FA8A661EF2498800AA73D5 /* Production Info.plist */; };
+		C9FA8A6A1EF24A3300AA73D5 /* Tournament.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C98CEBC31EEE519900D9A908 /* Tournament.storyboard */; };
+		C9FA8A701EF26BD500AA73D5 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA8A6E1EF26BD500AA73D5 /* DatePickerViewController.swift */; };
+		C9FA8A711EF26BD500AA73D5 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9FA8A6F1EF26BD500AA73D5 /* DatePickerViewController.xib */; };
+		C9FA8A7C1EF29A0000AA73D5 /* TournamentSignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA8A7B1EF29A0000AA73D5 /* TournamentSignUpViewModel.swift */; };
+		C9FA8A7D1EF29A0000AA73D5 /* TournamentSignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA8A7B1EF29A0000AA73D5 /* TournamentSignUpViewModel.swift */; };
 		F452AAF280BCBB6D18391B5A /* Pods_SportBookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3C706898DB9052943EB172 /* Pods_SportBookTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -173,14 +182,12 @@
 		C9B27E8C1EDED89B009532E2 /* ErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		C9B65D691EE7B21400C6F84C /* TournamentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentViewModel.swift; sourceTree = "<group>"; };
 		C9B65D6B1EE7B21E00C6F84C /* MyTournamentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTournamentViewModel.swift; sourceTree = "<group>"; };
-		C9B65D6D1EE7B23000C6F84C /* TournamentSignUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TournamentSignUpViewModel.swift; path = ../../../../../../../../Applications/TournamentSignUpViewModel.swift; sourceTree = "<group>"; };
 		C9B65D6F1EE7B23D00C6F84C /* TournamentDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentDetailViewModel.swift; sourceTree = "<group>"; };
 		C9B65D711EE7B63300C6F84C /* TournamentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentModel.swift; sourceTree = "<group>"; };
 		C9B65D731EE7DDD700C6F84C /* CachedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedManager.swift; sourceTree = "<group>"; };
 		C9B65D761EE7E61F00C6F84C /* TournamentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentCell.swift; sourceTree = "<group>"; };
 		C9B65D781EE7E62A00C6F84C /* MyTournamentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTournamentCell.swift; sourceTree = "<group>"; };
 		C9D844991EE7FB0E00C77FD0 /* SportBook Production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SportBook Production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9D8449A1EE7FB0E00C77FD0 /* Production Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Production Info.plist"; path = "/Users/ducbm/Documents/Dinosys/sportbook-ios-ducbm/Production Info.plist"; sourceTree = "<absolute>"; };
 		C9E708701ED3DEFC0062B0BA /* AuthenticationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationAPI.swift; sourceTree = "<group>"; };
 		C9E708721ED3DF0E0062B0BA /* TournamentAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentAPI.swift; sourceTree = "<group>"; };
 		C9E708761ED3E6630062B0BA /* SkillAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillAPI.swift; sourceTree = "<group>"; };
@@ -189,6 +196,11 @@
 		C9E7087C1ED41CCF0062B0BA /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C9E7087E1ED41CE00062B0BA /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = ../Services/UserManager.swift; sourceTree = "<group>"; };
 		C9F429371ED5683700A304C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C9FA8A661EF2498800AA73D5 /* Production Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Production Info.plist"; path = "SportBook/Production Info.plist"; sourceTree = "<group>"; };
+		C9FA8A6B1EF24BB100AA73D5 /* Pods_SportBook_Production.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_SportBook_Production.framework; path = "../../../Library/Developer/Xcode/DerivedData/SportBook-dhisueepfsdteohbxppkkhzvzvco/Build/Products/Debug-iphonesimulator/Pods_SportBook_Production.framework"; sourceTree = "<group>"; };
+		C9FA8A6E1EF26BD500AA73D5 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		C9FA8A6F1EF26BD500AA73D5 /* DatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
+		C9FA8A7B1EF29A0000AA73D5 /* TournamentSignUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentSignUpViewModel.swift; sourceTree = "<group>"; };
 		D92E171A5AFE8A227D1C2A80 /* Pods-SportBook Production.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportBook Production.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportBook Production/Pods-SportBook Production.release.xcconfig"; sourceTree = "<group>"; };
 		ED44016D245FB79455CABF71 /* Pods-SportBook Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportBook Staging.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportBook Staging/Pods-SportBook Staging.release.xcconfig"; sourceTree = "<group>"; };
 		EE89B75FCAFF3E731AB7731A /* Pods-SportBookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportBookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportBookTests/Pods-SportBookTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,7 +211,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C39BF3826B813B95FC71DAB7 /* Pods_SportBook.framework in Frameworks */,
 				0D4320EF5EC4B7E862342FA0 /* Pods_SportBook_Staging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,7 +235,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9D8448C1EE7FB0E00C77FD0 /* Pods_SportBook.framework in Frameworks */,
 				B1FBEB55F0F8990FE6399DE3 /* Pods_SportBook_Production.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,7 +276,7 @@
 			children = (
 				C94941D51ECBF5DC00C21862 /* SportBook */,
 				C94941E21ECBF5DC00C21862 /* Staging Info.plist */,
-				C9D8449A1EE7FB0E00C77FD0 /* Production Info.plist */,
+				C9FA8A661EF2498800AA73D5 /* Production Info.plist */,
 				C94941EA1ECBF5DD00C21862 /* SportBookTests */,
 				C94941F51ECBF5DD00C21862 /* SportBookUITests */,
 				C94941D41ECBF5DC00C21862 /* Products */,
@@ -342,6 +352,7 @@
 		C94942061ECBF70100C21862 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C9FA8A6D1EF269A800AA73D5 /* Common */,
 				C96AC9781ECD87290055580B /* AuthenticationView */,
 				C949420B1ECBF72E00C21862 /* LaunchView */,
 				C949420A1ECBF72000C21862 /* MainView */,
@@ -442,6 +453,7 @@
 		C94942191ECC047100C21862 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9FA8A6B1EF24BB100AA73D5 /* Pods_SportBook_Production.framework */,
 				42704F6E113E2491B3558520 /* Pods_SportBook.framework */,
 				7B3C706898DB9052943EB172 /* Pods_SportBookTests.framework */,
 				2B427DEF1612F4A55DC3CA76 /* Pods_SportBookUITests.framework */,
@@ -501,9 +513,9 @@
 		C9B65D681EE7B1A100C6F84C /* TournamentViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				C9FA8A7B1EF29A0000AA73D5 /* TournamentSignUpViewModel.swift */,
 				C9B65D691EE7B21400C6F84C /* TournamentViewModel.swift */,
 				C9B65D6B1EE7B21E00C6F84C /* MyTournamentViewModel.swift */,
-				C9B65D6D1EE7B23000C6F84C /* TournamentSignUpViewModel.swift */,
 				C9B65D6F1EE7B23D00C6F84C /* TournamentDetailViewModel.swift */,
 			);
 			path = TournamentViewModels;
@@ -531,6 +543,15 @@
 				C97E3C291EEEA9E9000DC4B2 /* DeviceAPI.swift */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		C9FA8A6D1EF269A800AA73D5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C9FA8A6E1EF26BD500AA73D5 /* DatePickerViewController.swift */,
+				C9FA8A6F1EF26BD500AA73D5 /* DatePickerViewController.xib */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -682,6 +703,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9FA8A711EF26BD500AA73D5 /* DatePickerViewController.xib in Resources */,
+				C9FA8A681EF24A1000AA73D5 /* Staging Info.plist in Resources */,
 				C9B27E831EDE6D93009532E2 /* Localizable.strings in Resources */,
 				C98CEBC41EEE519900D9A908 /* Tournament.storyboard in Resources */,
 				C96AC9881ECD99000055580B /* Authentication.storyboard in Resources */,
@@ -709,6 +732,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9FA8A6A1EF24A3300AA73D5 /* Tournament.storyboard in Resources */,
+				C9FA8A691EF24A1F00AA73D5 /* Production Info.plist in Resources */,
 				C9D8448E1EE7FB0E00C77FD0 /* Localizable.strings in Resources */,
 				C9D8448F1EE7FB0E00C77FD0 /* Authentication.storyboard in Resources */,
 				C9D844901EE7FB0E00C77FD0 /* LaunchScreen.storyboard in Resources */,
@@ -797,7 +822,7 @@
 		};
 		B9D86AFDE5DF78A47CDA3AC3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -954,15 +979,16 @@
 				C97522D21EE6533A00104336 /* MyTournamentViewController.swift in Sources */,
 				C96AC98B1ECD99000055580B /* SignupViewController.swift in Sources */,
 				C97E3C281EEEA9E0000DC4B2 /* InvitationAPI.swift in Sources */,
-				C9B65D6E1EE7B23000C6F84C /* TournamentSignUpViewModel.swift in Sources */,
 				C94941D91ECBF5DC00C21862 /* MainViewController.swift in Sources */,
 				C9E7087D1ED41CCF0062B0BA /* UserModel.swift in Sources */,
+				C9FA8A7C1EF29A0000AA73D5 /* TournamentSignUpViewModel.swift in Sources */,
 				C97522D41EE6573200104336 /* TournamentDetailViewController.swift in Sources */,
 				C9B65D6C1EE7B21E00C6F84C /* MyTournamentViewModel.swift in Sources */,
 				C96AC9891ECD99000055580B /* ForgotPasswordViewController.swift in Sources */,
 				C9B65D701EE7B23D00C6F84C /* TournamentDetailViewModel.swift in Sources */,
 				C97E3C2A1EEEA9E9000DC4B2 /* DeviceAPI.swift in Sources */,
 				C9E708791ED3E73A0062B0BA /* SportBookAPI.swift in Sources */,
+				C9FA8A701EF26BD500AA73D5 /* DatePickerViewController.swift in Sources */,
 				C9E708711ED3DEFC0062B0BA /* AuthenticationAPI.swift in Sources */,
 				C9AE767F1EDFC76000F2D4D4 /* StatisticViewController.swift in Sources */,
 				C94941D71ECBF5DC00C21862 /* AppDelegate.swift in Sources */,
@@ -996,9 +1022,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9FA8A601EF244A100AA73D5 /* SkillModel.swift in Sources */,
+				C9FA8A611EF244A100AA73D5 /* SkillCell.swift in Sources */,
+				C9FA8A621EF244A100AA73D5 /* SignUpTournamentViewController.swift in Sources */,
+				C9FA8A631EF244A100AA73D5 /* TeamAPI.swift in Sources */,
+				C9FA8A641EF244A100AA73D5 /* InvitationAPI.swift in Sources */,
+				C9FA8A651EF244A100AA73D5 /* DeviceAPI.swift in Sources */,
 				C9D844691EE7FB0E00C77FD0 /* MyTournamentCell.swift in Sources */,
 				C9D8446A1EE7FB0E00C77FD0 /* ThemeManager.swift in Sources */,
 				C9D8446B1EE7FB0E00C77FD0 /* UserManager.swift in Sources */,
+				C9FA8A7D1EF29A0000AA73D5 /* TournamentSignUpViewModel.swift in Sources */,
 				C9D8446C1EE7FB0E00C77FD0 /* Validation.swift in Sources */,
 				C9D8446D1EE7FB0E00C77FD0 /* String+Extension.swift in Sources */,
 				C9D8446E1EE7FB0E00C77FD0 /* TournamentCell.swift in Sources */,
@@ -1012,7 +1045,6 @@
 				C9D844761EE7FB0E00C77FD0 /* ForgotPasswordViewModel.swift in Sources */,
 				C9D844771EE7FB0E00C77FD0 /* MyTournamentViewController.swift in Sources */,
 				C9D844781EE7FB0E00C77FD0 /* SignupViewController.swift in Sources */,
-				C9D844791EE7FB0E00C77FD0 /* TournamentSignUpViewModel.swift in Sources */,
 				C9D8447A1EE7FB0E00C77FD0 /* MainViewController.swift in Sources */,
 				C9D8447B1EE7FB0E00C77FD0 /* UserModel.swift in Sources */,
 				C9D8447C1EE7FB0E00C77FD0 /* TournamentDetailViewController.swift in Sources */,
@@ -1167,6 +1199,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-staging";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_REFLECTION_METADATA_LEVEL = all;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1181,6 +1214,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-staging";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_REFLECTION_METADATA_LEVEL = all;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -1249,7 +1283,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3EKY8KF8UW;
-				INFOPLIST_FILE = "$(SRCROOT)/Production Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/SportBook/Production Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-production";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1263,7 +1297,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3EKY8KF8UW;
-				INFOPLIST_FILE = "$(SRCROOT)/Production Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/SportBook/Production Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-production";
 				PRODUCT_NAME = "$(TARGET_NAME)";

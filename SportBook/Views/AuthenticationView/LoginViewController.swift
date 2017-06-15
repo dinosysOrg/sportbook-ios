@@ -62,7 +62,7 @@ class LoginViewController : BaseViewController {
         
         let facebookTap = btnLoginFacebook.rx.tap
         
-        Observable.from([signInTap, facebookTap]).asObservable().subscribe(onNext: { [unowned self] _ in
+        Observable.of(signInTap, facebookTap).merge().subscribe(onNext: { [unowned self] _ in
             self.dismissKeyboard()
         }).addDisposableTo(disposeBag)
         
@@ -86,7 +86,7 @@ class LoginViewController : BaseViewController {
             .observeOn(MainScheduler.instance)
        
         
-        Observable.from([signInWithEmail, signInWithFacebook])
+        Observable.of(signInWithEmail, signInWithFacebook)
             .merge().subscribe(onNext: { [unowned self] authStatus in
                 switch authStatus {
                 case .Authenticated:
