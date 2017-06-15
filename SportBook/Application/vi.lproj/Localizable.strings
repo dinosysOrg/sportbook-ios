@@ -17,13 +17,20 @@
 "profile" = "Cá nhân";
 
 // MARK: Profile
-"name" = "Tên";
+"name" = "Họ tên";
+"first_name" = "Tên";
+"last_name" = "Họ";
 "email" = "Email";
 "phone" = "Điện thoại";
 "phone_number" = "Số điện thoại";
 "address" = "Địa chỉ";
 "birthdate" = "Ngày sinh";
 "club" = "Câu lạc bộ";
+
+// MARK: Tournament
+"pick_skill_level" = "Chọn trình độ của bạn";
+"pick_skill_notice" = "Chú ý: Trình độ của đánh giá lại sau khi giải đấu diễn ra.";
+"submit" = "Gửi";
 
 // MARK: Authentication
 "sign_in" = "Đăng nhập";

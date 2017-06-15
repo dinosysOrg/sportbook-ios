@@ -18,12 +18,19 @@
 
 // MARK: Profile
 "name" = "Name";
+"first_name" = "First Name";
+"last_name" = "Last Name";
 "email" = "Email";
 "phone" = "Phone";
 "phone_number" = "Phone Number";
 "address" = "Address";
 "birthdate" = "Birthdate";
 "club" = "Club";
+
+// MARK: Tournament
+"pick_skill_level" = "Pick your skill level";
+"pick_skill_notice" = "Notice: Your level will be evaluated after your match in tournamenta.";
+"submit" = "Submit";
 
 // MARK: Authentication
 "sign_in" = "Sign in";
