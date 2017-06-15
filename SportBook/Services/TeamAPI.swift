@@ -36,7 +36,13 @@ extension TeamAPI : TargetType {
     }
     
     public var parameters: [String: Any]? {
-        return nil
+        switch self {
+        case .timeSlot(let type,let id):
+            return [
+                "type" : type, //Type
+                "id " : id, //Team Id
+            ]
+        }
     }
     
     public var parameterEncoding: ParameterEncoding {

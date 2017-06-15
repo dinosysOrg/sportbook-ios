@@ -38,7 +38,7 @@ extension TournamentAPI : TargetType {
         case .tournaments:
             return "/tournaments/"
         case .tournament(let id):
-            return "/tournament/\(id.urlEscaped)"
+            return "/tournaments/\(id.urlEscaped)"
         case .myTournaments:
             return "/tournaments/my-tournaments"
         case .signupTournament(let id, _, _, _):

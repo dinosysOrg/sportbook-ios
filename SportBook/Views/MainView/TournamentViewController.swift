@@ -14,21 +14,19 @@ class TournamentViewController : BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let tournamentCell = "TournamentCell"
+    fileprivate let tournamentCell = "TournamentCell"
     
-    let myTournamentCell = "MyTournamentCell"
+    fileprivate let myTournamentCell = "MyTournamentCell"
     
-    let tournamentViewModel = TournamentViewModel()
+    fileprivate let viewModel = TournamentViewModel()
     
-    let tournamentSection = 1
+    fileprivate let tournamentSection = 1
     
-    let tournamentCellHeight : CGFloat = 200
+    fileprivate let tournamentCellHeight : CGFloat = 200
     
-    let tournamentFooterHeight : CGFloat = 0.01
+    fileprivate let tournamentFooterHeight : CGFloat = 0.01
     
-    let disposeBag = DisposeBag()
-    
-    var refreshControl: UIRefreshControl?
+    fileprivate let disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +37,8 @@ class TournamentViewController : BaseViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        self.configureBindings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,81 +46,72 @@ class TournamentViewController : BaseViewController {
         refresh()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    private func configureBindings() {
+        self.viewModel.tournaments.asDriver().skip(1).drive(onNext: { [unowned self] _ in
+            self.tableView.reloadData()
+        }).disposed(by: disposeBag)
+        
+        self.viewModel.hasFailed.asObservable().skip(1).subscribe(onNext: { [unowned self] error in
+            if case SportBookError.Unauthenticated = error {
+                AuthManager.sharedInstance.clearSession()
+                
+                //Present login view controller
+                let loginViewController = UIStoryboard.loadLoginViewController()
+                self.tabBarController?.present(loginViewController, animated: true, completion: { })
+            } else {
+                ErrorManager.sharedInstance.showError(viewController: self, error: error)
+            }
+        }).disposed(by: disposeBag)
     }
     
     func refresh() {
-        //Subcribe get tournament
-        tournamentViewModel.getTournaments().subscribe( onError: { error in
-            //If error, display it
-            if let sbError = error as? SportBookError {
-                //If token or session expired, do sign out
-                if case SportBookError.Unauthenticated = sbError {
-                    AuthManager.sharedInstance.clearSession()
-                    
-                    //Present login view controller
-                    let loginViewController = UIStoryboard.loadLoginViewController()
-                    self.tabBarController?.present(loginViewController, animated: true, completion: { })
-                } else {
-                    ErrorManager.sharedInstance.showError(viewController: self, error: sbError)
-                }            }
-        }, onCompleted: { [weak self] in
-            //If complete, reload data for tableview
-            self?.tableView.reloadData()
-        }).addDisposableTo(disposeBag)
+        viewModel.loadTournaments()
     }
 }
 
 // MARK: Table View
 extension TournamentViewController : UITableViewDelegate, UITableViewDataSource{
- 
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return tournamentSection
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-        //return tournamentViewModel.tournaments.value.count
+        return viewModel.tournaments.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tournamentCell) as! TournamentCell
         
-        cell.setSampleData()
+        let row = indexPath.row
+        let tournaments = viewModel.tournaments.value
         
-        return cell
-
-//        let row = indexPath.row
-//        let tournaments = tournamentViewModel.tournaments.value
-//        
-//        if row <= tournaments.count - 1 {
-//            let tournament = tournaments[row]
-//            
-//            let cell = tableView.dequeueReusableCell(withIdentifier: tournamentCell) as! TournamentCell
-//            
-//            cell.configure(tournament: tournament)
-//            
-//            return cell
-//        }
-//        
-//        return tableView.dequeueReusableCell(withIdentifier: "cell")!
+        if row <= tournaments.count - 1 {
+            let tournament = tournaments[row]
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: tournamentCell) as! TournamentCell
+            
+            cell.configure(tournament: tournament)
+            
+            return cell
+        }
+        
+        return tableView.dequeueReusableCell(withIdentifier: "cell")!
     }
     
     //Display tournament detail view controller when use select a tournament
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let row = indexPath.row
-//        let tournaments = tournamentViewModel.tournaments.value
-//        
-//        if row <= tournaments.count - 1 {
-//            let tournament = tournaments[row]
-//            
+        let row = indexPath.row
+        let tournaments = viewModel.tournaments.value
+        
+        if row <= tournaments.count - 1 {
+            let tournament = tournaments[row]
+            
             let tournamentDetailViewController = UIStoryboard.loadTournamentDetailViewController()
-//
-//            tournamentDetailViewController.tournamentDetailViewModel = TournamentDetailViewModel(tournament: tournament)
-//            
+            
+            tournamentDetailViewController.currentTournament = tournament
+            
             self.navigationController?.pushViewController(tournamentDetailViewController, animated: true)
-//        }
-
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
