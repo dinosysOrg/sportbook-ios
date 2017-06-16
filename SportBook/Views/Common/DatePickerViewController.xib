@@ -27,16 +27,16 @@
                     <rect key="frame" x="0.0" y="400" width="375" height="267"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cL7-Ta-7q5" userLabel="Button View">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whS-JD-osi">
-                                    <rect key="frame" x="8" y="7" width="63" height="36"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <rect key="frame" x="8" y="3" width="56" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <state key="normal" title="Cancel"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nC-OG-X5p">
-                                    <rect key="frame" x="319" y="7" width="48" height="36"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <rect key="frame" x="324" y="3" width="43" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <state key="normal" title="Done"/>
                                 </button>
                             </subviews>
@@ -45,12 +45,12 @@
                                 <constraint firstAttribute="trailing" secondItem="7nC-OG-X5p" secondAttribute="trailing" constant="8" id="2lE-Cx-CQl"/>
                                 <constraint firstItem="whS-JD-osi" firstAttribute="centerY" secondItem="cL7-Ta-7q5" secondAttribute="centerY" id="Gvj-A4-YsQ"/>
                                 <constraint firstItem="7nC-OG-X5p" firstAttribute="centerY" secondItem="cL7-Ta-7q5" secondAttribute="centerY" id="OCo-jf-vpH"/>
-                                <constraint firstAttribute="height" constant="50" id="Vfl-6v-fuL"/>
+                                <constraint firstAttribute="height" constant="40" id="Vfl-6v-fuL"/>
                                 <constraint firstItem="whS-JD-osi" firstAttribute="leading" secondItem="cL7-Ta-7q5" secondAttribute="leading" constant="8" id="yPE-NS-QpC"/>
                             </constraints>
                         </view>
-                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5yU-Ji-I2d">
-                            <rect key="frame" x="0.0" y="50" width="375" height="217"/>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5yU-Ji-I2d">
+                            <rect key="frame" x="0.0" y="40" width="375" height="227"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <date key="date" timeIntervalSinceReferenceDate="519203813.02176499">
                                 <!--2017-06-15 07:16:53 +0000-->
