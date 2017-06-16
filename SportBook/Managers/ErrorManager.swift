@@ -22,6 +22,8 @@ public enum SportBookError  {
 extension SportBookError : Error, CustomStringConvertible {
     public var description: String {
         switch self {
+        case .None:
+            return ""
         case .ConnectionFailure:
             return "connection_failure".localized
         case .ServerError:

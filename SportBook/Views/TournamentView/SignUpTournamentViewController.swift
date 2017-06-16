@@ -50,9 +50,13 @@ class SignUpTournamentViewController : BaseViewController {
     
     @IBOutlet weak var tfDateOfBirth: SkyFloatingLabelTextField!
     
+    @IBOutlet weak var btnDateOfBirth: UIButton!
+    
     @IBOutlet weak var tfClub: SkyFloatingLabelTextField!
     
     @IBOutlet weak var btnNext: UIButton!
+    
+    let datePickerViewController = DatePickerViewController(nibName: "DatePickerViewController", bundle: nil)
     
     //MARK: Skill Selection
     @IBOutlet weak var skillContainerView: UIView!
@@ -75,6 +79,7 @@ class SignUpTournamentViewController : BaseViewController {
         configureUI()
         configureViewModel()
         configureBindings()
+        configureDatePicker()
         viewModel.loadSkills()
     }
     
@@ -119,14 +124,7 @@ class SignUpTournamentViewController : BaseViewController {
     }
     
     func showBirthDatePicker() {
-        let datePickerVc = DatePickerViewController(nibName: "DatePickerViewController", bundle: nil)
-        
-        datePickerVc.view.backgroundColor = UIColor.clear
-        datePickerVc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        
-        datePickerVc.datePicker.rx.date.asObservable().bind(to: viewModel.birthDate).addDisposableTo(disposeBag)
-        
-        self.present(datePickerVc, animated: true, completion: { })
+        self.present(self.datePickerViewController, animated: true, completion: { })
     }
     
     func configureViewModel() {
@@ -138,12 +136,18 @@ class SignUpTournamentViewController : BaseViewController {
         
         let submitTap = btnSubmit.rx.tap
         
+        let birthdateTap = btnDateOfBirth.rx.tap
+        
         Observable.from([nextTap, submitTap]).asObservable().subscribe(onNext: { [unowned self] _ in
             self.dismissKeyboard()
         }).addDisposableTo(disposeBag)
         
         nextTap.subscribe(onNext: { [unowned self] _ in
             self.showSkillSelectionView()
+        }).addDisposableTo(disposeBag)
+        
+        birthdateTap.subscribe(onNext: { [unowned self] _ in
+            self.showBirthDatePicker()
         }).addDisposableTo(disposeBag)
         
         self.viewModel.skills.asDriver().drive(onNext: { [unowned self] tournament in
@@ -188,6 +192,24 @@ class SignUpTournamentViewController : BaseViewController {
         btnSubmit.setTitle("submit".localized.uppercased(), for: .normal)
         
         showInputFormView()
+    }
+    
+    func configureDatePicker(){
+        datePickerViewController.view.backgroundColor = UIColor.clear
+        datePickerViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        
+        let datePickerValueChanged = datePickerViewController.datePicker.rx.date
+        
+        datePickerValueChanged.asDriver().drive(onNext: { birthDate in
+            let dateFormatter = DateFormatter()
+            
+            dateFormatter.dateStyle = DateFormatter.Style.short
+            dateFormatter.timeStyle = DateFormatter.Style.short
+            
+            self.tfDateOfBirth.text = dateFormatter.string(from: birthDate)
+        }).addDisposableTo(disposeBag)
+        
+        datePickerValueChanged.asObservable().bind(to: viewModel.birthDate).addDisposableTo(disposeBag)
     }
 }
 
