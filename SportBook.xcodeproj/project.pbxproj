@@ -172,6 +172,8 @@
 		C97E3C251EEEA9CD000DC4B2 /* TeamAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamAPI.swift; sourceTree = "<group>"; };
 		C97E3C271EEEA9E0000DC4B2 /* InvitationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationAPI.swift; sourceTree = "<group>"; };
 		C97E3C291EEEA9E9000DC4B2 /* DeviceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceAPI.swift; sourceTree = "<group>"; };
+		C98C50FD1EF778BE008F67C5 /* SportBook Production.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "SportBook Production.entitlements"; path = "SportBook/SportBook Production.entitlements"; sourceTree = "<group>"; };
+		C98C50FE1EF778BE008F67C5 /* SportBook Staging.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "SportBook Staging.entitlements"; path = "SportBook/SportBook Staging.entitlements"; sourceTree = "<group>"; };
 		C98CEBC31EEE519900D9A908 /* Tournament.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tournament.storyboard; sourceTree = "<group>"; };
 		C98CEBC51EEE53C900D9A908 /* SignUpTournamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTournamentViewController.swift; sourceTree = "<group>"; };
 		C98FD1C91EDD5127004BA4E3 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -274,6 +276,8 @@
 		C94941CA1ECBF5DC00C21862 = {
 			isa = PBXGroup;
 			children = (
+				C98C50FD1EF778BE008F67C5 /* SportBook Production.entitlements */,
+				C98C50FE1EF778BE008F67C5 /* SportBook Staging.entitlements */,
 				C94941D51ECBF5DC00C21862 /* SportBook */,
 				C94941E21ECBF5DC00C21862 /* Staging Info.plist */,
 				C9FA8A661EF2498800AA73D5 /* Production Info.plist */,
@@ -653,10 +657,13 @@
 				TargetAttributes = {
 					C94941D21ECBF5DC00C21862 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 3EKY8KF8UW;
+						DevelopmentTeam = 9M32SK58NV;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+							com.apple.Push = {
 								enabled = 0;
 							};
 						};
@@ -673,6 +680,11 @@
 					};
 					C9D844661EE7FB0E00C77FD0 = {
 						DevelopmentTeam = 3EKY8KF8UW;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -1194,7 +1206,7 @@
 			baseConfigurationReference = 79442F761572E861969D6E26 /* Pods-SportBook Staging.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3EKY8KF8UW;
+				DEVELOPMENT_TEAM = 9M32SK58NV;
 				INFOPLIST_FILE = "$(SRCROOT)/SportBook/Staging Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-staging";
@@ -1209,7 +1221,7 @@
 			baseConfigurationReference = ED44016D245FB79455CABF71 /* Pods-SportBook Staging.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3EKY8KF8UW;
+				DEVELOPMENT_TEAM = 9M32SK58NV;
 				INFOPLIST_FILE = "$(SRCROOT)/SportBook/Staging Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-staging";
