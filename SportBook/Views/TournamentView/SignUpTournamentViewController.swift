@@ -124,7 +124,14 @@ class SignUpTournamentViewController : BaseViewController {
     }
     
     func showBirthDatePicker() {
-        self.present(self.datePickerViewController, animated: true, completion: { })
+        let datePickerVc = DatePickerViewController(nibName: "DatePickerViewController", bundle: nil)
+        
+        datePickerVc.view.backgroundColor = UIColor.clear
+        datePickerVc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        
+        datePickerVc.datePicker.rx.date.asObservable().bind(to: viewModel.birthDate).addDisposableTo(disposeBag)
+        
+        self.present(datePickerVc, animated: true, completion: { })
     }
     
     func configureViewModel() {
