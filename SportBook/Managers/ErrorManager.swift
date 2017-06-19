@@ -11,6 +11,7 @@ import UIKit
 
 public enum SportBookError  {
     case ConnectionFailure
+    case Unauthenticated
     case ServerError
     case ClientError
     case UserCancelled

@@ -104,23 +104,11 @@ class AuthManager {
     
     func handleSignOutResponse(_ response: Response) -> Observable<AuthenticationStatus> {
         return Observable<AuthenticationStatus>.create { observer in
+            self.clearSession()
             
-            self.AccessToken = nil
-            self.Client = nil
-            self.Expiry = nil
-            self.UID = nil
-            
-            if response.statusCode == 0 {
-                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
-            } else if 200..<300 ~= response.statusCode {
-                observer.onNext(AuthenticationStatus.SignedOut)
-            } else {
-                let errorMessage = JSON(response)["errors"]["full_messages"]
-                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
-                
-                observer.onError(SportBookError.Custom(errorMessage))
-            }
-            
+            observer.onNext(AuthenticationStatus.SignedOut)
+            observer.onCompleted()
+
             return Disposables.create()
         }
     }
@@ -142,6 +130,16 @@ class AuthManager {
             
             return Disposables.create()
         }
+    }
+    
+    func clearSession(){
+        self.AccessToken = nil
+        self.TokenType = nil
+        self.Client = nil
+        self.Expiry = nil
+        self.UID = nil
+        
+        UserManager.sharedInstance.clear()
     }
 }
 

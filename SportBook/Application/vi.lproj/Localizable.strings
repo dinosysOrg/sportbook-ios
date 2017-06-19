@@ -14,7 +14,16 @@
 
 "tournament" = "Giải đấu";
 "statistic" = "Thống kê";
-"profile" = "Cá nhân"; 
+"profile" = "Cá nhân";
+
+// MARK: Profile
+"name" = "Tên";
+"email" = "Email";
+"phone" = "Điện thoại";
+"phone_number" = "Số điện thoại";
+"address" = "Địa chỉ";
+"birthdate" = "Ngày sinh";
+"club" = "Câu lạc bộ";
 
 // MARK: Authentication
 "sign_in" = "Đăng nhập";

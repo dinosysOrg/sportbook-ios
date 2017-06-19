@@ -12,6 +12,7 @@ import UIKit
 fileprivate enum Storyboard : String {
     case main = "Main"
     case auth = "Authentication"
+    case tournament = "Tournament"
 }
 
 fileprivate extension UIStoryboard {
@@ -22,6 +23,10 @@ fileprivate extension UIStoryboard {
     
     static func loadFromAuth(_ identifier: String) -> UIViewController {
         return load(from: .auth, identifier: identifier)
+    }
+    
+    static func loadFromTournament(_ identifier: String) -> UIViewController {
+        return load(from: .tournament, identifier: identifier)
     }
 
     // Load storyboard by name
@@ -40,6 +45,10 @@ extension UIStoryboard {
     
     class func loadLoginViewController() -> LoginViewController {
         return loadFromAuth("LoginViewController") as! LoginViewController
+    }
+    
+    class func loadTournamentDetailViewController() -> TournamentDetailViewController {
+        return loadFromTournament("TournamentDetailViewController") as! TournamentDetailViewController
     }
     
     // Add other app view controller load methods here ...

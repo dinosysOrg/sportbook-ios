@@ -90,9 +90,8 @@ class LoginViewController : BaseViewController {
             .merge().subscribe(onNext: { [unowned self] authStatus in
                 switch authStatus {
                 case .Authenticated:
-                    let mainViewController = UIStoryboard.loadMainViewController()
-                    self.dismiss(animated: false) {}
-                    self.navigationController?.present(mainViewController, animated: true, completion: {})
+                    //Login success, dismiss login view controller and reload data in main view
+                    self.dismiss(animated: true) {}
                     break
                 case .Error(let error):
                     ErrorManager.sharedInstance.showError(viewController: self, error: error)
