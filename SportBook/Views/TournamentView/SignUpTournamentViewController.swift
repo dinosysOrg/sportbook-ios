@@ -203,8 +203,8 @@ class SignUpTournamentViewController : BaseViewController {
         datePickerValueChanged.asDriver().drive(onNext: { birthDate in
             let dateFormatter = DateFormatter()
             
-            dateFormatter.dateStyle = DateFormatter.Style.medium
-            dateFormatter.timeStyle = DateFormatter.Style.none
+            dateFormatter.dateStyle = DateFormatter.Style.short
+            dateFormatter.timeStyle = DateFormatter.Style.short
             
             self.tfDateOfBirth.text = dateFormatter.string(from: birthDate)
         }).addDisposableTo(disposeBag)

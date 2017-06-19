@@ -46,7 +46,8 @@ class TournamentSignUpViewModel {
                         return SkillModel(jsonObject)
                 }
                 
-                self.skills.value = skillArray            } else {
+                self.skills.value = skillArray
+            } else {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
                     .arrayValue.map { $0.stringValue }.joined(separator: ". ")
                 
