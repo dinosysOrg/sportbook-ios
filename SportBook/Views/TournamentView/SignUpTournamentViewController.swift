@@ -44,9 +44,15 @@ class SignUpTournamentViewController : BaseViewController {
     
     @IBOutlet weak var tfLastName: SkyFloatingLabelTextField!
     
-    @IBOutlet weak var tfPhoneNumber: SkyFloatingLabelTextField!
+    @IBOutlet weak var tfMobile: SkyFloatingLabelTextField!
     
-    @IBOutlet weak var tfAddress: SkyFloatingLabelTextField!
+    @IBOutlet weak var tfCity: SkyFloatingLabelTextField!
+    
+    @IBOutlet weak var btnCity: UIButton!
+    
+    @IBOutlet weak var tfDistrict: SkyFloatingLabelTextField!
+    
+    @IBOutlet weak var btnDistrict: UIButton!
     
     @IBOutlet weak var tfDateOfBirth: SkyFloatingLabelTextField!
     
@@ -57,6 +63,10 @@ class SignUpTournamentViewController : BaseViewController {
     @IBOutlet weak var btnNext: UIButton!
     
     let datePickerViewController = DatePickerViewController(nibName: "DatePickerViewController", bundle: nil)
+    
+    let cityPickerViewController = PickerViewControler(nibName: "PickerViewControler", bundle: nil)
+    
+    let districtPickerViewController = PickerViewControler(nibName: "PickerViewControler", bundle: nil)
     
     //MARK: Skill Selection
     @IBOutlet weak var skillContainerView: UIView!
@@ -79,8 +89,11 @@ class SignUpTournamentViewController : BaseViewController {
         configureUI()
         configureViewModel()
         configureBindings()
+        configureCityPicker()
+        configureDistrictPicker()
         configureDatePicker()
         viewModel.loadSkills()
+        viewModel.loadCities()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,6 +140,14 @@ class SignUpTournamentViewController : BaseViewController {
         self.present(self.datePickerViewController, animated: true, completion: { })
     }
     
+    func showCityPicker() {
+        self.present(self.cityPickerViewController, animated: true, completion: { })
+    }
+    
+    func showDistrictPicker() {
+        self.present(self.districtPickerViewController, animated: true, completion: { })
+    }
+    
     func configureViewModel() {
         self.viewModel = TournamentSignUpViewModel(tournament: self.currentTournament!)
     }
@@ -135,6 +156,10 @@ class SignUpTournamentViewController : BaseViewController {
         let nextTap = btnNext.rx.tap
         
         let submitTap = btnSubmit.rx.tap
+        
+        let cityTap = btnCity.rx.tap
+        
+        let districtTap = btnDistrict.rx.tap
         
         let birthdateTap = btnDateOfBirth.rx.tap
         
@@ -150,8 +175,20 @@ class SignUpTournamentViewController : BaseViewController {
             self.showBirthDatePicker()
         }).addDisposableTo(disposeBag)
         
+        cityTap.subscribe(onNext: { [unowned self] _ in
+            self.showCityPicker()
+        }).addDisposableTo(disposeBag)
+        
+        districtTap.subscribe(onNext: { [unowned self] _ in
+            self.showDistrictPicker()
+        }).addDisposableTo(disposeBag)
+        
         self.viewModel.skills.asDriver().drive(onNext: { [unowned self] tournament in
             self.skillTableView.reloadData()
+        }).disposed(by: disposeBag)
+        
+        self.viewModel.cities.asDriver().drive(onNext: { [unowned self] cities in
+            self.cityPickerViewController.setPickerData(data: cities.map { $0.name })
         }).disposed(by: disposeBag)
         
         self.viewModel.hasFailed.asObservable().skip(1).subscribe(onNext: { [unowned self] error in
@@ -178,10 +215,12 @@ class SignUpTournamentViewController : BaseViewController {
         tfFirstName.placeholder = "first_name".localized
         tfLastName.title = "last_name".localized
         tfLastName.placeholder = "last_name".localized
-        tfPhoneNumber.title = "phone".localized
-        tfPhoneNumber.placeholder = "phone".localized
-        tfAddress.title = "address".localized
-        tfAddress.placeholder = "address".localized
+        tfMobile.title = "mobile".localized
+        tfMobile.placeholder = "mobile".localized
+        tfCity.title = "city".localized
+        tfCity.placeholder = "city".localized
+        tfDistrict.title = "district".localized
+        tfDistrict.placeholder = "district".localized
         tfDateOfBirth.title = "birthdate".localized
         tfDateOfBirth.placeholder = "birthdate".localized
         tfClub.title = "club".localized
@@ -200,16 +239,54 @@ class SignUpTournamentViewController : BaseViewController {
         
         let datePickerValueChanged = datePickerViewController.datePicker.rx.date
         
-        datePickerValueChanged.asDriver().drive(onNext: { birthDate in
-            let dateFormatter = DateFormatter()
-            
-            dateFormatter.dateStyle = DateFormatter.Style.short
-            dateFormatter.timeStyle = DateFormatter.Style.short
-            
-            self.tfDateOfBirth.text = dateFormatter.string(from: birthDate)
-        }).addDisposableTo(disposeBag)
+        let birthdateObservable = datePickerValueChanged.map { date -> String in
+                
+                let dateFormatter = DateFormatter()
+                
+                dateFormatter.dateStyle = DateFormatter.Style.medium
+                dateFormatter.timeStyle = DateFormatter.Style.none
+                
+                return dateFormatter.string(from: date)
+        }.asObservable()
         
-        datePickerValueChanged.asObservable().bind(to: viewModel.birthDate).addDisposableTo(disposeBag)
+        birthdateObservable.bind(to: viewModel.birthDate).addDisposableTo(disposeBag)
+        birthdateObservable.bind(to: self.tfDateOfBirth.rx.text).addDisposableTo(disposeBag)
+    }
+    
+    func configureCityPicker(){
+        cityPickerViewController.view.backgroundColor = UIColor.clear
+        cityPickerViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        
+        let citySelectedChanged = cityPickerViewController.selectedIndex
+        
+        citySelectedChanged.subscribe(onNext: { index in
+            self.districtPickerViewController.setPickerData(data: self.viewModel.cities.value[index].districts)
+        }).addDisposableTo(disposeBag)
+            
+        let citySelectedChangeName = citySelectedChanged.map { index -> String in
+            return self.viewModel.cities.value[index].name
+        }.asObservable()
+        
+        citySelectedChangeName.bind(to: self.tfCity.rx.text).addDisposableTo(disposeBag)
+//        citySelectedChangeName.bind(to: self.viewModel.city).addDisposableTo(disposeBag)
+    }
+    
+    func configureDistrictPicker(){
+        districtPickerViewController.view.backgroundColor = UIColor.clear
+        districtPickerViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        
+        let districtSelectedChanged = cityPickerViewController.selectedIndex
+        
+//        districtSelectedChanged.subscribe(onNext: { index in
+//            self.districtPickerViewController.setPickerData(data: self.viewModel.cities.value[index].districts)
+//        }).addDisposableTo(disposeBag)
+//        
+//        let districtSelectedChangeName = citySelectedChanged.map { index -> String in
+//            return self.viewModel.cities.value[index].name
+//            }.asObservable()
+        
+//        districtSelectedChangeName.bind(to: self.tfCity.rx.text).addDisposableTo(disposeBag)
+//        districtSelectedChangeName.bind(to: self.viewModel.city).addDisposableTo(disposeBag)
     }
 }
 

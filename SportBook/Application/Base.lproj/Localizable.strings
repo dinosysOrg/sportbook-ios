@@ -23,6 +23,9 @@
 "email" = "Email";
 "phone" = "Phone";
 "phone_number" = "Phone Number";
+"mobile" = "Mobile";
+"city" = "City";
+"district" = "District";
 "address" = "Address";
 "birthdate" = "Birthdate";
 "club" = "Club";

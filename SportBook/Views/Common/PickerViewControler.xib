@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PickerViewControler" customModule="SportBook_Production" customModuleProvider="target">
+            <connections>
+                <outlet property="btnCancel" destination="Q1s-ix-mZz" id="up9-Gg-8jO"/>
+                <outlet property="btnDone" destination="T4o-Bm-kQY" id="hhS-oR-JfX"/>
+                <outlet property="pickerView" destination="dh5-eU-1Ae" id="nLT-0M-typ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y7t-W6-eHC" userLabel="Container View">
+                    <rect key="frame" x="0.0" y="400" width="375" height="267"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fml-zk-z2W" userLabel="Button View">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q1s-ix-mZz">
+                                    <rect key="frame" x="8" y="3" width="60" height="34"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                    <state key="normal" title="Cancel"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4o-Bm-kQY">
+                                    <rect key="frame" x="322" y="3" width="45" height="34"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                    <state key="normal" title="Done"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="4M6-sN-bjL"/>
+                                <constraint firstItem="T4o-Bm-kQY" firstAttribute="centerY" secondItem="fml-zk-z2W" secondAttribute="centerY" id="Rke-Ra-Ozi"/>
+                                <constraint firstItem="Q1s-ix-mZz" firstAttribute="leading" secondItem="fml-zk-z2W" secondAttribute="leading" constant="8" id="dh4-t3-Qur"/>
+                                <constraint firstAttribute="trailing" secondItem="T4o-Bm-kQY" secondAttribute="trailing" constant="8" id="k1X-YA-jIP"/>
+                                <constraint firstItem="Q1s-ix-mZz" firstAttribute="centerY" secondItem="fml-zk-z2W" secondAttribute="centerY" id="uyK-BL-8ZT"/>
+                            </constraints>
+                        </view>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dh5-eU-1Ae">
+                            <rect key="frame" x="0.0" y="40" width="375" height="227"/>
+                        </pickerView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="dh5-eU-1Ae" firstAttribute="leading" secondItem="y7t-W6-eHC" secondAttribute="leading" id="2FK-6t-2DE"/>
+                        <constraint firstItem="dh5-eU-1Ae" firstAttribute="top" secondItem="fml-zk-z2W" secondAttribute="bottom" id="DEc-3D-XoP"/>
+                        <constraint firstAttribute="trailing" secondItem="fml-zk-z2W" secondAttribute="trailing" id="Hfj-T4-CxB"/>
+                        <constraint firstAttribute="trailing" secondItem="dh5-eU-1Ae" secondAttribute="trailing" id="I8i-E3-SAu"/>
+                        <constraint firstItem="fml-zk-z2W" firstAttribute="leading" secondItem="y7t-W6-eHC" secondAttribute="leading" id="XHJ-fe-NdU"/>
+                        <constraint firstAttribute="bottom" secondItem="dh5-eU-1Ae" secondAttribute="bottom" id="aDG-f1-s2A"/>
+                        <constraint firstItem="fml-zk-z2W" firstAttribute="top" secondItem="y7t-W6-eHC" secondAttribute="top" id="tv4-UF-oIp"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="y7t-W6-eHC" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.4" id="B4c-0c-akN"/>
+                <constraint firstAttribute="trailing" secondItem="y7t-W6-eHC" secondAttribute="trailing" id="beX-kv-v69"/>
+                <constraint firstAttribute="bottom" secondItem="y7t-W6-eHC" secondAttribute="bottom" id="hWP-S5-Mw5"/>
+                <constraint firstItem="y7t-W6-eHC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nW8-FH-Z9a"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

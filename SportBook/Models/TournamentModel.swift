@@ -10,13 +10,13 @@ import Foundation
 import SwiftyJSON
 
 struct TournamentModel {
-    let id: String
+    let id: Int
     let name: String
     let startDate: String
     let endDate: String
         
     init(_ jsonData: JSON) {
-        id = jsonData["id"].stringValue
+        id = jsonData["id"].intValue
         name = jsonData["name"].stringValue
         startDate = jsonData["start_date"].stringValue
         endDate = jsonData["end_date"].stringValue

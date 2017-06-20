@@ -23,6 +23,9 @@
 "email" = "Email";
 "phone" = "Điện thoại";
 "phone_number" = "Số điện thoại";
+"mobile" = "Di động";
+"city" = "Thành phố";
+"district" = "Quận";
 "address" = "Địa chỉ";
 "birthdate" = "Ngày sinh";
 "club" = "Câu lạc bộ";

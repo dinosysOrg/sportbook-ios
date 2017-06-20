@@ -20,8 +20,6 @@ class TournamentDetailViewController : BaseViewController {
     
     @IBOutlet weak var coverView: UIView!
     
-    @IBOutlet weak var lblTournamentName: UILabel!
-    
     @IBOutlet weak var imgCover: UIImageView!
     
     @IBOutlet weak var btnSignUp: UIButton!
@@ -52,7 +50,7 @@ class TournamentDetailViewController : BaseViewController {
     
     private func configureBindings() {
         self.viewModel.tournament.asDriver().drive(onNext: { [unowned self] tournament in
-            self.lblTournamentName.text = tournament?.name
+            self.title = tournament?.name
         }).disposed(by: disposeBag)
         
         self.viewModel.hasFailed.asObservable().skip(1).subscribe(onNext: { [unowned self] error in

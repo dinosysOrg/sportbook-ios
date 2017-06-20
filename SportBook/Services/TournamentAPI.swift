@@ -23,11 +23,11 @@ let TournamentProvider = RxMoyaProvider<TournamentAPI>(endpointClosure: tourname
 //Declaration of Tournament APIs
 public enum TournamentAPI  {
     case tournaments //Get all tournaments
-    case tournament(String) //Get a tournament by Id
+    case tournament(Int) //Get a tournament by Id
     case myTournaments //Get my tournaments
     case upcomingTournaments //Get all upcoming tournaments
     case upcomingMatches //Get all upcoming matches
-    case signupTournament(String, [Int], [Int]?, Int) //Sign up for a tournament by Id
+    case signupTournament(Int, String, Int, String, String?, String?, [Int]?) //Sign up for a tournament by Id
 }
 
 extension TournamentAPI : TargetType {
@@ -38,11 +38,11 @@ extension TournamentAPI : TargetType {
         case .tournaments:
             return "/tournaments/"
         case .tournament(let id):
-            return "/tournaments/\(id.urlEscaped)"
+            return "/tournaments/\(id)"
         case .myTournaments:
             return "/tournaments/my-tournaments"
-        case .signupTournament(let id, _, _, _):
-            return "/tournaments/\(id.urlEscaped)/teams"
+        case .signupTournament(let id, _, _, _, _, _, _):
+            return "/tournaments/\(id)/teams"
         case .upcomingTournaments:
             return "/tournaments/my-tournaments/upcoming-tournaments/"
         case .upcomingMatches:
@@ -61,12 +61,15 @@ extension TournamentAPI : TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
-        case .signupTournament(let teamName, let venueRanking, let members, let id):
+        case .signupTournament(let id, let name,  let phone, let address, let club, let birthday, let users):
             return [
-                "name" : teamName, //Team Name
-                "venue_ranking " : venueRanking, //Venue ranking for team
-                "user_ids" : members ?? [], //Arrays user for creating team
-                "tournament_id" : id //Tournament Id
+                "tournament_id" : id, //Team Name
+                "name " : name, //Venue ranking for team
+                "phone_number" : phone, //Arrays user for creating team
+                "address" : address, //Tournament Id
+                "club" : club ?? "",
+                "brithday" : birthday ?? "",
+                "user_ids" : users ?? []
             ]
         default:
             return nil
