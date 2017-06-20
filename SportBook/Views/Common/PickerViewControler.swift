@@ -62,6 +62,7 @@ class PickerViewControler: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     func setPickerData(data: [String]) {
         self.pickerData.value = data
+        self.selectedIndexSubject.onNext(0)
     }
     
     //MARK: PickerView

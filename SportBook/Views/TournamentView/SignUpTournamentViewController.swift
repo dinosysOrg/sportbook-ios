@@ -89,9 +89,9 @@ class SignUpTournamentViewController : BaseViewController {
         configureUI()
         configureViewModel()
         configureBindings()
+        configureDatePicker()
         configureCityPicker()
         configureDistrictPicker()
-        configureDatePicker()
         viewModel.loadSkills()
         viewModel.loadCities()
     }
@@ -187,7 +187,7 @@ class SignUpTournamentViewController : BaseViewController {
             self.skillTableView.reloadData()
         }).disposed(by: disposeBag)
         
-        self.viewModel.cities.asDriver().drive(onNext: { [unowned self] cities in
+        self.viewModel.cities.asObservable().subscribe(onNext: { [unowned self] cities in
             self.cityPickerViewController.setPickerData(data: cities.map { $0.name })
         }).disposed(by: disposeBag)
         
@@ -257,36 +257,36 @@ class SignUpTournamentViewController : BaseViewController {
         cityPickerViewController.view.backgroundColor = UIColor.clear
         cityPickerViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         
-        let citySelectedChanged = cityPickerViewController.selectedIndex
-        
-        citySelectedChanged.subscribe(onNext: { index in
-            self.districtPickerViewController.setPickerData(data: self.viewModel.cities.value[index].districts)
-        }).addDisposableTo(disposeBag)
+        let citySelectedIndex = cityPickerViewController.selectedIndex
             
-        let citySelectedChangeName = citySelectedChanged.map { index -> String in
-            return self.viewModel.cities.value[index].name
+        let citySelected = citySelectedIndex.map { index -> City in
+             return self.viewModel.cities.value[index]
         }.asObservable()
         
-        citySelectedChangeName.bind(to: self.tfCity.rx.text).addDisposableTo(disposeBag)
-//        citySelectedChangeName.bind(to: self.viewModel.city).addDisposableTo(disposeBag)
+        citySelected.map { $0.name }.bind(to: self.tfCity.rx.text).addDisposableTo(disposeBag)
+        citySelected.bind(to: self.viewModel.city).addDisposableTo(disposeBag)
     }
     
     func configureDistrictPicker(){
         districtPickerViewController.view.backgroundColor = UIColor.clear
         districtPickerViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         
-        let districtSelectedChanged = cityPickerViewController.selectedIndex
+        let selectedCity = self.viewModel.city.asObservable()
         
-//        districtSelectedChanged.subscribe(onNext: { index in
-//            self.districtPickerViewController.setPickerData(data: self.viewModel.cities.value[index].districts)
-//        }).addDisposableTo(disposeBag)
-//        
-//        let districtSelectedChangeName = citySelectedChanged.map { index -> String in
-//            return self.viewModel.cities.value[index].name
-//            }.asObservable()
+        selectedCity.subscribe(onNext: { city in
+            if city != nil {
+                  self.districtPickerViewController.setPickerData(data: city!.districts)
+            }
+        }).addDisposableTo(disposeBag)
         
-//        districtSelectedChangeName.bind(to: self.tfCity.rx.text).addDisposableTo(disposeBag)
-//        districtSelectedChangeName.bind(to: self.viewModel.city).addDisposableTo(disposeBag)
+        let districtSelectedIndex = districtPickerViewController.selectedIndex
+        
+        let districtSelected = districtSelectedIndex.map { index -> String in
+            return self.viewModel.city.value?.districts[index] ?? ""
+        }
+        
+        districtSelected.bind(to: self.tfDistrict.rx.text).addDisposableTo(disposeBag)
+        districtSelected.bind(to: self.viewModel.district).addDisposableTo(disposeBag)
     }
 }
 
