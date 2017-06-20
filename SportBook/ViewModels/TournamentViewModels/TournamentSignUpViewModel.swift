@@ -1,5 +1,5 @@
 //
-//  TournamentDetailViewModel.swift
+//  TournamentSignUpViewModel.swift
 //  SportBook
 //
 //  Created by DucBM on 6/7/17.
@@ -7,29 +7,33 @@
 //
 
 import Foundation
+import SwiftyJSON
+import RxCocoa
 import RxSwift
 import Moya
-import SwiftyJSON
 
-class TournamentDetailViewModel {
+class TournamentSignUpViewModel {
     
-    private let disposeBag = DisposeBag()
-    
+    fileprivate let disposeBag = DisposeBag()
+  
     let isLoading = Variable<Bool>(false)
     
     let hasFailed = Variable<SportBookError>(SportBookError.None)
     
     let tournament = Variable<TournamentModel?>(nil)
     
+    let skills = Variable<[SkillModel]>([])
+    
+    let birthDate = Variable<Date>(Date())
+    
     init(tournament : TournamentModel) {
         self.tournament.value = tournament
     }
     
-    func loadTournamentDetail() {
+    func loadSkills() {
         self.isLoading.value = true
         
-        TournamentProvider.request(.tournament((tournament.value?.id)!)).subscribe(onNext: {
-            [unowned self] response in
+        SkillProvider.request(.skills).subscribe(onNext: { response in
             
             self.isLoading.value = false
             
@@ -37,19 +41,21 @@ class TournamentDetailViewModel {
                 self.hasFailed.value = SportBookError.Unauthenticated
             } else if 200..<300 ~= response.statusCode {
                 let jsonObject = JSON(response.data)
+                let skillArray = jsonObject["_embedded"]["skills"].arrayValue
+                    .map { jsonObject in
+                        return SkillModel(jsonObject)
+                }
                 
-                let detailTournament = TournamentModel(jsonObject)
-                
-                self.tournament.value = detailTournament
+                self.skills.value = skillArray
             } else {
                 let errorMessage = JSON(response)["errors"]["full_messages"]
                     .arrayValue.map { $0.stringValue }.joined(separator: ". ")
                 
                 self.hasFailed.value = SportBookError.Custom(errorMessage)
-            }}, onError: { error in
-                print(error)
-                self.isLoading.value = false
-                self.hasFailed.value = SportBookError.ConnectionFailure
-        }).addDisposableTo(self.disposeBag)
+            }
+        }, onError: { error in
+            self.isLoading.value = false
+            self.hasFailed.value = SportBookError.ConnectionFailure
+        }).addDisposableTo(disposeBag)
     }
 }

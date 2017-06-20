@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 public enum SportBookError  {
+    case None
     case ConnectionFailure
     case Unauthenticated
     case ServerError
@@ -21,6 +22,8 @@ public enum SportBookError  {
 extension SportBookError : Error, CustomStringConvertible {
     public var description: String {
         switch self {
+        case .None:
+            return ""
         case .ConnectionFailure:
             return "connection_failure".localized
         case .ServerError:
@@ -46,6 +49,13 @@ class ErrorManager {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "ok".localized, style: .cancel, handler: nil))
+        viewController.present(alert, animated: true, completion: nil)
+    }
+    
+    func showMessage(viewController: UIViewController, title: String = "application_name".localized, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok".localized, style: .default, handler: nil))
         viewController.present(alert, animated: true, completion: nil)
     }
 }

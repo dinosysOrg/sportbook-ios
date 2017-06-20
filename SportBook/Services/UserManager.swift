@@ -16,7 +16,7 @@ class UserManager {
     //User
     private var _user : UserModel?
     
-    var User : UserModel? {
+    var user : UserModel? {
         get {
             if _user == nil  && userData != nil {
                 _user =  UserModel(data: userData!)

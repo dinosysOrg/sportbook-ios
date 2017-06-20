@@ -36,7 +36,14 @@ extension DeviceAPI : TargetType {
     }
     
     public var parameters: [String: Any]? {
-        return nil
+        switch self {
+        case .create(let id,let token, let platform):
+            return [
+                "type" : id, //User Id
+                "id " : token, //Device Token
+                "platform" : platform //Platform ‘0 - iOS’ || ‘1 - Android’
+            ]
+        }
     }
     
     public var parameterEncoding: ParameterEncoding {
