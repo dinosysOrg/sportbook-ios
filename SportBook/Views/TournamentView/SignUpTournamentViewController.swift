@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import SkyFloatingLabelTextField
-import DLRadioButton
 import RxSwift
 import RxCocoa
+import SkyFloatingLabelTextField
 
 public enum SignUpTournamentStep {
     case inputForm
@@ -19,25 +18,31 @@ public enum SignUpTournamentStep {
 
 class SignUpTournamentViewController : BaseViewController {
     
-    var signUpViewModel : TournamentSignUpViewModel!
+    var currentTournament : TournamentModel?
     
-    var signUpStep = SignUpTournamentStep.inputForm
+    fileprivate var viewModel : TournamentSignUpViewModel!
+    
+    fileprivate var signUpStep = SignUpTournamentStep.inputForm
     
     fileprivate let disposeBag = DisposeBag()
     
     //MARK: Progress View
     
-    let stepOneProgressImage = UIImage(named: "progress_stage_1")
-    let stepTwoProgressImage = UIImage(named: "progress_stage_2")
+    fileprivate let stepOneProgressImage = UIImage(named: "progress_stage_1")
+    fileprivate let stepTwoProgressImage = UIImage(named: "progress_stage_2")
     
     @IBOutlet weak var imgProgress: UIImageView!
     
     //MARK: Sign Up Form
     @IBOutlet weak var formContainerView: UIView!
     
-    @IBOutlet weak var lblEmail: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var tfName: SkyFloatingLabelTextField!
+    @IBOutlet weak var tfEmail: SkyFloatingLabelTextField!
+    
+    @IBOutlet weak var tfFirstName: SkyFloatingLabelTextField!
+    
+    @IBOutlet weak var tfLastName: SkyFloatingLabelTextField!
     
     @IBOutlet weak var tfPhoneNumber: SkyFloatingLabelTextField!
     
@@ -45,61 +50,44 @@ class SignUpTournamentViewController : BaseViewController {
     
     @IBOutlet weak var tfDateOfBirth: SkyFloatingLabelTextField!
     
+    @IBOutlet weak var btnDateOfBirth: UIButton!
+    
     @IBOutlet weak var tfClub: SkyFloatingLabelTextField!
     
     @IBOutlet weak var btnNext: UIButton!
+    
+    let datePickerViewController = DatePickerViewController(nibName: "DatePickerViewController", bundle: nil)
     
     //MARK: Skill Selection
     @IBOutlet weak var skillContainerView: UIView!
     
     @IBOutlet weak var skillTableView: UITableView!
     
+    @IBOutlet weak var lblPickSkill: UILabel!
+    
+    @IBOutlet weak var lblNotice: UILabel!
+    
     @IBOutlet weak var btnSubmit: UIButton!
     
-    let skills = ["Master", "Pro" ,"Semi-pro" ,"Amateur" ,"Beginner"]
+    fileprivate let skillCell = "SkillCell"
     
-    let skillCell = "SkillCell"
+    fileprivate let skillCellHeight : CGFloat = 40
     
-    let skillCellHeight : CGFloat = 40
-    
-    var selectedSkillIndex = -1
+    fileprivate var selectedSkillIndex = -1
     
     override func viewDidLoad() {
-        //Set basic info and load tournament detail
-        let userInfo = UserManager.sharedInstance.User
-        
-        lblEmail.text = userInfo?.email
-        
-        tfName.title = "name".localized
-        tfName.placeholder = "name".localized
-        tfPhoneNumber.title = "phone".localized
-        tfPhoneNumber.placeholder = "phone".localized
-        tfAddress.title = "address".localized
-        tfAddress.placeholder = "address".localized
-        tfDateOfBirth.title = "birthdate".localized
-        tfDateOfBirth.placeholder = "birthdate".localized
-        tfClub.title = "club".localized
-        tfClub.placeholder = "club".localized
-    
-        showInputFormView()
-        
-        let nextTap = btnNext.rx.tap
-        
-        let submitTap = btnSubmit.rx.tap
-        
-        Observable.from([nextTap, submitTap]).asObservable().subscribe(onNext: { [unowned self] _ in
-            self.dismissKeyboard()
-        }).addDisposableTo(disposeBag)
-        
-        nextTap.subscribe(onNext: { [unowned self] _ in
-            self.showSkillSelectionView()
-        }).addDisposableTo(disposeBag)
+        configureUI()
+        configureViewModel()
+        configureBindings()
+        configureDatePicker()
+        viewModel.loadSkills()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         let backButton = UIBarButtonItem(title: "back".localized, style: .plain, target: self, action: #selector(self.navigateBack(sender:)))
         self.navigationItem.leftBarButtonItem = backButton
+        self.viewModel.loadSkills()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -134,6 +122,95 @@ class SignUpTournamentViewController : BaseViewController {
         
         self.imgProgress.image = stepTwoProgressImage
     }
+    
+    func showBirthDatePicker() {
+        self.present(self.datePickerViewController, animated: true, completion: { })
+    }
+    
+    func configureViewModel() {
+        self.viewModel = TournamentSignUpViewModel(tournament: self.currentTournament!)
+    }
+    
+    private func configureBindings() {
+        let nextTap = btnNext.rx.tap
+        
+        let submitTap = btnSubmit.rx.tap
+        
+        let birthdateTap = btnDateOfBirth.rx.tap
+        
+        Observable.from([nextTap, submitTap]).asObservable().subscribe(onNext: { [unowned self] _ in
+            self.dismissKeyboard()
+        }).addDisposableTo(disposeBag)
+        
+        nextTap.subscribe(onNext: { [unowned self] _ in
+            self.showSkillSelectionView()
+        }).addDisposableTo(disposeBag)
+        
+        birthdateTap.subscribe(onNext: { [unowned self] _ in
+            self.showBirthDatePicker()
+        }).addDisposableTo(disposeBag)
+        
+        self.viewModel.skills.asDriver().drive(onNext: { [unowned self] tournament in
+            self.skillTableView.reloadData()
+        }).disposed(by: disposeBag)
+        
+        self.viewModel.hasFailed.asObservable().skip(1).subscribe(onNext: { [unowned self] error in
+            if case SportBookError.Unauthenticated = error {
+                AuthManager.sharedInstance.clearSession()
+                
+                //Present login view controller
+                let loginViewController = UIStoryboard.loadLoginViewController()
+                self.tabBarController?.present(loginViewController, animated: true, completion: { })
+            } else {
+                ErrorManager.sharedInstance.showError(viewController: self, error: error)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    
+    func configureUI(){
+        let user = UserManager.sharedInstance.user
+        self.tfEmail.text = user?.email
+        
+        tfEmail.title = "email".localized
+        tfEmail.placeholder = "email".localized
+        tfFirstName.title = "first_name".localized
+        tfFirstName.placeholder = "first_name".localized
+        tfLastName.title = "last_name".localized
+        tfLastName.placeholder = "last_name".localized
+        tfPhoneNumber.title = "phone".localized
+        tfPhoneNumber.placeholder = "phone".localized
+        tfAddress.title = "address".localized
+        tfAddress.placeholder = "address".localized
+        tfDateOfBirth.title = "birthdate".localized
+        tfDateOfBirth.placeholder = "birthdate".localized
+        tfClub.title = "club".localized
+        tfClub.placeholder = "club".localized
+        
+        lblPickSkill.text = "pick_skill_level".localized
+        lblNotice.text = "pick_skill_notice".localized
+        btnSubmit.setTitle("submit".localized.uppercased(), for: .normal)
+        
+        showInputFormView()
+    }
+    
+    func configureDatePicker(){
+        datePickerViewController.view.backgroundColor = UIColor.clear
+        datePickerViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        
+        let datePickerValueChanged = datePickerViewController.datePicker.rx.date
+        
+        datePickerValueChanged.asDriver().drive(onNext: { birthDate in
+            let dateFormatter = DateFormatter()
+            
+            dateFormatter.dateStyle = DateFormatter.Style.short
+            dateFormatter.timeStyle = DateFormatter.Style.short
+            
+            self.tfDateOfBirth.text = dateFormatter.string(from: birthDate)
+        }).addDisposableTo(disposeBag)
+        
+        datePickerValueChanged.asObservable().bind(to: viewModel.birthDate).addDisposableTo(disposeBag)
+    }
 }
 
 //MARK: Sign Up Form
@@ -150,13 +227,13 @@ extension SignUpTournamentViewController : UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return skills.count
+        return viewModel.skills.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let row = indexPath.row
-        let skill = SkillModel(skills[row])
+        let skill = viewModel.skills.value[row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: skillCell)
             as! SkillCell

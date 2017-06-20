@@ -14,4 +14,16 @@ class Validation {
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: email)
     }
+    
+    static func phoneValid(phone: String) -> Bool {
+        let phoneRegEx = "^\\d{3}-\\d{3}-\\d{4}$"
+        let phoneTest = NSPredicate(format:"SELF MATCHES %@", phoneRegEx)
+        return phoneTest.evaluate(with: phone)
+    }
+    
+    static func birhdateValid(birthdate: String) -> Bool {
+        let brithdateRegEx = "^(19|20)\\d\\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$"
+        let birthdateTest = NSPredicate(format:"SELF MATCHES %@", brithdateRegEx)
+        return birthdateTest.evaluate(with: birthdate)
+    }
 }

@@ -49,7 +49,26 @@ extension InvitationAPI : TargetType {
     }
     
     public var parameters: [String: Any]? {
-        return nil
+        switch self {
+        case .create(let time,let venueId, let matchId):
+            return [
+                "time" : time, //Time
+                "venue_id " : venueId, //Venue Id
+                "match_id" : matchId //Match Id
+            ]
+        case .accept(let id):
+            return [
+                "invitation_id" : id //Invitation Id
+            ]
+        case .reject(let id):
+            return [
+                "invitation_id" : id //Invitation Id
+            ]
+        case .detail(let id):
+            return [
+                "invitation_id" : id //Invitation Id
+            ]
+        }
     }
     
     public var parameterEncoding: ParameterEncoding {
