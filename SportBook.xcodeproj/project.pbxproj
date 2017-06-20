@@ -99,6 +99,7 @@
 		C9E7087D1ED41CCF0062B0BA /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7087C1ED41CCF0062B0BA /* UserModel.swift */; };
 		C9E7087F1ED41CE00062B0BA /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7087E1ED41CE00062B0BA /* UserManager.swift */; };
 		C9F429381ED5683700A304C3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F429371ED5683700A304C3 /* ProfileViewController.swift */; };
+		DB6D8B211EF8D11C001A6BE7 /* Production Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB6D8B201EF8D11C001A6BE7 /* Production Info.plist */; };
 		F452AAF280BCBB6D18391B5A /* Pods_SportBookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3C706898DB9052943EB172 /* Pods_SportBookTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -180,7 +181,6 @@
 		C9B65D761EE7E61F00C6F84C /* TournamentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentCell.swift; sourceTree = "<group>"; };
 		C9B65D781EE7E62A00C6F84C /* MyTournamentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTournamentCell.swift; sourceTree = "<group>"; };
 		C9D844991EE7FB0E00C77FD0 /* SportBook Production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SportBook Production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9D8449A1EE7FB0E00C77FD0 /* Production Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Production Info.plist"; path = "/Users/ducbm/Documents/Dinosys/sportbook-ios-ducbm/Production Info.plist"; sourceTree = "<absolute>"; };
 		C9E708701ED3DEFC0062B0BA /* AuthenticationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationAPI.swift; sourceTree = "<group>"; };
 		C9E708721ED3DF0E0062B0BA /* TournamentAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentAPI.swift; sourceTree = "<group>"; };
 		C9E708761ED3E6630062B0BA /* SkillAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillAPI.swift; sourceTree = "<group>"; };
@@ -190,6 +190,7 @@
 		C9E7087E1ED41CE00062B0BA /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = ../Services/UserManager.swift; sourceTree = "<group>"; };
 		C9F429371ED5683700A304C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D92E171A5AFE8A227D1C2A80 /* Pods-SportBook Production.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportBook Production.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportBook Production/Pods-SportBook Production.release.xcconfig"; sourceTree = "<group>"; };
+		DB6D8B201EF8D11C001A6BE7 /* Production Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Production Info.plist"; path = "SportBook/Production Info.plist"; sourceTree = "<group>"; };
 		ED44016D245FB79455CABF71 /* Pods-SportBook Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportBook Staging.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportBook Staging/Pods-SportBook Staging.release.xcconfig"; sourceTree = "<group>"; };
 		EE89B75FCAFF3E731AB7731A /* Pods-SportBookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportBookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportBookTests/Pods-SportBookTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -266,7 +267,7 @@
 			children = (
 				C94941D51ECBF5DC00C21862 /* SportBook */,
 				C94941E21ECBF5DC00C21862 /* Staging Info.plist */,
-				C9D8449A1EE7FB0E00C77FD0 /* Production Info.plist */,
+				DB6D8B201EF8D11C001A6BE7 /* Production Info.plist */,
 				C94941EA1ECBF5DD00C21862 /* SportBookTests */,
 				C94941F51ECBF5DD00C21862 /* SportBookUITests */,
 				C94941D41ECBF5DC00C21862 /* Products */,
@@ -632,7 +633,7 @@
 				TargetAttributes = {
 					C94941D21ECBF5DC00C21862 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 3EKY8KF8UW;
+						DevelopmentTeam = 9M32SK58NV;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -651,7 +652,7 @@
 						TestTargetID = C94941D21ECBF5DC00C21862;
 					};
 					C9D844661EE7FB0E00C77FD0 = {
-						DevelopmentTeam = 3EKY8KF8UW;
+						DevelopmentTeam = 9M32SK58NV;
 					};
 				};
 			};
@@ -713,6 +714,7 @@
 				C9D8448F1EE7FB0E00C77FD0 /* Authentication.storyboard in Resources */,
 				C9D844901EE7FB0E00C77FD0 /* LaunchScreen.storyboard in Resources */,
 				C9D844911EE7FB0E00C77FD0 /* Assets.xcassets in Resources */,
+				DB6D8B211EF8D11C001A6BE7 /* Production Info.plist in Resources */,
 				C9D844921EE7FB0E00C77FD0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -762,7 +764,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		57BACFCDEE50B3100EDC729A /* [CP] Copy Pods Resources */ = {
@@ -792,7 +794,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		B9D86AFDE5DF78A47CDA3AC3 /* [CP] Embed Pods Frameworks */ = {
@@ -850,7 +852,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C9D844931EE7FB0E00C77FD0 /* [CP] Embed Pods Frameworks */ = {
@@ -923,7 +925,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1162,10 +1164,10 @@
 			baseConfigurationReference = 79442F761572E861969D6E26 /* Pods-SportBook Staging.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3EKY8KF8UW;
+				DEVELOPMENT_TEAM = 9M32SK58NV;
 				INFOPLIST_FILE = "$(SRCROOT)/SportBook/Staging Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-staging";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dinosys.sportbook.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1176,10 +1178,10 @@
 			baseConfigurationReference = ED44016D245FB79455CABF71 /* Pods-SportBook Staging.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3EKY8KF8UW;
+				DEVELOPMENT_TEAM = 9M32SK58NV;
 				INFOPLIST_FILE = "$(SRCROOT)/SportBook/Staging Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-staging";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dinosys.sportbook.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1248,10 +1250,10 @@
 			baseConfigurationReference = 7DE0FEFFB35E82B7AA77E69E /* Pods-SportBook Production.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3EKY8KF8UW;
-				INFOPLIST_FILE = "$(SRCROOT)/Production Info.plist";
+				DEVELOPMENT_TEAM = 9M32SK58NV;
+				INFOPLIST_FILE = "$(SRCROOT)/SportBook/Production Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-production";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dinosys.sportbook.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1262,10 +1264,10 @@
 			baseConfigurationReference = D92E171A5AFE8A227D1C2A80 /* Pods-SportBook Production.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3EKY8KF8UW;
-				INFOPLIST_FILE = "$(SRCROOT)/Production Info.plist";
+				DEVELOPMENT_TEAM = 9M32SK58NV;
+				INFOPLIST_FILE = "$(SRCROOT)/SportBook/Production Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dinosys.sportbook-production";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dinosys.sportbook.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
