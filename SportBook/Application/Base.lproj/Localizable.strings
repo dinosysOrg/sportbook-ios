@@ -34,6 +34,7 @@
 "pick_skill_level" = "Pick your skill level";
 "pick_skill_notice" = "Notice: Your level will be evaluated after your match in tournamenta.";
 "submit" = "Submit";
+"payment_pending" = "Payment pending";
 
 // MARK: Authentication
 "sign_in" = "Sign in";
@@ -51,7 +52,12 @@
 "bad_credentials" = "Bad credentials";
 "user_not_exist" = "This user doesn't exist";
 
-// MARK Error:
+// MARK: Validation
+"first_name_minimum_length" = "Must be at least 2 characters";
+"last_name_minimum_length" = "Must be at least 2 characters";
+"phone_invalid" = "Invalid phone number";
+
+// MARK: Error
 "connection_failure" = "Can not connect to server";
 "error_title" = "An error occuried";
 "error_unknown" = "Unknow error";

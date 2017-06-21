@@ -42,8 +42,8 @@ class TournamentViewModel {
                 
                 self.tournaments.value = tournamentArray
             } else {
-                let errorMessage = JSON(response)["errors"]["full_messages"]
-                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                let errorMessage = JSON(response.data)["errors"].arrayValue
+                    .map { $0.stringValue }.joined(separator: ". ")
                 
                 self.hasFailed.value = SportBookError.Custom(errorMessage)
             }}, onError: { _ in

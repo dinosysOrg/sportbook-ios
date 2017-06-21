@@ -74,8 +74,8 @@ class AuthManager {
                 
                 observer.onNext(AuthenticationStatus.Authenticated)
             } else {
-                let errorMessage = JSON(response)["errors"]["full_messages"]
-                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                let errorMessage = JSON(response.data)["errors"].arrayValue
+                    .map { $0.stringValue }.joined(separator: ". ")
                 
                 observer.onError(SportBookError.Custom(errorMessage))
             }
@@ -92,8 +92,8 @@ class AuthManager {
             } else if 200..<300 ~= response.statusCode {
                 observer.onNext(AuthenticationStatus.SignedUp)
             } else {
-                let errorMessage = JSON(response)["errors"]["full_messages"]
-                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                let errorMessage = JSON(response.data)["errors"].arrayValue
+                    .map { $0.stringValue }.joined(separator: ". ")
                 
                 observer.onError(SportBookError.Custom(errorMessage))
             }
@@ -122,8 +122,8 @@ class AuthManager {
                 observer.onNext(AuthenticationStatus.PasswordReset)
             }
             else {
-                let errorMessage = JSON(response)["errors"]["full_messages"]
-                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                let errorMessage = JSON(response.data)["errors"].arrayValue
+                    .map { $0.stringValue }.joined(separator: ". ")
                 
                 observer.onError(SportBookError.Custom(errorMessage))
             }

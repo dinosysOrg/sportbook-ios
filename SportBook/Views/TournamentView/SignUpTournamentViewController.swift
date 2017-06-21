@@ -20,6 +20,8 @@ class SignUpTournamentViewController : BaseViewController {
     
     var currentTournament : TournamentModel?
     
+    let signUpSuccess = Variable<Bool>(false)
+    
     fileprivate var viewModel : TournamentSignUpViewModel!
     
     fileprivate var signUpStep = SignUpTournamentStep.inputForm
@@ -149,7 +151,7 @@ class SignUpTournamentViewController : BaseViewController {
     }
     
     func configureViewModel() {
-        self.viewModel = TournamentSignUpViewModel(tournament: self.currentTournament!)
+        self.viewModel = TournamentSignUpViewModel(tournament: self.currentTournament!, firstNameText: self.tfFirstName.rx.text.orEmpty.asDriver(), lastNameText: self.tfLastName.rx.text.orEmpty.asDriver(), phoneNumberText: self.tfMobile.rx.text.orEmpty.asDriver())
     }
     
     private func configureBindings() {
@@ -163,12 +165,16 @@ class SignUpTournamentViewController : BaseViewController {
         
         let birthdateTap = btnDateOfBirth.rx.tap
         
-        Observable.from([nextTap, submitTap]).asObservable().subscribe(onNext: { [unowned self] _ in
+        Observable.of(nextTap, submitTap).merge().asObservable().subscribe(onNext: { [unowned self] _ in
             self.dismissKeyboard()
         }).addDisposableTo(disposeBag)
         
         nextTap.subscribe(onNext: { [unowned self] _ in
             self.showSkillSelectionView()
+        }).addDisposableTo(disposeBag)
+        
+        submitTap.subscribe(onNext: { [unowned self] _ in
+            self.submitSignUp()
         }).addDisposableTo(disposeBag)
         
         birthdateTap.subscribe(onNext: { [unowned self] _ in
@@ -202,6 +208,28 @@ class SignUpTournamentViewController : BaseViewController {
                 ErrorManager.sharedInstance.showError(viewController: self, error: error)
             }
         }).disposed(by: disposeBag)
+        
+        self.viewModel.stepOneCredentialsValid.drive(onNext: { [unowned self] valid in
+            self.btnNext.isEnabled = valid
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.firstNameValid
+            .drive(onNext: { [unowned self] valid in
+                self.tfFirstName.errorMessage = valid ? "" : "first_name_minimum_length".localized
+            })
+            .addDisposableTo(disposeBag)
+        
+        viewModel.lastNameValid
+            .drive(onNext: { [unowned self] valid in
+                self.tfLastName.errorMessage = valid ? "" : "last_name_minimum_length".localized
+            })
+            .addDisposableTo(disposeBag)
+
+        viewModel.phoneNumberValid
+            .drive(onNext: { [unowned self] valid in
+                self.tfMobile.errorMessage = valid ? "" : "phone_invalid".localized
+            })
+            .addDisposableTo(disposeBag)
     }
     
     
@@ -249,7 +277,6 @@ class SignUpTournamentViewController : BaseViewController {
                 return dateFormatter.string(from: date)
         }.asObservable()
         
-        birthdateObservable.bind(to: viewModel.birthDate).addDisposableTo(disposeBag)
         birthdateObservable.bind(to: self.tfDateOfBirth.rx.text).addDisposableTo(disposeBag)
     }
     
@@ -264,14 +291,14 @@ class SignUpTournamentViewController : BaseViewController {
         }.asObservable()
         
         citySelected.map { $0.name }.bind(to: self.tfCity.rx.text).addDisposableTo(disposeBag)
-        citySelected.bind(to: self.viewModel.city).addDisposableTo(disposeBag)
+        citySelected.bind(to: self.viewModel.selectedCity).addDisposableTo(disposeBag)
     }
     
     func configureDistrictPicker(){
         districtPickerViewController.view.backgroundColor = UIColor.clear
         districtPickerViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         
-        let selectedCity = self.viewModel.city.asObservable()
+        let selectedCity = self.viewModel.selectedCity.asObservable()
         
         selectedCity.subscribe(onNext: { city in
             if city != nil {
@@ -282,17 +309,27 @@ class SignUpTournamentViewController : BaseViewController {
         let districtSelectedIndex = districtPickerViewController.selectedIndex
         
         let districtSelected = districtSelectedIndex.map { index -> String in
-            return self.viewModel.city.value?.districts[index] ?? ""
+            return self.viewModel.selectedCity.value?.districts[index] ?? ""
         }
         
         districtSelected.bind(to: self.tfDistrict.rx.text).addDisposableTo(disposeBag)
-        districtSelected.bind(to: self.viewModel.district).addDisposableTo(disposeBag)
     }
 }
 
 //MARK: Sign Up Form
 extension SignUpTournamentViewController {
-    
+    func submitSignUp(){
+        guard let firstName = self.tfFirstName.text, let lastName = self.tfLastName.text, let phoneNumber = Int(self.tfMobile.text!), let city = self.tfCity.text, let district = self.tfDistrict.text else {
+            return
+        }
+        
+        self.viewModel.signUpTournament(with: "\(lastName) \(firstName)", phoneNumber: phoneNumber, address: "\(district) \(city)").subscribe(onNext: { isSuccess in
+            if isSuccess {
+                self.signUpSuccess.value = isSuccess
+                self.navigationController?.popViewController(animated: true)
+            }
+        }).addDisposableTo(disposeBag)
+    }
 }
 
 //MARK: Skill Selection

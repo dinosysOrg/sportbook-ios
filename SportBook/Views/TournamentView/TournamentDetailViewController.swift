@@ -41,6 +41,12 @@ class TournamentDetailViewController : BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let signUpTournamentViewController = segue.destination as? SignUpTournamentViewController {
             signUpTournamentViewController.currentTournament = viewModel.tournament.value
+            signUpTournamentViewController.signUpSuccess.asDriver().drive(onNext: { [unowned self] success in
+                if success {
+                    self.btnSignUp.isEnabled = false
+                    self.btnSignUp.setTitle("payment_pending".localized.uppercased(), for: .normal)
+                }
+            }).addDisposableTo(disposeBag)
         }
     }
     

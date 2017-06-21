@@ -27,7 +27,7 @@ public enum TournamentAPI  {
     case myTournaments //Get my tournaments
     case upcomingTournaments //Get all upcoming tournaments
     case upcomingMatches //Get all upcoming matches
-    case signupTournament(Int, String, Int, String, String?, String?, [Int]?) //Sign up for a tournament by Id
+    case signupTournament(Int, String, Int, String, Int, String?, String?, [Int]?) //Sign up for a tournament by Id
 }
 
 extension TournamentAPI : TargetType {
@@ -41,7 +41,7 @@ extension TournamentAPI : TargetType {
             return "/tournaments/\(id)"
         case .myTournaments:
             return "/tournaments/my-tournaments"
-        case .signupTournament(let id, _, _, _, _, _, _):
+        case .signupTournament(let id, _, _, _, _, _, _, _):
             return "/tournaments/\(id)/teams"
         case .upcomingTournaments:
             return "/tournaments/my-tournaments/upcoming-tournaments/"
@@ -61,16 +61,20 @@ extension TournamentAPI : TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
-        case .signupTournament(let id, let name,  let phone, let address, let club, let birthday, let users):
-            return [
-                "tournament_id" : id, //Team Name
-                "name " : name, //Venue ranking for team
-                "phone_number" : phone, //Arrays user for creating team
-                "address" : address, //Tournament Id
-                "club" : club ?? "",
-                "brithday" : birthday ?? "",
-                "user_ids" : users ?? []
-            ]
+        case .signupTournament(let id, let name,  let phone, let address, let skillId, let club, let birthday, let users):
+            let params =  [
+                "tournament_id" : id, //Tournament Id
+                "name" : name, //Team Name
+                "phone_number" : phone, //Phone Number
+                "address" : address, //Address
+                "skill_id": skillId, //Skill Id
+                "club" : club ?? "", //Club name
+                "brithday" : birthday ?? "", //Birthday
+                "user_ids" : users ?? [] //Members Id
+            ] as [String : Any]
+            
+            print(params)
+            return params
         default:
             return nil
         }

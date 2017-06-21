@@ -15,36 +15,50 @@ import Moya
 class TournamentSignUpViewModel {
     
     fileprivate let disposeBag = DisposeBag()
-  
+    
+    let tournament : TournamentModel
+    
     let isLoading = Variable<Bool>(false)
     
     let hasFailed = Variable<SportBookError>(SportBookError.None)
-    
-    let tournament = Variable<TournamentModel?>(nil)
     
     let skills = Variable<[SkillModel]>([])
     
     let cities = Variable<[City]>([])
     
-    //Variables for sign up tournament
-    let firstName = Variable<String>("")
+    let skill = Variable<SkillModel?>(nil)
     
-    let lastName = Variable<String>("")
+    let selectedCity = Variable<City?>(nil)
     
-    let fullName = Variable<String>("")
+    //Variables for validation
+    let firstNameValid: Driver<Bool>
     
-    let city = Variable<City?>(nil)
+    let lastNameValid: Driver<Bool>
     
-    let district = Variable<String>("")
+    let phoneNumberValid: Driver<Bool>
     
-    let address = Variable<String>("")
+    let stepOneCredentialsValid: Driver<Bool>
     
-    let club = Variable<String>("")
-    
-    let birthDate = Variable<String>("")
-    
-    init(tournament : TournamentModel) {
-        self.tournament.value = tournament
+    init(tournament : TournamentModel, firstNameText: Driver<String>, lastNameText: Driver<String>,
+         phoneNumberText: Driver<String>) {
+        self.tournament = tournament
+        
+        firstNameValid = firstNameText
+            .distinctUntilChanged()
+            .throttle(0.3)
+            .map { $0.utf8.count >= 2 }.skip(1)
+        
+        lastNameValid = lastNameText
+            .distinctUntilChanged()
+            .throttle(0.3)
+            .map { $0.utf8.count >= 2 }.skip(1)
+        
+        phoneNumberValid = phoneNumberText
+                .distinctUntilChanged()
+                .throttle(0.3)
+                .map(Validation.phoneValid).skip(1)
+        
+        stepOneCredentialsValid = Driver.combineLatest(firstNameValid, lastNameValid, phoneNumberValid) { $0 && $1 && $2 }.startWith(false)
     }
     
     func loadCities() {
@@ -84,9 +98,10 @@ class TournamentSignUpViewModel {
                 }
                 
                 self.skills.value = skillArray
+                self.skill.value = self.skills.value.first
             } else {
-                let errorMessage = JSON(response)["errors"]["full_messages"]
-                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                let errorMessage = JSON(response.data)["errors"].arrayValue
+                    .map { $0.stringValue }.joined(separator: ". ")
                 
                 self.hasFailed.value = SportBookError.Custom(errorMessage)
             }
@@ -96,9 +111,30 @@ class TournamentSignUpViewModel {
         }).addDisposableTo(disposeBag)
     }
     
-    func signUpTournament() {
-
-
+    func signUpTournament(with name: String, phoneNumber: Int, address: String, club: String? = nil, birthday: String? = nil, members: [Int]? = nil) -> Observable<Bool> {
         
+        return Observable<Bool>.create { observer in
+            
+            TournamentProvider.request(.signupTournament(self.tournament.id, name, phoneNumber,
+                                                         address, self.skill.value!.id, club, birthday, members))
+                .subscribe(onNext: { [unowned self] response in
+                
+                if response.statusCode == 0 {
+                    self.hasFailed.value = SportBookError.ConnectionFailure
+                    observer.onNext(false)
+                } else if 200..<300 ~= response.statusCode {
+                    observer.onNext(true)
+                } else {
+                    let errorMessage = JSON(response.data)["errors"].arrayValue
+                        .map { $0.stringValue }.joined(separator: ". ")
+                    
+                    self.hasFailed.value = SportBookError.Custom(errorMessage)
+                    
+                    observer.onNext(false)
+                }
+            }).addDisposableTo(self.disposeBag)
+            
+            return Disposables.create()
+        }
     }
 }

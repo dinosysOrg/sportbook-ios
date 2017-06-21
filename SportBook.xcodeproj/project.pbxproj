@@ -10,6 +10,8 @@
 		0D4320EF5EC4B7E862342FA0 /* Pods_SportBook_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E38B7F8DD6CD187416E578 /* Pods_SportBook_Staging.framework */; };
 		B0DC3CE17A243AE17938B896 /* Pods_SportBookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B427DEF1612F4A55DC3CA76 /* Pods_SportBookUITests.framework */; };
 		B1FBEB55F0F8990FE6399DE3 /* Pods_SportBook_Production.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038C250897C145A71AF193F /* Pods_SportBook_Production.framework */; };
+		C913898F1EFA275F0035F0F4 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA8A6E1EF26BD500AA73D5 /* DatePickerViewController.swift */; };
+		C91389901EFA277A0035F0F4 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9FA8A6F1EF26BD500AA73D5 /* DatePickerViewController.xib */; };
 		C93482031ED59B4100B069C1 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482021ED59B4100B069C1 /* ForgotPasswordViewModel.swift */; };
 		C93482061ED59B4800B069C1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482041ED59B4800B069C1 /* LoginViewModel.swift */; };
 		C93482071ED59B4800B069C1 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482051ED59B4800B069C1 /* SignupViewModel.swift */; };
@@ -384,8 +386,8 @@
 		C94942071ECBF70600C21862 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				C9B65D681EE7B1A100C6F84C /* TournamentViewModels */,
 				C96AC9831ECD98410055580B /* AuthenticationViewModels */,
+				C9B65D681EE7B1A100C6F84C /* TournamentViewModels */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -698,7 +700,7 @@
 						DevelopmentTeam = 9M32SK58NV;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -762,6 +764,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C91389901EFA277A0035F0F4 /* DatePickerViewController.xib in Resources */,
 				C9FA8A6A1EF24A3300AA73D5 /* Tournament.storyboard in Resources */,
 				C98C51041EF7AEA1008F67C5 /* PickerViewControler.xib in Resources */,
 				C9FA8A691EF24A1F00AA73D5 /* Production Info.plist in Resources */,
@@ -1056,6 +1059,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C913898F1EFA275F0035F0F4 /* DatePickerViewController.swift in Sources */,
 				C9FA8A601EF244A100AA73D5 /* SkillModel.swift in Sources */,
 				C9FA8A611EF244A100AA73D5 /* SkillCell.swift in Sources */,
 				C9FA8A621EF244A100AA73D5 /* SignUpTournamentViewController.swift in Sources */,
@@ -1320,6 +1324,7 @@
 			baseConfigurationReference = 7DE0FEFFB35E82B7AA77E69E /* Pods-SportBook Production.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "SportBook/SportBook Production.entitlements";
 				DEVELOPMENT_TEAM = 9M32SK58NV;
 				INFOPLIST_FILE = "$(SRCROOT)/SportBook/Production Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1334,6 +1339,7 @@
 			baseConfigurationReference = D92E171A5AFE8A227D1C2A80 /* Pods-SportBook Production.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "SportBook/SportBook Production.entitlements";
 				DEVELOPMENT_TEAM = 9M32SK58NV;
 				INFOPLIST_FILE = "$(SRCROOT)/SportBook/Production Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -17,7 +17,7 @@ class ForgotPasswordViewModel {
         emailValid = emailText
             .distinctUntilChanged()
             .throttle(0.3)
-            .map { Validation.emailValid(email: $0) }.skip(1)
+            .map(Validation.emailValid).skip(1)
     }
     
     func resetPassword(_ email: String) -> Observable<AuthenticationStatus> {

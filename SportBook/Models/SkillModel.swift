@@ -10,13 +10,11 @@ import Foundation
 import SwiftyJSON
 
 struct SkillModel {
+    let id: Int
     let name: String
     
-    init(_ sampleData : String) {
-        name = sampleData
-    }
-    
     init(_ jsonData: JSON) {
+        id = jsonData["id"].intValue
         name = jsonData["name"].stringValue
     }
 }
