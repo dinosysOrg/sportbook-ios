@@ -9,7 +9,7 @@
 import UIKit
 
 class MainViewController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,10 +19,11 @@ class MainViewController: UITabBarController {
         //If unauthenticated, present login view
         if !AuthManager.sharedInstance.IsAuthenticated {
             let loginViewController = UIStoryboard.loadLoginViewController()
-            self.present(loginViewController, animated: false, completion: {})
+            let navigationController = UINavigationController(rootViewController: loginViewController)
+            self.present(navigationController, animated: false, completion: {})
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
