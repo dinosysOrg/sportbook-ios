@@ -13,7 +13,7 @@
         <!--My Tournament View Controller-->
         <scene sceneID="MWY-qh-mw5">
             <objects>
-                <viewController storyboardIdentifier="MyTournamentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="prN-If-EWF" customClass="MyTournamentViewController" customModule="SportBook_Production" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyTournamentViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="prN-If-EWF" customClass="MyTournamentViewController" customModule="SportBook_Production" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nWj-Xg-zDv"/>
                         <viewControllerLayoutGuide type="bottom" id="kep-Bx-FnV"/>
@@ -21,9 +21,28 @@
                     <view key="view" contentMode="scaleToFill" id="z4S-w4-WAi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cV6-yV-JTd">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="prN-If-EWF" id="jKU-3N-pUu"/>
+                                    <outlet property="delegate" destination="prN-If-EWF" id="I0K-vb-rec"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cV6-yV-JTd" firstAttribute="top" secondItem="nWj-Xg-zDv" secondAttribute="bottom" id="3sZ-m4-b6Y"/>
+                            <constraint firstItem="cV6-yV-JTd" firstAttribute="leading" secondItem="z4S-w4-WAi" secondAttribute="leading" id="V5r-UQ-OGA"/>
+                            <constraint firstAttribute="trailing" secondItem="cV6-yV-JTd" secondAttribute="trailing" id="bdt-tl-NRW"/>
+                            <constraint firstItem="kep-Bx-FnV" firstAttribute="top" secondItem="cV6-yV-JTd" secondAttribute="bottom" id="nxc-IO-Oy1"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KnU-RW-UsH"/>
+                    <connections>
+                        <outlet property="tableView" destination="cV6-yV-JTd" id="eFv-Fg-BxE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wz5-Xd-qkW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

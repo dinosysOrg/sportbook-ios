@@ -14,9 +14,22 @@ class MyTournamentViewController : BaseViewController {
     
     var myTournaments = [TournamentModel]()
     
+    fileprivate let tournamentCell = "TournamentCell"
+    
+    fileprivate let viewModel = MyTournamentViewModel()
+    
+    fileprivate let tournamentSection = 1
+    
+    fileprivate let tournamentCellHeight : CGFloat = 200
+    
+    fileprivate let tournamentFooterHeight : CGFloat = 0.01
+    
     fileprivate let disposeBag = DisposeBag()
     
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
+        self.configureTableView()
         self.configureViewModel()
         self.configureBindings()
     }
@@ -28,10 +41,64 @@ class MyTournamentViewController : BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
     }
     
-    func configureViewModel() {
+    private func configureViewModel() {
     }
     
     private func configureBindings() {
+    }
+    
+    private func configureTableView() {
+        self.tableView.register(UINib(nibName: self.tournamentCell, bundle: nil), forCellReuseIdentifier: self.tournamentCell)
+        self.tableView.reloadData()
+    }
+}
+
+// MARK: Table View
+extension MyTournamentViewController : UITableViewDelegate, UITableViewDataSource{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return tournamentSection
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myTournaments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let row = indexPath.row
+        
+        if row < myTournaments.count {
+            
+            let tournament = myTournaments[row]
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.tournamentCell) as! TournamentCell
+            
+            cell.configureTournament(with: tournament)
+            
+            return cell
+        }
+        
+        return tableView.dequeueReusableCell(withIdentifier: "cell")!
+    }
+    
+    //Display my tournament detail view controller when user select a tournament
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        
+        if row < myTournaments.count {
+            //let tournament = myTournaments[row]
+            
+            //Display my tournament detail view controller
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tournamentCellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return tournamentFooterHeight
     }
 }
 

@@ -35,6 +35,7 @@
 "pick_skill_notice" = "Chú ý: Trình độ của đánh giá lại sau khi giải đấu diễn ra.";
 "submit" = "Gửi";
 "payment_pending" = "Chờ thanh toán";
+"no_sign_up_tournament" = "Bạn chưa đăng ký tham gia bật kỳ giải đấu nào.";
 
 // MARK: Authentication
 "sign_in" = "Đăng nhập";

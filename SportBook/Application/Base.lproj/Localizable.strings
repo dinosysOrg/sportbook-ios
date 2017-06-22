@@ -35,6 +35,7 @@
 "pick_skill_notice" = "Notice: Your level will be evaluated after your match in tournamenta.";
 "submit" = "Submit";
 "payment_pending" = "Payment pending";
+"no_sign_up_tournament" = "You have not sign up any tournament yet";
 
 // MARK: Authentication
 "sign_in" = "Sign in";

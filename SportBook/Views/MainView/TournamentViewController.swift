@@ -91,9 +91,9 @@ extension TournamentViewController : UITableViewDelegate, UITableViewDataSource{
         let row = indexPath.row
         
         if row == 0 {
-            let myTournamentCell = tableView.dequeueReusableCell(withIdentifier: self.myTournamentCell) as! MyTournamentCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.myTournamentCell) as! MyTournamentCell
             
-            return myTournamentCell
+            return cell
 
         } else {
             let tournaments = viewModel.tournaments.value
@@ -103,28 +103,31 @@ extension TournamentViewController : UITableViewDelegate, UITableViewDataSource{
                 
                 let tournament = tournaments[index]
                 
-                let tournamentCell = tableView.dequeueReusableCell(withIdentifier: self.tournamentCell) as! TournamentCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: self.tournamentCell) as! TournamentCell
                 
-                tournamentCell.configureTournament(with: tournament)
+                cell.configureTournament(with: tournament)
                 
-                return tournamentCell
+                return cell
             }
             
             return tableView.dequeueReusableCell(withIdentifier: "cell")!
         }
     }
     
-    //Display tournament detail view controller when use select a tournament
+    //Display tournament detail view controller when user select a tournament
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         
         if row == 0 {
-            let myTournamentViewController = UIStoryboard.loadMyTournamentViewController()
-            
-            myTournamentViewController.myTournaments = self.viewModel.myTournaments.value
-            
-            self.navigationController?.pushViewController(myTournamentViewController, animated: true)
-
+            if self.viewModel.myTournaments.value.count > 0 {
+                let myTournamentViewController = UIStoryboard.loadMyTournamentViewController()
+                
+                myTournamentViewController.myTournaments = self.viewModel.myTournaments.value
+                
+                self.navigationController?.pushViewController(myTournamentViewController, animated: true)
+            } else {
+                ErrorManager.sharedInstance.showMessage(viewController: self, message: "no_sign_up_tournament".localized)
+            }
         } else {
             let tournaments = self.viewModel.tournaments.value
             
