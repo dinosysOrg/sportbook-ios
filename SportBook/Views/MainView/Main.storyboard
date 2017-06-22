@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kCE-cf-4YK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kCE-cf-4YK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,138 +23,21 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Mf-N6-sQd">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyTournamentCell" rowHeight="200" id="r5Q-z6-lLs" customClass="MyTournamentCell" customModule="SportBook_Production" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="200"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r5Q-z6-lLs" id="dkI-Dc-CKn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YBs-UX-iS5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="159.5"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My tournament" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKd-bY-2iC">
-                                                    <rect key="frame" x="8" y="159.5" width="359" height="40"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="XKd-bY-2iC" firstAttribute="leading" secondItem="dkI-Dc-CKn" secondAttribute="leading" constant="8" id="D4n-bh-c4O"/>
-                                                <constraint firstAttribute="trailing" secondItem="XKd-bY-2iC" secondAttribute="trailing" constant="8" id="LjA-7o-2Ax"/>
-                                                <constraint firstItem="YBs-UX-iS5" firstAttribute="leading" secondItem="dkI-Dc-CKn" secondAttribute="leading" id="P6W-WV-x7v"/>
-                                                <constraint firstItem="YBs-UX-iS5" firstAttribute="height" secondItem="dkI-Dc-CKn" secondAttribute="height" multiplier="0.8" id="aip-Hl-IXc"/>
-                                                <constraint firstItem="XKd-bY-2iC" firstAttribute="top" secondItem="YBs-UX-iS5" secondAttribute="bottom" id="fDe-yL-RES"/>
-                                                <constraint firstItem="YBs-UX-iS5" firstAttribute="top" secondItem="dkI-Dc-CKn" secondAttribute="top" id="k4f-DY-NVs"/>
-                                                <constraint firstAttribute="trailing" secondItem="YBs-UX-iS5" secondAttribute="trailing" id="pAM-4W-azc"/>
-                                                <constraint firstAttribute="bottom" secondItem="XKd-bY-2iC" secondAttribute="bottom" id="pZV-aV-7Tq"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TournamentCell" rowHeight="200" id="0kL-S7-Wij" customClass="TournamentCell" customModule="SportBook_Production" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="228" width="375" height="200"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0kL-S7-Wij" id="rgR-Z9-2kQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fe0-fC-Gt7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Js7-4W-8uJ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tournament Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBS-vq-7aI">
-                                                                    <rect key="frame" x="8" y="14" width="171.5" height="21"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstItem="wBS-vq-7aI" firstAttribute="centerY" secondItem="Js7-4W-8uJ" secondAttribute="centerY" id="P8V-P7-2Ei"/>
-                                                                <constraint firstAttribute="trailing" secondItem="wBS-vq-7aI" secondAttribute="trailing" constant="8" id="mhN-Fk-1Ni"/>
-                                                                <constraint firstItem="wBS-vq-7aI" firstAttribute="leading" secondItem="Js7-4W-8uJ" secondAttribute="leading" constant="8" id="rM1-ya-Ta1"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMv-yO-KxC">
-                                                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BoS-lM-dlZ">
-                                                                    <rect key="frame" x="8" y="4" width="171.5" height="17"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tournament Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOj-ct-9cW">
-                                                                    <rect key="frame" x="8" y="29" width="171.5" height="17"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstItem="BoS-lM-dlZ" firstAttribute="leading" secondItem="uMv-yO-KxC" secondAttribute="leading" constant="8" id="3gA-NJ-4eX"/>
-                                                                <constraint firstItem="MOj-ct-9cW" firstAttribute="leading" secondItem="uMv-yO-KxC" secondAttribute="leading" constant="8" id="DHN-hq-mlB"/>
-                                                                <constraint firstAttribute="trailing" secondItem="BoS-lM-dlZ" secondAttribute="trailing" constant="8" id="PeH-hV-GeS"/>
-                                                                <constraint firstAttribute="bottom" secondItem="MOj-ct-9cW" secondAttribute="bottom" constant="4" id="TdC-6L-QDZ"/>
-                                                                <constraint firstItem="BoS-lM-dlZ" firstAttribute="top" secondItem="uMv-yO-KxC" secondAttribute="top" constant="4" id="e86-cc-elx"/>
-                                                                <constraint firstItem="MOj-ct-9cW" firstAttribute="top" secondItem="BoS-lM-dlZ" secondAttribute="bottom" constant="8" id="k99-fO-vqz"/>
-                                                                <constraint firstAttribute="trailing" secondItem="MOj-ct-9cW" secondAttribute="trailing" constant="8" id="yPv-6d-rfx"/>
-                                                            </constraints>
-                                                        </view>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="uMv-yO-KxC" secondAttribute="bottom" id="8Mb-LJ-y1X"/>
-                                                        <constraint firstItem="uMv-yO-KxC" firstAttribute="top" secondItem="Fe0-fC-Gt7" secondAttribute="top" id="9od-bJ-R6y"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Js7-4W-8uJ" secondAttribute="bottom" id="Enk-wW-hgr"/>
-                                                        <constraint firstItem="uMv-yO-KxC" firstAttribute="leading" secondItem="Js7-4W-8uJ" secondAttribute="trailing" id="OXM-1A-gpt"/>
-                                                        <constraint firstAttribute="trailing" secondItem="uMv-yO-KxC" secondAttribute="trailing" id="Uwu-aN-RWB"/>
-                                                        <constraint firstItem="Js7-4W-8uJ" firstAttribute="width" secondItem="Fe0-fC-Gt7" secondAttribute="width" multiplier="0.5" id="gsP-UY-5K0"/>
-                                                        <constraint firstItem="Js7-4W-8uJ" firstAttribute="top" secondItem="Fe0-fC-Gt7" secondAttribute="top" id="wLe-xY-KmK"/>
-                                                        <constraint firstItem="Js7-4W-8uJ" firstAttribute="leading" secondItem="Fe0-fC-Gt7" secondAttribute="leading" id="zk3-Ob-cQW"/>
-                                                    </constraints>
-                                                </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hme-6v-Dtu">
-                                                    <rect key="frame" x="0.0" y="50" width="375" height="149.5"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="hme-6v-Dtu" secondAttribute="bottom" id="4Vi-F8-TAF"/>
-                                                <constraint firstItem="Fe0-fC-Gt7" firstAttribute="top" secondItem="rgR-Z9-2kQ" secondAttribute="top" id="8pR-c4-kb5"/>
-                                                <constraint firstItem="hme-6v-Dtu" firstAttribute="leading" secondItem="rgR-Z9-2kQ" secondAttribute="leading" id="EZs-Dw-VTq"/>
-                                                <constraint firstAttribute="trailing" secondItem="hme-6v-Dtu" secondAttribute="trailing" id="Ido-Mm-vB0"/>
-                                                <constraint firstAttribute="trailing" secondItem="Fe0-fC-Gt7" secondAttribute="trailing" id="KsD-rh-Su3"/>
-                                                <constraint firstItem="Fe0-fC-Gt7" firstAttribute="leading" secondItem="rgR-Z9-2kQ" secondAttribute="leading" id="MtJ-3Y-bcV"/>
-                                                <constraint firstItem="Fe0-fC-Gt7" firstAttribute="height" secondItem="rgR-Z9-2kQ" secondAttribute="height" multiplier="0.25" id="OCs-A9-QM4"/>
-                                                <constraint firstItem="hme-6v-Dtu" firstAttribute="top" secondItem="Fe0-fC-Gt7" secondAttribute="bottom" id="Sqg-q3-flV"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="lblRegisterTime" destination="BoS-lM-dlZ" id="M0L-vX-giX"/>
-                                            <outlet property="lblTournamentName" destination="wBS-vq-7aI" id="nr0-nd-j7G"/>
-                                            <outlet property="lblTournamentTime" destination="MOj-ct-9cW" id="XYj-bF-DlM"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="separatorColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="GX2-lm-MIX" id="BYq-gt-Wfq"/>
                                     <outlet property="delegate" destination="GX2-lm-MIX" id="si4-bj-O8X"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="9SQ-kY-RkN" firstAttribute="top" secondItem="1Mf-N6-sQd" secondAttribute="bottom" id="1D4-LV-ryg"/>
-                            <constraint firstItem="1Mf-N6-sQd" firstAttribute="top" secondItem="kyX-pJ-kHo" secondAttribute="bottom" id="Flx-G5-npP"/>
-                            <constraint firstItem="1Mf-N6-sQd" firstAttribute="leading" secondItem="GfS-HR-0PA" secondAttribute="leading" id="UtH-4q-xP6"/>
-                            <constraint firstAttribute="trailing" secondItem="1Mf-N6-sQd" secondAttribute="trailing" id="mwC-07-9ZT"/>
+                            <constraint firstItem="9SQ-kY-RkN" firstAttribute="top" secondItem="1Mf-N6-sQd" secondAttribute="bottom" id="E2j-9G-zRm"/>
+                            <constraint firstItem="1Mf-N6-sQd" firstAttribute="leading" secondItem="GfS-HR-0PA" secondAttribute="leading" id="J1B-5s-QRT"/>
+                            <constraint firstAttribute="trailing" secondItem="1Mf-N6-sQd" secondAttribute="trailing" id="gHS-Az-nyA"/>
+                            <constraint firstItem="1Mf-N6-sQd" firstAttribute="top" secondItem="kyX-pJ-kHo" secondAttribute="bottom" id="uyy-Wg-k3r"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="my8-pF-z7B"/>

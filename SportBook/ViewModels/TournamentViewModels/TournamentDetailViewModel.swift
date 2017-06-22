@@ -37,6 +37,7 @@ class TournamentDetailViewModel {
                 self.hasFailed.value = SportBookError.Unauthenticated
             } else if 200..<300 ~= response.statusCode {
                 let jsonObject = JSON(response.data)
+                print(jsonObject)
                 
                 let detailTournament = TournamentModel(jsonObject)
                 

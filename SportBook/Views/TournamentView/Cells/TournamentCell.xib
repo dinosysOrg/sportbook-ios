@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TournamentCell" rowHeight="316" id="KGk-i7-Jjw" customClass="TournamentCell" customModule="SportBook_Staging" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="637" height="316"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="637" height="316"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glt-QE-0mW">
+                        <rect key="frame" x="0.0" y="0.0" width="637" height="64"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tournament name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpl-um-jj1">
+                                <rect key="frame" x="8" y="8" width="306.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ab4-00-5xK">
+                                <rect key="frame" x="322.5" y="8" width="306.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-mY-lM9">
+                                <rect key="frame" x="322.5" y="35.5" width="306.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="64" id="4oa-RK-bpW"/>
+                            <constraint firstItem="Ab4-00-5xK" firstAttribute="top" secondItem="glt-QE-0mW" secondAttribute="top" constant="8" id="KBe-Y0-Eme"/>
+                            <constraint firstItem="gpl-um-jj1" firstAttribute="top" secondItem="glt-QE-0mW" secondAttribute="top" constant="8" id="RlT-Ki-cwP"/>
+                            <constraint firstItem="Ab4-00-5xK" firstAttribute="leading" secondItem="gpl-um-jj1" secondAttribute="trailing" constant="8" id="V25-4r-kGn"/>
+                            <constraint firstItem="VVt-mY-lM9" firstAttribute="width" secondItem="Ab4-00-5xK" secondAttribute="width" id="WhU-aG-Z1v"/>
+                            <constraint firstItem="gpl-um-jj1" firstAttribute="width" secondItem="Ab4-00-5xK" secondAttribute="width" id="WrS-tO-Bdh"/>
+                            <constraint firstItem="gpl-um-jj1" firstAttribute="leading" secondItem="glt-QE-0mW" secondAttribute="leading" constant="8" id="c7Y-qT-2H4"/>
+                            <constraint firstAttribute="trailing" secondItem="VVt-mY-lM9" secondAttribute="trailing" constant="8" id="maW-eL-WQg"/>
+                            <constraint firstAttribute="trailing" secondItem="Ab4-00-5xK" secondAttribute="trailing" constant="8" id="pz2-Dg-AVz"/>
+                            <constraint firstItem="VVt-mY-lM9" firstAttribute="top" secondItem="Ab4-00-5xK" secondAttribute="bottom" constant="8" id="zD2-zM-eMh"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Gf-e5-5pM">
+                        <rect key="frame" x="0.0" y="64" width="637" height="251.5"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                <constraints>
+                    <constraint firstItem="glt-QE-0mW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5WP-fW-O43"/>
+                    <constraint firstAttribute="trailing" secondItem="glt-QE-0mW" secondAttribute="trailing" id="CbT-b4-aTZ"/>
+                    <constraint firstAttribute="trailing" secondItem="9Gf-e5-5pM" secondAttribute="trailing" id="HK5-6N-oro"/>
+                    <constraint firstItem="9Gf-e5-5pM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KY7-ZO-rPV"/>
+                    <constraint firstItem="9Gf-e5-5pM" firstAttribute="top" secondItem="glt-QE-0mW" secondAttribute="bottom" id="ReC-8y-475"/>
+                    <constraint firstItem="glt-QE-0mW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="mtG-M0-OkI"/>
+                    <constraint firstAttribute="bottom" secondItem="9Gf-e5-5pM" secondAttribute="bottom" id="y2Y-uh-XgA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imgCover" destination="9Gf-e5-5pM" id="LpC-dk-WNJ"/>
+                <outlet property="lblEndDate" destination="VVt-mY-lM9" id="e49-he-sdU"/>
+                <outlet property="lblStartDate" destination="Ab4-00-5xK" id="MLP-L9-uBp"/>
+                <outlet property="lblTournamentName" destination="gpl-um-jj1" id="StZ-wp-a6X"/>
+            </connections>
+            <point key="canvasLocation" x="-57.5" y="37"/>
+        </tableViewCell>
+    </objects>
+</document>

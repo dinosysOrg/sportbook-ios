@@ -51,5 +51,9 @@ extension UIStoryboard {
         return loadFromTournament("TournamentDetailViewController") as! TournamentDetailViewController
     }
     
+    class func loadMyTournamentViewController() -> MyTournamentViewController {
+        return loadFromTournament("MyTournamentViewController") as! MyTournamentViewController
+    }
+    
     // Add other app view controller load methods here ...
 }

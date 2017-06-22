@@ -13,7 +13,7 @@
         <!--My Tournament View Controller-->
         <scene sceneID="MWY-qh-mw5">
             <objects>
-                <viewController id="prN-If-EWF" customClass="MyTournamentViewController" customModule="SportBook_Production" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyTournamentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="prN-If-EWF" customClass="MyTournamentViewController" customModule="SportBook_Production" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nWj-Xg-zDv"/>
                         <viewControllerLayoutGuide type="bottom" id="kep-Bx-FnV"/>
