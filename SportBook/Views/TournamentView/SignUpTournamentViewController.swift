@@ -73,7 +73,9 @@ class SignUpTournamentViewController : BaseViewController {
     //MARK: Skill Selection
     @IBOutlet weak var skillContainerView: UIView!
     
-    @IBOutlet weak var skillTableView: UITableView!
+    @IBOutlet weak var skillCollectionView: UICollectionView!
+    
+    @IBOutlet weak var skillPageControl: UIPageControl!
     
     @IBOutlet weak var lblPickSkill: UILabel!
     
@@ -83,9 +85,9 @@ class SignUpTournamentViewController : BaseViewController {
     
     fileprivate let skillCell = "SkillCell"
     
-    fileprivate let skillCellHeight : CGFloat = 40
+    fileprivate var selectedSkillIndex = 0
     
-    fileprivate var selectedSkillIndex = -1
+    fileprivate let skillCellSpacing : CGFloat = 10
     
     override func viewDidLoad() {
         configureUI()
@@ -94,6 +96,7 @@ class SignUpTournamentViewController : BaseViewController {
         configureDatePicker()
         configureCityPicker()
         configureDistrictPicker()
+        configurePageControl()
         viewModel.loadSkills()
         viewModel.loadCities()
     }
@@ -189,8 +192,9 @@ class SignUpTournamentViewController : BaseViewController {
             self.showDistrictPicker()
         }).addDisposableTo(disposeBag)
         
-        self.viewModel.skills.asDriver().drive(onNext: { [unowned self] tournament in
-            self.skillTableView.reloadData()
+        self.viewModel.skills.asDriver().drive(onNext: { [unowned self] skills in
+            self.skillCollectionView.reloadData()
+            self.skillPageControl.numberOfPages = skills.count
         }).disposed(by: disposeBag)
         
         self.viewModel.cities.asObservable().subscribe(onNext: { [unowned self] cities in
@@ -224,7 +228,7 @@ class SignUpTournamentViewController : BaseViewController {
                 self.tfLastName.errorMessage = valid ? "" : "last_name_minimum_length".localized
             })
             .addDisposableTo(disposeBag)
-
+        
         viewModel.phoneNumberValid
             .drive(onNext: { [unowned self] valid in
                 self.tfMobile.errorMessage = valid ? "" : "phone_invalid".localized
@@ -268,14 +272,14 @@ class SignUpTournamentViewController : BaseViewController {
         let datePickerValueChanged = datePickerViewController.datePicker.rx.date
         
         let birthdateObservable = datePickerValueChanged.map { date -> String in
-                
-                let dateFormatter = DateFormatter()
-                
-                dateFormatter.dateStyle = DateFormatter.Style.medium
-                dateFormatter.timeStyle = DateFormatter.Style.none
-                
-                return dateFormatter.string(from: date)
-        }.asObservable()
+            
+            let dateFormatter = DateFormatter()
+            
+            dateFormatter.dateStyle = DateFormatter.Style.medium
+            dateFormatter.timeStyle = DateFormatter.Style.none
+            
+            return dateFormatter.string(from: date)
+            }.asObservable()
         
         birthdateObservable.bind(to: self.tfDateOfBirth.rx.text).addDisposableTo(disposeBag)
     }
@@ -285,10 +289,10 @@ class SignUpTournamentViewController : BaseViewController {
         cityPickerViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         
         let citySelectedIndex = cityPickerViewController.selectedIndex
-            
+        
         let citySelected = citySelectedIndex.map { index -> City in
-             return self.viewModel.cities.value[index]
-        }.asObservable()
+            return self.viewModel.cities.value[index]
+            }.asObservable()
         
         citySelected.map { $0.name }.bind(to: self.tfCity.rx.text).addDisposableTo(disposeBag)
         citySelected.bind(to: self.viewModel.selectedCity).addDisposableTo(disposeBag)
@@ -302,7 +306,7 @@ class SignUpTournamentViewController : BaseViewController {
         
         selectedCity.subscribe(onNext: { city in
             if city != nil {
-                  self.districtPickerViewController.setPickerData(data: city!.districts)
+                self.districtPickerViewController.setPickerData(data: city!.districts)
             }
         }).addDisposableTo(disposeBag)
         
@@ -313,6 +317,12 @@ class SignUpTournamentViewController : BaseViewController {
         }
         
         districtSelected.bind(to: self.tfDistrict.rx.text).addDisposableTo(disposeBag)
+    }
+    
+    func configurePageControl() {
+        self.skillPageControl.currentPage = 0
+        self.skillPageControl.pageIndicatorTintColor = UIColor.black
+        self.skillPageControl.currentPageIndicatorTintColor = UIColor.lightGray
     }
 }
 
@@ -334,54 +344,93 @@ extension SignUpTournamentViewController {
 
 //MARK: Skill Selection
 
-extension SignUpTournamentViewController : UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+extension SignUpTournamentViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.skills.value.count
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.viewModel.skills.value.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let row = indexPath.row
         let skill = viewModel.skills.value[row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: skillCell)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: skillCell, for: indexPath)
             as! SkillCell
         
         cell.configure(skill: skill)
         
-        if row == selectedSkillIndex {
-            cell.select()
-        } else {
-            cell.deselect()
-        }
-        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! SkillCell
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let skillCell = cell as? SkillCell else {
+            return
+        }
         
-        cell.deselect()
+        skillCell.configureUI()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedSkillIndex = indexPath.row
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionViewSize = collectionView.frame.size
         
-        let cell = tableView.cellForRow(at: indexPath) as! SkillCell
+        let cellHeight = collectionViewSize.height
+        let cellWidth = collectionViewSize.width * 0.9
         
-        cell.select()
+        return CGSize(width: cellWidth, height: cellHeight)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return skillCellHeight
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
+    //Set scrollview's content offset to center horizontal as much as possible
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        //Convert to Float to use ceilf and floorf method
+        
+        //Calculate page/cell width
+        let pageWidth = Float(self.skillCollectionView.frame.size.width * 0.9)
+        print("Page/Cell Width: \(pageWidth)")
+        
+        //Get current offset and target offset
+        let currentOffset: Float = Float(scrollView.contentOffset.x)
+        let targetOffset: Float = Float(targetContentOffset.pointee.x)
+        
+        print("CurrentOffset: \(currentOffset) \n TargetOffset: \(targetOffset)")
+        
+        //Create variable to store new offset
+        var newTargetOffset: Float = 0
+        
+        //Calculate new offset by deviding current offset by page/cell width then multiply
+        if targetOffset > currentOffset {
+            //New target will be ceilf of result from deviding current offset by page/cell width then multiply by page/cell width
+            newTargetOffset = ceilf(currentOffset / pageWidth) * pageWidth
+        } else {
+            //New target will be ceilf of result from deviding current offset by page/cell width then multiply by page/cell width
+            newTargetOffset = floorf(currentOffset / pageWidth) * pageWidth
+        }
+        
+        print("NewTargetOffset: \(newTargetOffset)")
+        
+        let padding: Float = 0
+        
+        if newTargetOffset < 0 {
+            //If new target off set smaller than 0, it means that user scroll to the top
+            newTargetOffset = 0
+        } else if (newTargetOffset >= Float(scrollView.contentSize.width)) {
+            //Else if new target offset larger or equal scrollview content width, it means that user scroll to the bottom
+            newTargetOffset = Float(scrollView.contentSize.width) + padding
+        }
+        
+        print("New NewTargetOffset: \(newTargetOffset)")
+        
+        targetContentOffset.pointee.x = CGFloat(currentOffset)
+        
+        let index = newTargetOffset / pageWidth
+        
+        self.viewModel.skill.value = self.viewModel.skills.value[Int(index)]
+        self.skillPageControl.currentPage = Int(index)
+        
+        //Set scrollview content offset by new CGPoint create from new targetOffset x and current content offset y
+        
+        scrollView.setContentOffset(CGPoint(x: CGFloat(newTargetOffset), y: scrollView.contentOffset.y), animated: true)
     }
 }

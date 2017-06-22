@@ -8,24 +8,20 @@
 
 import UIKit
 
-class SkillCell : UITableViewCell {
-    
-    let selectedIcon = UIImage(named: "rad_check")
-    let unselectedIcon = UIImage(named: "rad_uncheck")
-    
-    @IBOutlet weak var imgSelection: UIImageView!
+class SkillCell : UICollectionViewCell {
+    @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var lblLevel: UILabel!
+    
+    @IBOutlet weak var tvDescription: UITextView!
     
     func configure(skill : SkillModel) {
         lblLevel.text = skill.name
     }
     
-    func select(){
-        self.imgSelection.image = selectedIcon
-    }
-    
-    func deselect(){
-        self.imgSelection.image = unselectedIcon
+    func configureUI(){
+        //Set shadow for cell border here
+        self.containerView.layer.borderColor = UIColor.lightGray.cgColor
+        self.containerView.layer.borderWidth = 1
     }
 }

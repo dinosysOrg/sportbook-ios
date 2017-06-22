@@ -97,7 +97,7 @@ class TournamentSignUpViewModel {
                         return SkillModel(jsonObject)
                 }
                 
-                self.skills.value = skillArray
+                self.skills.value = skillArray.reversed()
                 self.skill.value = self.skills.value.first
             } else {
                 let errorMessage = JSON(response.data)["errors"].arrayValue
