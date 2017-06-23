@@ -53,4 +53,38 @@ class TournamentDetailViewModel {
                 self.hasFailed.value = SportBookError.ConnectionFailure
         }).addDisposableTo(self.disposeBag)
     }
+    
+    func fastSignUpTournament() -> Observable<Bool> {
+        
+        return Observable<Bool>.create { observer in
+            
+            let user = UserManager.sharedInstance.user!
+            
+            TournamentProvider.request(.signupTournament(self.tournament.value!.id, user.name!, Int(user.phoneNumber!)!,
+                                                         user.address!, user.skillId!, user.club, user.birthday, nil))
+                .subscribe(onNext: { [unowned self] response in
+                    
+                    if response.statusCode == 0 {
+                        self.hasFailed.value = SportBookError.ConnectionFailure
+                        observer.onNext(false)
+                    } else if 200..<300 ~= response.statusCode {
+                        let jsonObject = JSON(response.data)
+                        
+                        UserManager.sharedInstance.updateUserInfo(userInfo: jsonObject["user"])
+                        
+                        observer.onNext(true)
+                    } else {
+                        let errorMessage = JSON(response.data)["errors"].arrayValue
+                            .map { $0.stringValue }.joined(separator: ". ")
+                        
+                        self.hasFailed.value = SportBookError.Custom(errorMessage)
+                        
+                        observer.onNext(false)
+                    }
+                }).addDisposableTo(self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
+
 }

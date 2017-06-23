@@ -11,6 +11,7 @@ import SwiftyJSON
 
 public enum TeamStatus : String {
     case registered = "registered"
+    case paid = "paid"
 }
 
 struct TeamModel {

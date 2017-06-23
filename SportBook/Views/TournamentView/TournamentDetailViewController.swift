@@ -25,6 +25,7 @@ class TournamentDetailViewController : BaseViewController {
     @IBOutlet weak var btnSignUp: UIButton!
     
     override func viewDidLoad() {
+        self.title = currentTournament?.name
         self.configureViewModel()
         self.configureBindings()
         self.viewModel.loadTournamentDetail()
@@ -38,25 +39,48 @@ class TournamentDetailViewController : BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let signUpTournamentViewController = segue.destination as? SignUpTournamentViewController {
-            signUpTournamentViewController.currentTournament = viewModel.tournament.value
-            signUpTournamentViewController.signUpSuccess.asDriver().drive(onNext: { [unowned self] success in
-                if success {
-                    self.btnSignUp.isEnabled = false
-                    self.btnSignUp.setTitle("payment_pending".localized.uppercased(), for: .normal)
-                }
-            }).addDisposableTo(disposeBag)
-        }
-    }
-    
     func configureViewModel() {
         self.viewModel = TournamentDetailViewModel(tournament: self.currentTournament!)
     }
     
     private func configureBindings() {
+        let signUpTap = self.btnSignUp.rx.tap
+        
+        //When use tap sign up
+        signUpTap.asObservable().subscribe(onNext: { [unowned self] _ in
+            let user = UserManager.sharedInstance.user!
+            
+            let tournament = self.viewModel.tournament.value!
+            
+            //If there's no team, it means that user have not sign up this tournament yet
+            if tournament.teams.count == 0 {
+                //Check his/her profile if they had signed up any tournament before
+                if user.hasTournamentProfile {
+                    //If had, do fast sign up with their info
+                    self.viewModel.fastSignUpTournament().subscribe(onNext: { success in
+                        self.updateSignUpButton(success)
+                    }).addDisposableTo(self.disposeBag)
+                } else {
+                    //Else move them to sign up view
+                    let signUpTournamentViewController = UIStoryboard.loadSignUpTournamentViewController()
+                    
+                    signUpTournamentViewController.currentTournament = self.viewModel.tournament.value
+                    signUpTournamentViewController.signUpSuccess.asDriver().drive(onNext: { [unowned self] success in
+                        self.updateSignUpButton(success)
+                    }).addDisposableTo(self.disposeBag)
+                    
+                    self.navigationController?.pushViewController(signUpTournamentViewController, animated: true)
+                }
+            } else {
+                
+            }
+        }).addDisposableTo(disposeBag)
+        
         self.viewModel.tournament.asDriver().drive(onNext: { [unowned self] tournament in
-            self.title = tournament?.name
+            guard let detailTournament = tournament else {
+                return
+            }
+            self.updateUI(tournament: detailTournament)
         }).disposed(by: disposeBag)
         
         self.viewModel.hasFailed.asObservable().skip(1).subscribe(onNext: { [unowned self] error in
@@ -70,5 +94,28 @@ class TournamentDetailViewController : BaseViewController {
                 ErrorManager.sharedInstance.showError(viewController: self, error: error)
             }
         }).disposed(by: disposeBag)
+    }
+    
+    func updateUI(tournament : TournamentModel) {
+        if tournament.teams.count > 0 {
+            let myTeam = tournament.teams.first!
+            
+            if myTeam.status == TeamStatus.registered {
+                self.updateSignUpButton(true)
+            } else {
+                //Implement later
+            }
+        } else {
+            self.btnSignUp.isEnabled = true
+        }
+    }
+    
+    func updateSignUpButton(_ signedUp : Bool) {
+        if signedUp {
+            self.btnSignUp.isEnabled = false
+            self.btnSignUp.setTitle("payment_pending".localized.uppercased(), for: .normal)
+        } else {
+            self.btnSignUp.isEnabled = true
+        }
     }
 }

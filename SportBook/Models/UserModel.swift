@@ -10,52 +10,69 @@ import Foundation
 import SwiftyJSON
 
 class UserModel {
-    var id : Int?
-    var skillId : String?
-    var facebookCredentials : String?
-    var provider : String?
-    var uid : String?
-    var phoneNumber : String?
-    var note : String?
-    var facebookUID : String?
-    var image : String?
-    var address : String?
-    var slug : String?
-    var nickName : String?
-    var email : String?
-    var name : String?
-    var skillLevel : Int?
+    var id: Int?
+    var provider: String?
+    var note: String?
+    var uid: String?
+    var image: String?
+    var address: String?
+    var club: String?
+    var email: String?
+    var slug: String?
+    var birthday: String?
+    var facebookCredentials: String?
+    var name: String?
+    var nickName: String?
+    var facebookUid: String?
+    var phoneNumber: String?
+    var skillId: Int?
     
-    init(data : Data) {
-        
-        let jsonData = JSON(data)["data"]
+    init(jsonData : JSON) {
         
         self.id = jsonData["id"].int
         
-        self.skillId = jsonData["skill_id"].string
-        
-        self.facebookCredentials = jsonData["facebook_credentials"].string
-        
         self.provider = jsonData["provider"].string
-        
-        self.phoneNumber = jsonData["phone_number"].string
         
         self.note = jsonData["note"].string
         
-        self.facebookUID = jsonData["facebook_uid"].string
+        self.uid = jsonData["uid"].string
         
         self.image = jsonData["image"].string
         
         self.address = jsonData["address"].string
         
-        self.slug = jsonData["slug"].string
-        
-        self.nickName = jsonData["nickname"].string
+        self.club = jsonData["club"].string
         
         self.email = jsonData["email"].string
         
-        self.name  = jsonData["name"].string
+        self.slug = jsonData["slug"].string
         
-        self.skillLevel = jsonData["skill_level"].int
+        self.birthday = jsonData["birthday"].string
+        
+        self.facebookCredentials = jsonData["facebook_credentials"].string
+        
+        self.name = jsonData["name"].string
+        
+        self.nickName = jsonData["nickname"].string
+        
+        self.facebookUid = jsonData["facebook_uid"].string
+        
+        self.phoneNumber = jsonData["phone_number"].string
+        
+        self.skillId = jsonData["skill_id"].int
+    }
+    
+    //Check if this user has signed up any tournament before
+    var hasTournamentProfile : Bool {
+        guard let profileName = name, let _ = phoneNumber, let profileAddress = address,
+            let _ = skillId else {
+                return false
+        }
+        
+        if profileName.isEmpty || profileAddress.isEmpty {
+            return false
+        }
+        
+        return true
     }
 }

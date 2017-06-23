@@ -29,6 +29,7 @@ class MyTournamentViewController : BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
+        self.title = "my_tournament".localized
         self.configureTableView()
         self.configureViewModel()
         self.configureBindings()
@@ -42,6 +43,7 @@ class MyTournamentViewController : BaseViewController {
     }
     
     private func configureViewModel() {
+        self.viewModel.myTournaments.value = myTournaments
     }
     
     private func configureBindings() {
@@ -87,9 +89,21 @@ extension MyTournamentViewController : UITableViewDelegate, UITableViewDataSourc
         let row = indexPath.row
         
         if row < myTournaments.count {
-            //let tournament = myTournaments[row]
+            let tournament = myTournaments[row]
             
-            //Display my tournament detail view controller
+            if let myTeam = tournament.teams.first {
+                if myTeam.status == TeamStatus.paid {
+                    //Display my tournament detail view controller
+                    let myTournamentDetailViewController = UIStoryboard.loadMyTournamentDetailViewController()
+                    
+                    myTournamentDetailViewController.currentTournament = tournament
+                    
+                    self.navigationController?.pushViewController(myTournamentDetailViewController, animated: true)
+                    
+                } else {
+                    ErrorManager.sharedInstance.showMessage(viewController: self, message: "not_pay_tournament_yet".localized)
+                }
+            }
         }
     }
     

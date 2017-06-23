@@ -131,7 +131,7 @@ extension TournamentViewController : UITableViewDelegate, UITableViewDataSource{
         } else {
             let tournaments = self.viewModel.tournaments.value
             
-            if row <= tournaments.count - 1 {
+            if row <= tournaments.count {
                 let tournament = tournaments[row]
                 
                 let tournamentDetailViewController = UIStoryboard.loadTournamentDetailViewController()

@@ -272,13 +272,7 @@ class SignUpTournamentViewController : BaseViewController {
         let datePickerValueChanged = datePickerViewController.datePicker.rx.date
         
         let birthdateObservable = datePickerValueChanged.map { date -> String in
-            
-            let dateFormatter = DateFormatter()
-            
-            dateFormatter.dateStyle = DateFormatter.Style.medium
-            dateFormatter.timeStyle = DateFormatter.Style.none
-            
-            return dateFormatter.string(from: date)
+            date.toString()
             }.asObservable()
         
         birthdateObservable.bind(to: self.tfDateOfBirth.rx.text).addDisposableTo(disposeBag)

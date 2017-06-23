@@ -35,7 +35,14 @@
 "pick_skill_notice" = "Notice: Your level will be evaluated after your match in tournamenta.";
 "submit" = "Submit";
 "payment_pending" = "Payment pending";
-"no_sign_up_tournament" = "You have not sign up any tournament yet";
+"my_tournament" = "My tournament";
+"no_sign_up_tournament" = "You have yet sign up any tournament";
+"not_pay_tournament_yet"= "You have yet pay for this tournament";
+"rule_regulation" = "Rules and regulation";
+"rank_venue" = "Rank venue";
+"tournament_time_table" = "Tournament timetable";
+"opponent_list" = "Opponents list";
+"tournament_result" = "Tournament results";
 
 // MARK: Authentication
 "sign_in" = "Sign in";

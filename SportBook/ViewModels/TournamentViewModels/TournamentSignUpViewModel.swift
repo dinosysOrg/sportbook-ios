@@ -126,6 +126,10 @@ class TournamentSignUpViewModel {
                     self.hasFailed.value = SportBookError.ConnectionFailure
                     observer.onNext(false)
                 } else if 200..<300 ~= response.statusCode {
+                    let jsonObject = JSON(response.data)
+                    
+                    UserManager.sharedInstance.updateUserInfo(userInfo: jsonObject["user"])
+                    
                     observer.onNext(true)
                 } else {
                     let errorMessage = JSON(response.data)["errors"].arrayValue

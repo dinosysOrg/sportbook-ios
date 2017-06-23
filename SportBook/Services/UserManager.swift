@@ -6,8 +6,8 @@
 //  Copyright © 2017 dinosys. All rights reserved.
 //
 
-import Foundation
 import FacebookLogin
+import SwiftyJSON
 
 class UserManager {
     static let sharedInstance = UserManager()
@@ -18,26 +18,25 @@ class UserManager {
     
     var user : UserModel? {
         get {
-            if _user == nil  && userData != nil {
-                _user =  UserModel(data: userData!)
+            if _user == nil  && userJsonData != nil {
+                _user =  UserModel(jsonData: userJsonData!)
             }
             return _user
         }
     }
     
     //User Data
-    var userData: Data? {
+    private var userJsonData: JSON? {
         get {
             let defaults = UserDefaults.standard
-            if  let data = defaults.object(forKey: "userData") as? Data{
-                return data
+            if  let data = defaults.object(forKey: "userJsonData") as? String{
+                return JSON.parse(data)
             }
             return nil
         }
         set {
             let defaults = UserDefaults.standard
-            defaults.set(newValue, forKey: "userData")
-            defaults.synchronize()
+            defaults.set(newValue?.rawString(), forKey: "userJsonData")
         }
     }
     
@@ -53,8 +52,13 @@ class UserManager {
         }
     }
     
-    //Clear User Data
-    func clear() {
-        self.userData = nil
+    //Update user info
+    func updateUserInfo(userInfo : JSON) {
+        userJsonData = userInfo
+    }
+    
+    //Clear user info
+    func clearUserInfo() {
+        self.userJsonData = nil
     }
 }
