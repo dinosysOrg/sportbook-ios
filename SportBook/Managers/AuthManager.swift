@@ -80,10 +80,9 @@ class AuthManager {
                 
                 observer.onNext(AuthenticationStatus.Authenticated)
             } else {
-                let errorMessage = JSON(response.data)["errors"].arrayValue
-                    .map { $0.stringValue }.joined(separator: ". ")
+                let jsonError = JSON(response.data)["errors"]
                 
-                observer.onError(SportBookError.Custom(errorMessage))
+                observer.onError(SportBookError.AuthenticationError(jsonError))
             }
             
             return Disposables.create()
@@ -101,10 +100,9 @@ class AuthManager {
             } else if 200..<300 ~= response.statusCode {
                 observer.onNext(AuthenticationStatus.SignedUp)
             } else {
-                let errorMessage = JSON(response.data)["errors"].arrayValue
-                    .map { $0.stringValue }.joined(separator: ". ")
+                let jsonError = JSON(response.data)["errors"]
                 
-                observer.onError(SportBookError.Custom(errorMessage))
+                observer.onError(SportBookError.AuthenticationError(jsonError))
             }
             
             return Disposables.create()
@@ -134,10 +132,9 @@ class AuthManager {
                 observer.onNext(AuthenticationStatus.PasswordReset)
             }
             else {
-                let errorMessage = JSON(response.data)["errors"].arrayValue
-                    .map { $0.stringValue }.joined(separator: ". ")
+                let jsonError = JSON(response.data)["errors"]
                 
-                observer.onError(SportBookError.Custom(errorMessage))
+                observer.onError(SportBookError.AuthenticationError(jsonError))
             }
             
             return Disposables.create()

@@ -6,15 +6,15 @@
 //  Copyright © 2017 dinosys. All rights reserved.
 //
 
-import Foundation
+import SwiftyJSON
 import UIKit
 
 public enum SportBookError  {
     case None
     case ConnectionFailure
     case Unauthenticated
-    case ServerError
-    case ClientError
+    case AuthenticationError(JSON)
+    case ApiError(JSON)
     case UserCancelled
     case Custom(String)
 }
@@ -26,10 +26,12 @@ extension SportBookError : Error, CustomStringConvertible {
             return ""
         case .ConnectionFailure:
             return "connection_failure".localized
-        case .ServerError:
-            return "error_server".localized
-        case .ClientError:
-            return "error_system".localized
+        case .AuthenticationError(let jsonError):
+            let errorMessage = jsonError["full_messages"].stringValue
+            return errorMessage
+        case .ApiError(let jsonError):
+            let errorMessage = jsonError["full_messages"].stringValue
+            return errorMessage
         case .Custom(let message):
             return message
         default:

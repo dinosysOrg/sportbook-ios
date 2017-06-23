@@ -132,7 +132,9 @@ extension TournamentViewController : UITableViewDelegate, UITableViewDataSource{
             let tournaments = self.viewModel.tournaments.value
             
             if row <= tournaments.count {
-                let tournament = tournaments[row]
+                let index = row - 1
+                
+                let tournament = tournaments[index]
                 
                 let tournamentDetailViewController = UIStoryboard.loadTournamentDetailViewController()
                 
