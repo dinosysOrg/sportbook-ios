@@ -25,7 +25,7 @@ class SignupViewModel {
         emailValid = emailText
             .distinctUntilChanged()
             .throttle(0.3)
-            .map { Validation.emailValid(email: $0) }.skip(1)
+            .map(Validation.emailValid).skip(1)
         
         passwordValid = passwordText
             .distinctUntilChanged()

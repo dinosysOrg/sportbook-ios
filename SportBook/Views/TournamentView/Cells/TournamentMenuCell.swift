@@ -1,26 +1,25 @@
 //
-//  SkillCell.swift
+//  TournamentMenuCell.swift
 //  SportBook
 //
-//  Created by DucBM on 6/12/17.
+//  Created by Bui Minh Duc on 6/23/17.
 //  Copyright © 2017 dinosys. All rights reserved.
 //
 
 import UIKit
 
-class SkillCell : UICollectionViewCell {
+class TournamentMenuCell : UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     
-    @IBOutlet weak var lblLevel: UILabel!
+    @IBOutlet weak var lblTitle: UILabel!
     
-    @IBOutlet weak var tvDescription: UITextView!
-    
-    func configure(skill : SkillModel) {
-        lblLevel.text = skill.name
+    func configure(title : String) {
+        lblTitle.text = title
     }
     
     func configureUI(){
-        //Set shadow for cell border here
+        
+        //Set cell border
         self.containerView.layer.borderColor = UIColor.lightGray.cgColor
         self.containerView.layer.borderWidth = 1
     }

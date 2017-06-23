@@ -38,6 +38,7 @@ extension SportBookError : Error, CustomStringConvertible {
     }
 }
 
+
 class ErrorManager {
     static let sharedInstance = ErrorManager()
     private init() {}

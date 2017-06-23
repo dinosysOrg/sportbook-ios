@@ -23,7 +23,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb103873786863872</string>
+				<string>fb219332025244844</string>
 			</array>
 		</dict>
 	</array>
@@ -52,10 +52,13 @@
 	<key>FacebookAppID</key>
 	<string>219332025244844</string>
 	<key>FacebookDisplayName</key>
-	<string>Sport Book</string>
+	<string>Sport Book Staging</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
+		<string>fbshareextension</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

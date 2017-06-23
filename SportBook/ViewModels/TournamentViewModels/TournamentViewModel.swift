@@ -22,10 +22,42 @@ class TournamentViewModel {
     
     let tournaments = Variable<[TournamentModel]>([])
     
+    let myTournaments = Variable<[TournamentModel]>([])
+    
     func loadTournaments() {
         self.isLoading.value = true
         
-        TournamentProvider.request(.tournaments).subscribe(onNext: {
+        let myTournamentRequest = TournamentProvider.request(.myTournaments)
+        
+        myTournamentRequest.subscribe(onNext: { response in
+            if 401 == response.statusCode {
+                self.hasFailed.value = SportBookError.Unauthenticated
+            } else if 200..<300 ~= response.statusCode {
+                let jsonObject = JSON(response.data)
+                
+                print(jsonObject)
+                
+                let tournamentArray = jsonObject["_embedded"]["tournaments"].arrayValue
+                    .map { jsonObject in
+                        return TournamentModel(jsonObject)
+                }
+                
+                self.myTournaments.value = tournamentArray
+            } else {
+                let errorMessage = JSON(response.data)["errors"].arrayValue
+                    .map { $0.stringValue }.joined(separator: ". ")
+                
+                self.hasFailed.value = SportBookError.Custom(errorMessage)
+            }
+        }, onError: { _ in
+            self.isLoading.value = false
+            self.hasFailed.value = SportBookError.ConnectionFailure
+        }).addDisposableTo(disposeBag)
+
+        
+        let allTournamentsRequest = TournamentProvider.request(.tournaments)
+        
+        allTournamentsRequest.subscribe(onNext: {
             [unowned self] response in
             
             self.isLoading.value = false
@@ -35,6 +67,8 @@ class TournamentViewModel {
             } else if 200..<300 ~= response.statusCode {
                 let jsonObject = JSON(response.data)
                 
+                print(jsonObject)
+                
                 let tournamentArray = jsonObject["_embedded"]["tournaments"].arrayValue
                     .map { jsonObject in
                         return TournamentModel(jsonObject)
@@ -42,8 +76,8 @@ class TournamentViewModel {
                 
                 self.tournaments.value = tournamentArray
             } else {
-                let errorMessage = JSON(response)["errors"]["full_messages"]
-                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                let errorMessage = JSON(response.data)["errors"].arrayValue
+                    .map { $0.stringValue }.joined(separator: ". ")
                 
                 self.hasFailed.value = SportBookError.Custom(errorMessage)
             }}, onError: { _ in

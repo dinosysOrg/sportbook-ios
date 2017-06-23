@@ -38,6 +38,7 @@ class TournamentViewController : BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureTableView()
         self.configureBindings()
     }
     
@@ -64,6 +65,11 @@ class TournamentViewController : BaseViewController {
         }).disposed(by: disposeBag)
     }
     
+    private func configureTableView() {
+        self.tableView.register(UINib(nibName: self.myTournamentCell, bundle: nil), forCellReuseIdentifier: self.myTournamentCell)
+        self.tableView.register(UINib(nibName: self.tournamentCell, bundle: nil), forCellReuseIdentifier: self.tournamentCell)
+    }
+    
     func refresh() {
         viewModel.loadTournaments()
     }
@@ -77,40 +83,63 @@ extension TournamentViewController : UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.tournaments.value.count
+        return viewModel.tournaments.value.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let row = indexPath.row
-        let tournaments = viewModel.tournaments.value
         
-        if row <= tournaments.count - 1 {
-            let tournament = tournaments[row]
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: tournamentCell) as! TournamentCell
-            
-            cell.configure(tournament: tournament)
+        if row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.myTournamentCell) as! MyTournamentCell
             
             return cell
+
+        } else {
+            let tournaments = viewModel.tournaments.value
+            
+            if row <= tournaments.count {
+                let index = row - 1
+                
+                let tournament = tournaments[index]
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: self.tournamentCell) as! TournamentCell
+                
+                cell.configureTournament(with: tournament)
+                
+                return cell
+            }
+            
+            return tableView.dequeueReusableCell(withIdentifier: "cell")!
         }
-        
-        return tableView.dequeueReusableCell(withIdentifier: "cell")!
     }
     
-    //Display tournament detail view controller when use select a tournament
+    //Display tournament detail view controller when user select a tournament
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        let tournaments = viewModel.tournaments.value
         
-        if row <= tournaments.count - 1 {
-            let tournament = tournaments[row]
+        if row == 0 {
+            if self.viewModel.myTournaments.value.count > 0 {
+                let myTournamentViewController = UIStoryboard.loadMyTournamentViewController()
+                
+                myTournamentViewController.myTournaments = self.viewModel.myTournaments.value
+                
+                self.navigationController?.pushViewController(myTournamentViewController, animated: true)
+            } else {
+                ErrorManager.sharedInstance.showMessage(viewController: self, message: "no_sign_up_tournament".localized)
+            }
+        } else {
+            let tournaments = self.viewModel.tournaments.value
             
-            let tournamentDetailViewController = UIStoryboard.loadTournamentDetailViewController()
-            
-            tournamentDetailViewController.currentTournament = tournament
-            
-            self.navigationController?.pushViewController(tournamentDetailViewController, animated: true)
+            if row <= tournaments.count {
+                let tournament = tournaments[row]
+                
+                let tournamentDetailViewController = UIStoryboard.loadTournamentDetailViewController()
+                
+                tournamentDetailViewController.currentTournament = tournament
+                
+                self.navigationController?.pushViewController(tournamentDetailViewController, animated: true)
+            }
         }
     }
     

@@ -60,9 +60,15 @@ class AuthManager {
     func handleSignInResponse(_ response: Response) -> Observable<AuthenticationStatus> {
         return Observable<AuthenticationStatus>.create { observer in
             
+            let jsonObject = JSON(response.data)
+            print(jsonObject)
+            
             if response.statusCode == 0 {
                 observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
             } else if 200..<300 ~= response.statusCode {
+                
+                let jsonObject = JSON(response.data)
+                print(jsonObject)
                 
                 if let httpResponse = response.response as? HTTPURLResponse  {
                     if let headerFields = httpResponse.allHeaderFields as? [String: Any] {
@@ -70,12 +76,12 @@ class AuthManager {
                     }
                 }
                 
-                UserManager.sharedInstance.userData = response.data
+                UserManager.sharedInstance.updateUserInfo(userInfo: jsonObject["data"])
                 
                 observer.onNext(AuthenticationStatus.Authenticated)
             } else {
-                let errorMessage = JSON(response)["errors"]["full_messages"]
-                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                let errorMessage = JSON(response.data)["errors"].arrayValue
+                    .map { $0.stringValue }.joined(separator: ". ")
                 
                 observer.onError(SportBookError.Custom(errorMessage))
             }
@@ -87,13 +93,16 @@ class AuthManager {
     func handleSignUpResponse(_ response: Response) -> Observable<AuthenticationStatus> {
         return Observable<AuthenticationStatus>.create { observer in
             
+            let jsonObject = JSON(response.data)
+            print(jsonObject)
+            
             if response.statusCode == 0 {
                 observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
             } else if 200..<300 ~= response.statusCode {
                 observer.onNext(AuthenticationStatus.SignedUp)
             } else {
-                let errorMessage = JSON(response)["errors"]["full_messages"]
-                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                let errorMessage = JSON(response.data)["errors"].arrayValue
+                    .map { $0.stringValue }.joined(separator: ". ")
                 
                 observer.onError(SportBookError.Custom(errorMessage))
             }
@@ -116,14 +125,17 @@ class AuthManager {
     func handleResetPasswordResponse(_ response: Response) -> Observable<AuthenticationStatus> {
         return Observable<AuthenticationStatus>.create { observer in
             
+            let jsonObject = JSON(response.data)
+            print(jsonObject)
+            
             if response.statusCode == 0 {
                 observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
             } else if 200..<300 ~= response.statusCode {
                 observer.onNext(AuthenticationStatus.PasswordReset)
             }
             else {
-                let errorMessage = JSON(response)["errors"]["full_messages"]
-                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                let errorMessage = JSON(response.data)["errors"].arrayValue
+                    .map { $0.stringValue }.joined(separator: ". ")
                 
                 observer.onError(SportBookError.Custom(errorMessage))
             }
@@ -139,7 +151,7 @@ class AuthManager {
         self.Expiry = nil
         self.UID = nil
         
-        UserManager.sharedInstance.clear()
+        UserManager.sharedInstance.clearUserInfo()
     }
 }
 

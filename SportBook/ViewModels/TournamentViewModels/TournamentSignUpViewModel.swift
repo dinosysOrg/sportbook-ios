@@ -15,19 +15,70 @@ import Moya
 class TournamentSignUpViewModel {
     
     fileprivate let disposeBag = DisposeBag()
-  
+    
+    let tournament : TournamentModel
+    
     let isLoading = Variable<Bool>(false)
     
     let hasFailed = Variable<SportBookError>(SportBookError.None)
     
-    let tournament = Variable<TournamentModel?>(nil)
-    
     let skills = Variable<[SkillModel]>([])
     
-    let birthDate = Variable<Date>(Date())
+    let cities = Variable<[City]>([])
     
-    init(tournament : TournamentModel) {
-        self.tournament.value = tournament
+    let skill = Variable<SkillModel?>(nil)
+    
+    let selectedCity = Variable<City?>(nil)
+    
+    //Variables for validation
+    let firstNameValid: Driver<Bool>
+    
+    let lastNameValid: Driver<Bool>
+    
+    let phoneNumberValid: Driver<Bool>
+    
+    let stepOneCredentialsValid: Driver<Bool>
+    
+    init(tournament : TournamentModel, firstNameText: Driver<String>, lastNameText: Driver<String>,
+         phoneNumberText: Driver<String>) {
+        self.tournament = tournament
+        
+        firstNameValid = firstNameText
+            .distinctUntilChanged()
+            .throttle(0.3)
+            .map { $0.utf8.count >= 2 }.skip(1)
+        
+        lastNameValid = lastNameText
+            .distinctUntilChanged()
+            .throttle(0.3)
+            .map { $0.utf8.count >= 2 }.skip(1)
+        
+        phoneNumberValid = phoneNumberText
+                .distinctUntilChanged()
+                .throttle(0.3)
+                .map(Validation.phoneValid).skip(1)
+        
+        stepOneCredentialsValid = Driver.combineLatest(firstNameValid, lastNameValid, phoneNumberValid) { $0 && $1 && $2 }.startWith(false)
+    }
+    
+    func loadCities() {
+        do {
+            if let file = Bundle.main.url(forResource: "cities", withExtension: "json") {
+                let data = try Data(contentsOf: file)
+                let citiesJsonArray = JSON(data)
+                
+                var citiesArray = [City]()
+                
+                for cityJson in citiesJsonArray.arrayValue {
+                    let city = City(jsonData: cityJson)
+                    citiesArray.append(city)
+                }
+                
+                self.cities.value = citiesArray
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     func loadSkills() {
@@ -41,15 +92,19 @@ class TournamentSignUpViewModel {
                 self.hasFailed.value = SportBookError.Unauthenticated
             } else if 200..<300 ~= response.statusCode {
                 let jsonObject = JSON(response.data)
+                
+                print(jsonObject)
+                
                 let skillArray = jsonObject["_embedded"]["skills"].arrayValue
                     .map { jsonObject in
                         return SkillModel(jsonObject)
                 }
                 
-                self.skills.value = skillArray
+                self.skills.value = skillArray.reversed()
+                self.skill.value = self.skills.value.first
             } else {
-                let errorMessage = JSON(response)["errors"]["full_messages"]
-                    .arrayValue.map { $0.stringValue }.joined(separator: ". ")
+                let errorMessage = JSON(response.data)["errors"].arrayValue
+                    .map { $0.stringValue }.joined(separator: ". ")
                 
                 self.hasFailed.value = SportBookError.Custom(errorMessage)
             }
@@ -57,5 +112,36 @@ class TournamentSignUpViewModel {
             self.isLoading.value = false
             self.hasFailed.value = SportBookError.ConnectionFailure
         }).addDisposableTo(disposeBag)
+    }
+    
+    func signUpTournament(with name: String, phoneNumber: Int, address: String, club: String? = nil, birthday: String? = nil, members: [Int]? = nil) -> Observable<Bool> {
+        
+        return Observable<Bool>.create { observer in
+            
+            TournamentProvider.request(.signupTournament(self.tournament.id, name, phoneNumber,
+                                                         address, self.skill.value!.id, club, birthday, members))
+                .subscribe(onNext: { [unowned self] response in
+                
+                if response.statusCode == 0 {
+                    self.hasFailed.value = SportBookError.ConnectionFailure
+                    observer.onNext(false)
+                } else if 200..<300 ~= response.statusCode {
+                    let jsonObject = JSON(response.data)
+                    
+                    UserManager.sharedInstance.updateUserInfo(userInfo: jsonObject["user"])
+                    
+                    observer.onNext(true)
+                } else {
+                    let errorMessage = JSON(response.data)["errors"].arrayValue
+                        .map { $0.stringValue }.joined(separator: ". ")
+                    
+                    self.hasFailed.value = SportBookError.Custom(errorMessage)
+                    
+                    observer.onNext(false)
+                }
+            }).addDisposableTo(self.disposeBag)
+            
+            return Disposables.create()
+        }
     }
 }
