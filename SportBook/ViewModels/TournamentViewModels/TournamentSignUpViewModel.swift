@@ -20,7 +20,7 @@ class TournamentSignUpViewModel {
     
     let isLoading = Variable<Bool>(false)
     
-    let hasFailed = Variable<SportBookError>(SportBookError.None)
+    let hasFailed = Variable<SportBookError>(SportBookError.none)
     
     let skills = Variable<[SkillModel]>([])
     
@@ -89,7 +89,7 @@ class TournamentSignUpViewModel {
             self.isLoading.value = false
             
             if 401 == response.statusCode {
-                self.hasFailed.value = SportBookError.Unauthenticated
+                self.hasFailed.value = SportBookError.unauthenticated
             } else if 200..<300 ~= response.statusCode {
                 let jsonObject = JSON(response.data)
                 
@@ -106,11 +106,11 @@ class TournamentSignUpViewModel {
                 let errorMessage = JSON(response.data)["errors"].arrayValue
                     .map { $0.stringValue }.joined(separator: ". ")
                 
-                self.hasFailed.value = SportBookError.Custom(errorMessage)
+                self.hasFailed.value = SportBookError.customMessage(errorMessage)
             }
         }, onError: { error in
             self.isLoading.value = false
-            self.hasFailed.value = SportBookError.ConnectionFailure
+            self.hasFailed.value = SportBookError.connectionFailure
         }).addDisposableTo(disposeBag)
     }
     
@@ -123,7 +123,7 @@ class TournamentSignUpViewModel {
                 .subscribe(onNext: { [unowned self] response in
                 
                 if response.statusCode == 0 {
-                    self.hasFailed.value = SportBookError.ConnectionFailure
+                    self.hasFailed.value = SportBookError.connectionFailure
                     observer.onNext(false)
                 } else if 200..<300 ~= response.statusCode {
                     let jsonObject = JSON(response.data)
@@ -135,7 +135,7 @@ class TournamentSignUpViewModel {
                     let errorMessage = JSON(response.data)["errors"].arrayValue
                         .map { $0.stringValue }.joined(separator: ". ")
                     
-                    self.hasFailed.value = SportBookError.Custom(errorMessage)
+                    self.hasFailed.value = SportBookError.customMessage(errorMessage)
                     
                     observer.onNext(false)
                 }

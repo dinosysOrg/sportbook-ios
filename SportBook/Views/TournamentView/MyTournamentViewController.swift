@@ -101,7 +101,8 @@ extension MyTournamentViewController : UITableViewDelegate, UITableViewDataSourc
                     self.navigationController?.pushViewController(myTournamentDetailViewController, animated: true)
                     
                 } else {
-                    ErrorManager.sharedInstance.showMessage(viewController: self, message: "not_pay_tournament_yet".localized)
+                    self.alert(text: "no_sign_up_tournament".localized).subscribe(onCompleted: {})
+                        .addDisposableTo(self.disposeBag)
                 }
             }
         }

@@ -64,7 +64,7 @@ class LoginViewModel {
                 case .success(_, _, let accessToken):
                     AuthManager.sharedInstance.signIn(accessToken.authenticationToken)
                         .catchError { error -> Observable<AuthenticationStatus> in
-                            return Observable.of(AuthenticationStatus.Error(.ConnectionFailure))
+                            return Observable.of(AuthenticationStatus.Error(.connectionFailure))
                         }
                         .subscribe(onNext: { authStatus in
                             observer.onNext(authStatus)
@@ -73,12 +73,12 @@ class LoginViewModel {
                 //If user cancelled notify false and message
                 case .cancelled:
                     //Notify cancelled error
-                    observer.onNext(AuthenticationStatus.Error(SportBookError.UserCancelled))
+                    observer.onNext(AuthenticationStatus.Error(SportBookError.userCancelled))
                     break
                 //If failed to login notify false and error message
                 case .failed(let error):
                     //Notify request failed error
-                    observer.onNext(AuthenticationStatus.Error(SportBookError.Custom(error.localizedDescription)))
+                    observer.onNext(AuthenticationStatus.Error(SportBookError.customMessage(error.localizedDescription)))
                     break
                 }
             })

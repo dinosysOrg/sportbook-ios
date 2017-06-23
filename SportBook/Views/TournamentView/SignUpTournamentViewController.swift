@@ -202,14 +202,15 @@ class SignUpTournamentViewController : BaseViewController {
         }).disposed(by: disposeBag)
         
         self.viewModel.hasFailed.asObservable().skip(1).subscribe(onNext: { [unowned self] error in
-            if case SportBookError.Unauthenticated = error {
+            if case SportBookError.unauthenticated = error {
                 AuthManager.sharedInstance.clearSession()
                 
                 //Present login view controller
                 let loginViewController = UIStoryboard.loadLoginViewController()
                 self.tabBarController?.present(loginViewController, animated: true, completion: { })
             } else {
-                ErrorManager.sharedInstance.showError(viewController: self, error: error)
+                self.alertError(text: error.description).subscribe(onCompleted: {})
+                    .addDisposableTo(self.disposeBag)
             }
         }).disposed(by: disposeBag)
         

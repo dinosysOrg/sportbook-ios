@@ -53,14 +53,15 @@ class TournamentViewController : BaseViewController {
         }).disposed(by: disposeBag)
         
         self.viewModel.hasFailed.asObservable().skip(1).subscribe(onNext: { [unowned self] error in
-            if case SportBookError.Unauthenticated = error {
+            if case SportBookError.unauthenticated = error {
                 AuthManager.sharedInstance.clearSession()
                 
                 //Present login view controller
                 let loginViewController = UIStoryboard.loadLoginViewController()
                 self.tabBarController?.present(loginViewController, animated: true, completion: { })
             } else {
-                ErrorManager.sharedInstance.showError(viewController: self, error: error)
+                self.alertError(text: error.description).subscribe(onCompleted: {})
+                    .addDisposableTo(self.disposeBag)
             }
         }).disposed(by: disposeBag)
     }
@@ -126,7 +127,8 @@ extension TournamentViewController : UITableViewDelegate, UITableViewDataSource{
                 
                 self.navigationController?.pushViewController(myTournamentViewController, animated: true)
             } else {
-                ErrorManager.sharedInstance.showMessage(viewController: self, message: "no_sign_up_tournament".localized)
+                self.alert(text: "no_sign_up_tournament".localized).subscribe(onCompleted: {})
+                    .addDisposableTo(self.disposeBag)
             }
         } else {
             let tournaments = self.viewModel.tournaments.value

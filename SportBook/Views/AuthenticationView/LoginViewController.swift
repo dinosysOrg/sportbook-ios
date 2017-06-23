@@ -94,7 +94,8 @@ class LoginViewController : BaseViewController {
                     self.dismiss(animated: true) {}
                     break
                 case .Error(let error):
-                    ErrorManager.sharedInstance.showError(viewController: self, error: error)
+                    self.alertError(text: error.description).subscribe(onCompleted: {})
+                        .addDisposableTo(self.disposeBag)
                     break
                 default:
                     break

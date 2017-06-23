@@ -11,6 +11,7 @@
 "back" = "Quay lại";
 "ok" = "OK";
 "cancel" = "Hủy bỏ";
+"user_cancel" = "Bạn đã hủy bỏ thao tác này";
 
 "tournament" = "Giải đấu";
 "statistic" = "Thống kê";
@@ -38,6 +39,7 @@
 "my_tournament" = "Giải đấu của tôi";
 "no_sign_up_tournament" = "Bạn chưa đăng ký tham gia bất kỳ giải đấu nào";
 "not_pay_tournament_yet"= "Bạn chưa thanh toán cho giải đấu này";
+"sign_up_tournament_success" = "Chúng tôi đã gửi cho bạn một emai hướng dẫn thanh toán.\nXin vui lòng kiểm tra email";
 "rule_regulation" = "Quy tắc và quy định";
 "rank_venue" = "Địa điểm thi đấu";
 "tournament_time_table" = "Lịch đấu";
@@ -59,6 +61,7 @@
 "sign_in_fail" = "Đăng nhập thất bại";
 "bad_credentials" = "Thông tin đăng nhập không đúng";
 "user_not_exist" = "Người dùng không tốn tại trong hệ thống";
+"unauthenticated" = "Bạn chưa được xác thực";
 
 // MARK: Validation
 "first_name_minimum_length" = "Tên phải ít nhất 2 ký tự";

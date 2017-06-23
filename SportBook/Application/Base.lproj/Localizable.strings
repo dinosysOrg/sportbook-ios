@@ -11,6 +11,7 @@
 "back" = "Back";
 "ok" = "OK";
 "cancel" = "Cancel";
+"user_cancel" = "You have cancelled this action";
 
 "tournament" = "Tournament";
 "statistic" = "Statistic";
@@ -37,7 +38,8 @@
 "payment_pending" = "Payment pending";
 "my_tournament" = "My tournament";
 "no_sign_up_tournament" = "You have yet sign up any tournament";
-"not_pay_tournament_yet"= "You have yet pay for this tournament";
+"not_pay_tournament_yet" = "You have yet pay for this tournament";
+"sign_up_tournament_success" = "We have sent send you an instruction email to continue the payment.\nPlease check your email";
 "rule_regulation" = "Rules and regulation";
 "rank_venue" = "Rank venue";
 "tournament_time_table" = "Tournament timetable";
@@ -59,6 +61,7 @@
 "sign_in_fail" = "Failed to sign in";
 "bad_credentials" = "Bad credentials";
 "user_not_exist" = "This user doesn't exist";
+"unauthenticated" = "You're unauthenticated";
 
 // MARK: Validation
 "first_name_minimum_length" = "Must be at least 2 characters";

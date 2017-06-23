@@ -64,7 +64,7 @@ class AuthManager {
             print(jsonObject)
             
             if response.statusCode == 0 {
-                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+                observer.onNext(AuthenticationStatus.Error(SportBookError.connectionFailure))
             } else if 200..<300 ~= response.statusCode {
                 
                 let jsonObject = JSON(response.data)
@@ -82,7 +82,7 @@ class AuthManager {
             } else {
                 let jsonError = JSON(response.data)["errors"]
                 
-                observer.onError(SportBookError.AuthenticationError(jsonError))
+                observer.onError(SportBookError.authenticationError(jsonError))
             }
             
             return Disposables.create()
@@ -96,13 +96,13 @@ class AuthManager {
             print(jsonObject)
             
             if response.statusCode == 0 {
-                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+                observer.onNext(AuthenticationStatus.Error(SportBookError.connectionFailure))
             } else if 200..<300 ~= response.statusCode {
                 observer.onNext(AuthenticationStatus.SignedUp)
             } else {
                 let jsonError = JSON(response.data)["errors"]
                 
-                observer.onError(SportBookError.AuthenticationError(jsonError))
+                observer.onError(SportBookError.authenticationError(jsonError))
             }
             
             return Disposables.create()
@@ -127,14 +127,14 @@ class AuthManager {
             print(jsonObject)
             
             if response.statusCode == 0 {
-                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+                observer.onNext(AuthenticationStatus.Error(SportBookError.connectionFailure))
             } else if 200..<300 ~= response.statusCode {
                 observer.onNext(AuthenticationStatus.PasswordReset)
             }
             else {
                 let jsonError = JSON(response.data)["errors"]
                 
-                observer.onError(SportBookError.AuthenticationError(jsonError))
+                observer.onError(SportBookError.authenticationError(jsonError))
             }
             
             return Disposables.create()
