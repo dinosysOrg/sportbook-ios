@@ -19,6 +19,7 @@ def shared_pods
    pod 'Fabric'
    pod 'Crashlytics'
    pod 'IQKeyboardManager'
+   pod 'PageMenu'
 end
 
 target 'SportBook Production' do

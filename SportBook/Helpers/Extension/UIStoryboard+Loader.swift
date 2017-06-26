@@ -13,6 +13,7 @@ fileprivate enum Storyboard : String {
     case main = "Main"
     case auth = "Authentication"
     case tournament = "Tournament"
+    case myTournament = "MyTournament"
 }
 
 fileprivate extension UIStoryboard {
@@ -27,6 +28,10 @@ fileprivate extension UIStoryboard {
     
     static func loadFromTournament(_ identifier: String) -> UIViewController {
         return load(from: .tournament, identifier: identifier)
+    }
+    
+    static func loadFromMyTournament(_ identifier: String) -> UIViewController {
+        return load(from: .myTournament, identifier: identifier)
     }
 
     // Load storyboard by name
@@ -61,6 +66,10 @@ extension UIStoryboard {
     
     class func loadMyTournamentDetailViewController() -> MyTournamentDetailViewController {
         return loadFromTournament("MyTournamentDetailViewController") as! MyTournamentDetailViewController
+    }
+    
+    class func loadRuleViewController() -> RuleViewController {
+        return loadFromMyTournament("RuleViewController") as! RuleViewController
     }
 
     

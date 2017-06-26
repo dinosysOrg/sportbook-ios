@@ -101,8 +101,14 @@ extension MyTournamentViewController : UITableViewDelegate, UITableViewDataSourc
                     self.navigationController?.pushViewController(myTournamentDetailViewController, animated: true)
                     
                 } else {
-                    self.alert(text: "no_sign_up_tournament".localized).subscribe(onCompleted: {})
-                        .addDisposableTo(self.disposeBag)
+                    self.alert(text: "not_pay_tournament_yet".localized).subscribe(onCompleted: {
+                        //Display tournament detail view controller
+                        let tournamentDetailViewController = UIStoryboard.loadTournamentDetailViewController()
+                        
+                        tournamentDetailViewController.currentTournament = tournament
+                        
+                        self.navigationController?.pushViewController(tournamentDetailViewController, animated: true)
+                    }).addDisposableTo(self.disposeBag)
                 }
             }
         }

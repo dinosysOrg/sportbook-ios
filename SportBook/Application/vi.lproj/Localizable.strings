@@ -63,6 +63,11 @@
 "user_not_exist" = "Người dùng không tốn tại trong hệ thống";
 "unauthenticated" = "Bạn chưa được xác thực";
 
+// MARK: My Tournament
+"rule_tab" = "Luật lệ thi đấu";
+"fee_tab" = "Phí thi đấu";
+"schedule_tab" = "Lịch thi đấu";
+
 // MARK: Validation
 "first_name_minimum_length" = "Tên phải ít nhất 2 ký tự";
 "last_name_minimum_length" = "Họ phải ít nhất 2 ký tự";

@@ -112,6 +112,10 @@ extension MyTournamentDetailViewController : UITableViewDelegate, UITableViewDat
         
         switch menuType {
         case .rule:
+            let ruleViewController = UIStoryboard.loadRuleViewController()
+            ruleViewController.currentTournament = self.currentTournament
+            
+            self.navigationController?.pushViewController(ruleViewController, animated: true)
             break
         case .venue:
             break

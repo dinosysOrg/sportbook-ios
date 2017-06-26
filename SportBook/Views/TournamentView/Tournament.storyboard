@@ -177,15 +177,23 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xcb-T9-LmS">
+                                <rect key="frame" x="0.0" y="311" width="375" height="356"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Lpd-a9-ffl" firstAttribute="top" secondItem="J6I-WK-mmh" secondAttribute="bottom" id="0Gf-kL-DdT"/>
                             <constraint firstItem="dAo-nc-L1u" firstAttribute="top" secondItem="Lpd-a9-ffl" secondAttribute="bottom" constant="20" id="1uR-VH-WZK"/>
+                            <constraint firstItem="Xcb-T9-LmS" firstAttribute="leading" secondItem="Jw7-8m-zyt" secondAttribute="leading" id="7RU-2W-jee"/>
+                            <constraint firstItem="9eM-xp-GgQ" firstAttribute="top" secondItem="Xcb-T9-LmS" secondAttribute="bottom" id="B0R-8r-aPD"/>
                             <constraint firstItem="Lpd-a9-ffl" firstAttribute="leading" secondItem="Jw7-8m-zyt" secondAttribute="leading" id="E8K-N0-9kI"/>
                             <constraint firstItem="Lpd-a9-ffl" firstAttribute="height" secondItem="Jw7-8m-zyt" secondAttribute="height" multiplier="0.25" id="G6z-Kd-S1b"/>
                             <constraint firstAttribute="trailing" secondItem="Lpd-a9-ffl" secondAttribute="trailing" id="NI3-7I-Z0k"/>
+                            <constraint firstItem="Xcb-T9-LmS" firstAttribute="top" secondItem="dAo-nc-L1u" secondAttribute="bottom" constant="20" id="RDJ-Ay-d1b"/>
                             <constraint firstItem="dAo-nc-L1u" firstAttribute="leading" secondItem="Jw7-8m-zyt" secondAttribute="leading" constant="20" id="jV0-85-Peu"/>
+                            <constraint firstAttribute="trailing" secondItem="Xcb-T9-LmS" secondAttribute="trailing" id="jXB-Ue-7We"/>
                             <constraint firstAttribute="trailing" secondItem="dAo-nc-L1u" secondAttribute="trailing" constant="20" id="tuh-Q8-1yW"/>
                         </constraints>
                     </view>
@@ -194,6 +202,7 @@
                         <outlet property="btnSignUp" destination="dAo-nc-L1u" id="F8o-BA-5eZ"/>
                         <outlet property="coverView" destination="Lpd-a9-ffl" id="OW0-3x-ftI"/>
                         <outlet property="imgCover" destination="6pB-G3-dO9" id="v3e-2L-omp"/>
+                        <outlet property="infoContainerView" destination="Xcb-T9-LmS" id="sqF-SB-uqs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s7k-GP-3e5" userLabel="First Responder" sceneMemberID="firstResponder"/>
