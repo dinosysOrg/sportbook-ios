@@ -42,6 +42,7 @@
 		C976C3EB1EFCCB0C00FEA213 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3EA1EFCCB0C00FEA213 /* Date+Extension.swift */; };
 		C976C3F11EFCFD1000FEA213 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3F01EFCFD1000FEA213 /* ErrorModel.swift */; };
 		C976C3FD1EFD05CD00FEA213 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3FC1EFD05CD00FEA213 /* UIViewController+Extension.swift */; };
+		C976C4031EFD146300FEA213 /* MatchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C4021EFD146300FEA213 /* MatchAPI.swift */; };
 		C97E3C221EEE9397000DC4B2 /* SkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C211EEE9397000DC4B2 /* SkillCell.swift */; };
 		C97E3C241EEE93CE000DC4B2 /* SkillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C231EEE93CE000DC4B2 /* SkillModel.swift */; };
 		C97E3C261EEEA9CD000DC4B2 /* TeamAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C251EEEA9CD000DC4B2 /* TeamAPI.swift */; };
@@ -191,6 +192,7 @@
 		C976C3EA1EFCCB0C00FEA213 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C976C3F01EFCFD1000FEA213 /* ErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		C976C3FC1EFD05CD00FEA213 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		C976C4021EFD146300FEA213 /* MatchAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchAPI.swift; sourceTree = "<group>"; };
 		C97E3C211EEE9397000DC4B2 /* SkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillCell.swift; sourceTree = "<group>"; };
 		C97E3C231EEE93CE000DC4B2 /* SkillModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillModel.swift; sourceTree = "<group>"; };
 		C97E3C251EEEA9CD000DC4B2 /* TeamAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamAPI.swift; sourceTree = "<group>"; };
@@ -580,8 +582,9 @@
 				C9E708781ED3E73A0062B0BA /* SportBookAPI.swift */,
 				C9E708701ED3DEFC0062B0BA /* AuthenticationAPI.swift */,
 				C9E708721ED3DF0E0062B0BA /* TournamentAPI.swift */,
-				C9E708761ED3E6630062B0BA /* SkillAPI.swift */,
 				C97E3C251EEEA9CD000DC4B2 /* TeamAPI.swift */,
+				C976C4021EFD146300FEA213 /* MatchAPI.swift */,
+				C9E708761ED3E6630062B0BA /* SkillAPI.swift */,
 				C97E3C271EEEA9E0000DC4B2 /* InvitationAPI.swift */,
 				C97E3C291EEEA9E9000DC4B2 /* DeviceAPI.swift */,
 			);
@@ -1057,6 +1060,7 @@
 				C9AE767F1EDFC76000F2D4D4 /* StatisticViewController.swift in Sources */,
 				C976C3FD1EFD05CD00FEA213 /* UIViewController+Extension.swift in Sources */,
 				C94941D71ECBF5DC00C21862 /* AppDelegate.swift in Sources */,
+				C976C4031EFD146300FEA213 /* MatchAPI.swift in Sources */,
 				C9B65D721EE7B63300C6F84C /* TournamentModel.swift in Sources */,
 				C96AC9821ECD88900055580B /* BaseViewController.swift in Sources */,
 				C93BCC161ED7EDCB008A99FC /* AuthManager.swift in Sources */,

@@ -9,13 +9,20 @@
 import Foundation
 import Moya
 
-let DeviceProvider = MoyaProvider<DeviceAPI>()
+let deviceEndpointClosure = { (target: DeviceAPI) -> Endpoint<DeviceAPI> in
+    let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
+    
+    return defaultEndpoint.adding(newHTTPHeaderFields: AuthManager.sharedInstance.toDictionary())
+}
+
+let DeviceProvider = RxMoyaProvider<DeviceAPI>(endpointClosure: deviceEndpointClosure)
 
 // MARK: - Provider support
 
 //Delcaration of Device APIs
 public enum DeviceAPI  {
-    case create(Int, String, Int) //Store device token
+    case create(String, String, String?) //Store device token
+    case delete(String) //Delete device token
 }
 
 extension DeviceAPI : TargetType {
@@ -23,25 +30,37 @@ extension DeviceAPI : TargetType {
     
     public var path: String {
         switch self {
-        case .create(_,_,_):
+        case .create(_):
             return "/devices/create"
+        case .delete(_):
+            return "/devices/delete"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .create(_,_,_):
+        case .create(_):
             return .post
+        case .delete(_):
+            return .put
         }
     }
     
     public var parameters: [String: Any]? {
         switch self {
-        case .create(let id,let token, let platform):
+        case .create(let udid, let token, let uid):
+            var params = [ "udid" : udid, //Device Id
+                "token " : token, //Device Token
+                "platform" : 0 //Platform ‘0 - iOS’ || ‘1 - Android’
+            ] as [String : Any]
+            
+            if let userId = uid {
+                params["user_id"] = userId //User Id
+            }
+            return params
+        case .delete(let udid):
             return [
-                "type" : id, //User Id
-                "id " : token, //Device Token
-                "platform" : platform //Platform ‘0 - iOS’ || ‘1 - Android’
+                "udid" : udid, //Device Id
             ]
         }
     }

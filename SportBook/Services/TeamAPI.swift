@@ -9,13 +9,20 @@
 import Foundation
 import Moya
 
-let TeamProvider = MoyaProvider<TeamAPI>()
+let teamEndpointClosure = { (target: TeamAPI) -> Endpoint<TeamAPI> in
+    let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
+    
+    return defaultEndpoint.adding(newHTTPHeaderFields: AuthManager.sharedInstance.toDictionary())
+}
+
+let TeamProvider = RxMoyaProvider<TeamAPI>(endpointClosure: teamEndpointClosure)
 
 // MARK: - Provider support
 
-//Delcaration of Skill APIs
+//Delcaration of Team APIs
 public enum TeamAPI  {
     case timeSlot(String, Int) //Get time slots for team
+    case teams(Int, [Int], [String:Any]) //Updates time slot and venue ranking for team
 }
 
 extension TeamAPI : TargetType {
@@ -25,6 +32,8 @@ extension TeamAPI : TargetType {
         switch self {
         case .timeSlot(_, let id):
             return "/teams/\(id)/time_slots/"
+        case .teams(let id, _, _):
+            return "/teams/\(id)/"
         }
     }
     
@@ -32,6 +41,9 @@ extension TeamAPI : TargetType {
         switch self {
         case .timeSlot(_,_):
             return .get
+            
+        case .teams(_, _, _):
+            return .put
         }
     }
     
@@ -41,6 +53,12 @@ extension TeamAPI : TargetType {
             return [
                 "type" : type, //Type
                 "id " : id, //Team Id
+            ]
+        case .teams(let id, let rankVenue, let preferredTimeBlocks):
+            return [
+                "team_id" : id, //Team Id
+                "venue_ranking" : rankVenue, //Venue ranking for team
+                "preferred_time_blocks" : preferredTimeBlocks //Preferred time block for team
             ]
         }
     }
