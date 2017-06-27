@@ -30,12 +30,18 @@ extension SportBookError : Error, CustomStringConvertible {
         case .userCancelled:
             return "user_cancel".localized
         case .authenticationError(let jsonError):
-            let errorMessage = jsonError["full_messages"].arrayValue
+            var errorMessage = jsonError.arrayValue
                 .map { $0.stringValue }
                 .joined(separator: ". ")
+            
+            if errorMessage.isEmpty {
+                errorMessage = jsonError.arrayValue
+                    .map { $0.stringValue }
+                    .joined(separator: ". ")
+            }
             return errorMessage
         case .apiError(let jsonError):
-            let errorMessage = jsonError["full_messages"].arrayValue
+            let errorMessage = jsonError.arrayValue
                 .map { $0.stringValue }
                 .joined(separator: ". ")
             return errorMessage

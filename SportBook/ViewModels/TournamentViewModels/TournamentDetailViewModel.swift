@@ -21,10 +21,6 @@ class TournamentDetailViewModel {
     
     let tournament = Variable<TournamentModel?>(nil)
     
-    init(tournament : TournamentModel) {
-        self.tournament.value = tournament
-    }
-    
     func loadTournamentDetail() {
         self.isLoading.value = true
         

@@ -91,26 +91,30 @@ extension MyTournamentViewController : UITableViewDelegate, UITableViewDataSourc
         if row < myTournaments.count {
             let tournament = myTournaments[row]
             
-            if let myTeam = tournament.teams.first {
-                if myTeam.status == TeamStatus.paid {
-                    //Display my tournament detail view controller
+//            self.viewModel.loadMyTournamentDetail(tournamentId: tournament.id).subscribe(onNext: { tournament in
+//                guard let myTeam = tournament.myTeam else {
+//                    return
+//                }
+//                
+//                if myTeam.status == TeamStatus.paid {
+//                    //Display my tournament detail view controller
                     let myTournamentDetailViewController = UIStoryboard.loadMyTournamentDetailViewController()
                     
                     myTournamentDetailViewController.currentTournament = tournament
                     
                     self.navigationController?.pushViewController(myTournamentDetailViewController, animated: true)
-                    
-                } else {
-                    self.alert(text: "not_pay_tournament_yet".localized).subscribe(onCompleted: {
-                        //Display tournament detail view controller
-                        let tournamentDetailViewController = UIStoryboard.loadTournamentDetailViewController()
-                        
-                        tournamentDetailViewController.currentTournament = tournament
-                        
-                        self.navigationController?.pushViewController(tournamentDetailViewController, animated: true)
-                    }).addDisposableTo(self.disposeBag)
-                }
-            }
+//
+//                } else {
+//                    self.alert(text: "not_pay_tournament_yet".localized).subscribe(onCompleted: {
+//                        //Display tournament detail view controller
+//                        let tournamentDetailViewController = UIStoryboard.loadTournamentDetailViewController()
+//                        
+//                        tournamentDetailViewController.currentTournament = tournament
+//                        
+//                        self.navigationController?.pushViewController(tournamentDetailViewController, animated: true)
+//                    }).addDisposableTo(self.disposeBag)
+//                }
+//            }).addDisposableTo(self.disposeBag)
         }
     }
     

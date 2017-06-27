@@ -72,6 +72,9 @@ extension UIStoryboard {
         return loadFromMyTournament("RuleViewController") as! RuleViewController
     }
 
+    class func loadInputRankVenueViewController() -> InputRankVenueViewController {
+        return loadFromMyTournament("InputRankVenueViewController") as! InputRankVenueViewController
+    }
     
     // Add other app view controller load methods here ...
 }

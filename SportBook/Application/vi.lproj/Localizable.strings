@@ -81,3 +81,12 @@
 "error_system" = "Lỗi hệ thống";
 "error_bad_response" = "Không thể trích xuất dữ liệu";
 
+// MARK: Day of Week
+"monday" = "Hai";
+"tuesday" = "Ba";
+"wednesday" = "Tư";
+"thursday" = "Năm";
+"friday" = "Sáu";
+"saturday" = "Bảy";
+"sunday" = "Chủ Nhật";
+

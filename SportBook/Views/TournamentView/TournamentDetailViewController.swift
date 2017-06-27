@@ -17,7 +17,7 @@ class TournamentDetailViewController : BaseViewController {
     
     var pageMenu : CAPSPageMenu?
     
-    fileprivate var viewModel : TournamentDetailViewModel!
+    fileprivate let viewModel = TournamentDetailViewModel()
     
     fileprivate let disposeBag = DisposeBag()
     
@@ -39,14 +39,11 @@ class TournamentDetailViewController : BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
-        self.viewModel?.loadTournamentDetail()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        self.viewModel.loadTournamentDetail()
     }
     
     func configureViewModel() {
-        self.viewModel = TournamentDetailViewModel(tournament: self.currentTournament!)
+        self.viewModel.tournament.value = currentTournament
     }
     
     private func configureBindings() {
@@ -56,29 +53,21 @@ class TournamentDetailViewController : BaseViewController {
         signUpTap.asObservable().subscribe(onNext: { [unowned self] _ in
             let user = UserManager.sharedInstance.user!
             
-            let tournament = self.viewModel.tournament.value!
-            
-            //If there's no team, it means that user have not sign up this tournament yet
-            if tournament.teams.count == 0 {
-                //Check his/her profile if they had signed up any tournament before
-                if user.hasTournamentProfile {
-                    //If had, do fast sign up with their info
-                    self.viewModel.fastSignUpTournament().subscribe(onNext: { success in
-                        self.updateSignUpButton(success)
-                    }).addDisposableTo(self.disposeBag)
-                } else {
-                    //Else move them to sign up view
-                    let signUpTournamentViewController = UIStoryboard.loadSignUpTournamentViewController()
-                    
-                    signUpTournamentViewController.currentTournament = self.viewModel.tournament.value
-                    signUpTournamentViewController.signUpSuccess.asDriver().drive(onNext: { [unowned self] success in
-                        self.updateSignUpButton(success)
-                    }).addDisposableTo(self.disposeBag)
-                    
-                    self.navigationController?.pushViewController(signUpTournamentViewController, animated: true)
-                }
+            if user.hasTournamentProfile {
+                //If had, do fast sign up with their info
+                self.viewModel.fastSignUpTournament().subscribe(onNext: { success in
+                    self.updateSignUpButton(success)
+                }).addDisposableTo(self.disposeBag)
             } else {
+                //Else move them to sign up view
+                let signUpTournamentViewController = UIStoryboard.loadSignUpTournamentViewController()
                 
+                signUpTournamentViewController.currentTournament = self.viewModel.tournament.value
+                signUpTournamentViewController.signUpSuccess.asDriver().drive(onNext: { [unowned self] success in
+                    self.updateSignUpButton(success)
+                }).addDisposableTo(self.disposeBag)
+                
+                self.navigationController?.pushViewController(signUpTournamentViewController, animated: true)
             }
         }).addDisposableTo(disposeBag)
         
@@ -103,17 +92,17 @@ class TournamentDetailViewController : BaseViewController {
         }).disposed(by: disposeBag)
     }
     
-    func updateUI(tournament : TournamentModel) {
-        if tournament.teams.count > 0 {
-            let myTeam = tournament.teams.first!
-            
-            if myTeam.status == TeamStatus.registered {
-                self.updateSignUpButton(true)
-            } else {
-                //Implement later
-            }
-        } else {
+    func updateUI(tournament : TournamentModel) {        
+        guard let myTeam = tournament.myTeam else {
             self.btnSignUp.isEnabled = true
+            
+            return
+        }
+        
+        if myTeam.status == TeamStatus.registered {
+             self.updateSignUpButton(true)
+        } else {
+            //Implement later
         }
         
         self.configureMenu()

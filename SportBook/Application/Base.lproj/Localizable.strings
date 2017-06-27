@@ -81,6 +81,13 @@
 "error_system" = "System error";
 "error_bad_response" = "Can not extract data";
 
-
+// MARK: Day of Week
+"monday" = "Monday";
+"tuesday" = "Tuesday";
+"wednesday" = "Wednesday";
+"thursday" = "Thursday";
+"friday" = "Friday";
+"saturday" = "Saturday";
+"sunday" = "Sunday";
 
 
