@@ -44,7 +44,6 @@ class TournamentDetailViewModel {
                 
                 self.hasFailed.value = SportBookError.customMessage(errorMessage)
             }}, onError: { error in
-                print(error)
                 self.isLoading.value = false
                 self.hasFailed.value = SportBookError.connectionFailure
         }).addDisposableTo(self.disposeBag)
@@ -76,11 +75,13 @@ class TournamentDetailViewModel {
                         self.hasFailed.value = SportBookError.customMessage(errorMessage)
                         
                         observer.onNext(false)
-                    }
+                    }}, onError: { error in
+                        self.isLoading.value = false
+                        self.hasFailed.value = SportBookError.connectionFailure
                 }).addDisposableTo(self.disposeBag)
             
             return Disposables.create()
         }
     }
-
+    
 }

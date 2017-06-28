@@ -80,7 +80,6 @@ class MyTournamentViewModel {
                     
                     self.hasFailed.value = SportBookError.customMessage(errorMessage)
                 }}, onError: { error in
-                    print(error)
                     self.isLoading.value = false
                     self.hasFailed.value = SportBookError.connectionFailure
             }).addDisposableTo(self.disposeBag)

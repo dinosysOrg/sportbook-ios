@@ -54,9 +54,9 @@ class TournamentSignUpViewModel {
             .map { $0.utf8.count >= 2 }.skip(1)
         
         phoneNumberValid = phoneNumberText
-                .distinctUntilChanged()
-                .throttle(0.3)
-                .map(Validation.phoneValid).skip(1)
+            .distinctUntilChanged()
+            .throttle(0.3)
+            .map(Validation.phoneValid).skip(1)
         
         stepOneCredentialsValid = Driver.combineLatest(firstNameValid, lastNameValid, phoneNumberValid) { $0 && $1 && $2 }.startWith(false)
     }
@@ -121,25 +121,27 @@ class TournamentSignUpViewModel {
             TournamentProvider.request(.signupTournament(self.tournament.id, name, phoneNumber,
                                                          address, self.skill.value!.id, club, birthday, members))
                 .subscribe(onNext: { [unowned self] response in
-                
-                if response.statusCode == 0 {
-                    self.hasFailed.value = SportBookError.connectionFailure
-                    observer.onNext(false)
-                } else if 200..<300 ~= response.statusCode {
-                    let jsonObject = JSON(response.data)
                     
-                    UserManager.sharedInstance.updateUserInfo(userInfo: jsonObject["user"])
-                    
-                    observer.onNext(true)
-                } else {
-                    let errorMessage = JSON(response.data)["errors"].arrayValue
-                        .map { $0.stringValue }.joined(separator: ". ")
-                    
-                    self.hasFailed.value = SportBookError.customMessage(errorMessage)
-                    
-                    observer.onNext(false)
-                }
-            }).addDisposableTo(self.disposeBag)
+                    if response.statusCode == 0 {
+                        self.hasFailed.value = SportBookError.connectionFailure
+                        observer.onNext(false)
+                    } else if 200..<300 ~= response.statusCode {
+                        let jsonObject = JSON(response.data)
+                        
+                        UserManager.sharedInstance.updateUserInfo(userInfo: jsonObject["user"])
+                        
+                        observer.onNext(true)
+                    } else {
+                        let errorMessage = JSON(response.data)["errors"].arrayValue
+                            .map { $0.stringValue }.joined(separator: ". ")
+                        
+                        self.hasFailed.value = SportBookError.customMessage(errorMessage)
+                        
+                        observer.onNext(false)
+                    }}, onError: { error in
+                        self.isLoading.value = false
+                        self.hasFailed.value = SportBookError.connectionFailure
+                }).addDisposableTo(self.disposeBag)
             
             return Disposables.create()
         }

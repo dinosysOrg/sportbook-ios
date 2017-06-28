@@ -11,6 +11,7 @@
 "back" = "Back";
 "ok" = "OK";
 "cancel" = "Cancel";
+"close" = "Close";
 "user_cancel" = "You have cancelled this action";
 
 "tournament" = "Tournament";
@@ -45,11 +46,16 @@
 "tournament_time_table" = "Tournament timetable";
 "opponent_list" = "Opponents list";
 "tournament_result" = "Tournament results";
+"cancel_signup_tournament_confirm" = "Are you sure that you want to cancel sign up this tournament?";
 
 // MARK: My Tournament
 "rule_tab" = "Competition Rules";
 "fee_tab" = "Competition Fee";
 "schedule_tab" = "Competitions Schedule";
+"input_time_range"= "Select your time range";
+"input_rank_venue" = "Rank your venue";
+"update_time_slot_confirm" = "Are you that you want to update this time slots and ranked venue?";
+"no_time_slot_selected" = "Please select at least 1 time slot that you're free in a week";
 
 // MARK: Authentication
 "sign_in" = "Sign in";

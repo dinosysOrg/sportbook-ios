@@ -11,6 +11,7 @@
 "back" = "Quay lại";
 "ok" = "OK";
 "cancel" = "Hủy bỏ";
+"close" = "Đóng";
 "user_cancel" = "Bạn đã hủy bỏ thao tác này";
 
 "tournament" = "Giải đấu";
@@ -45,6 +46,7 @@
 "tournament_time_table" = "Lịch đấu";
 "opponent_list" = "Đối thủ";
 "tournament_result" = "Kết quả";
+"cancel_signup_tournament_confirm" = "Bạn có chắc chắn rằng bạn muốn hủy bỏ việc đăng ký giải đấu này không?";
 
 // MARK: Authentication
 "sign_in" = "Đăng nhập";
@@ -67,6 +69,10 @@
 "rule_tab" = "Luật lệ thi đấu";
 "fee_tab" = "Phí thi đấu";
 "schedule_tab" = "Lịch thi đấu";
+"input_time_range"= "Chọn thời gian rảnh của bạn";
+"input_rank_venue" = "Xếp hạng địa điểm của bạn";
+"update_time_slot_confirm" = "Bạn có chắc rằng bạn muốn cập nhật thời gian và dịa điểm thi đấu này không?";
+"no_time_slot_selected" = "Xin hãy chọn ít nhất 1 khoảng thời gian bạn rảnh trong tuần";
 
 // MARK: Validation
 "first_name_minimum_length" = "Tên phải ít nhất 2 ký tự";

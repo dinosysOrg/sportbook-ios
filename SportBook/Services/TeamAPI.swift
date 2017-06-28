@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 import Moya
 
 let teamEndpointClosure = { (target: TeamAPI) -> Endpoint<TeamAPI> in

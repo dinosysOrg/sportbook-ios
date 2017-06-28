@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0D4320EF5EC4B7E862342FA0 /* Pods_SportBook_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E38B7F8DD6CD187416E578 /* Pods_SportBook_Staging.framework */; };
 		B0DC3CE17A243AE17938B896 /* Pods_SportBookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B427DEF1612F4A55DC3CA76 /* Pods_SportBookUITests.framework */; };
-		B1FBEB55F0F8990FE6399DE3 /* Pods_SportBook_Production.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038C250897C145A71AF193F /* Pods_SportBook_Production.framework */; };
 		C90434B91F02066100B44B6A /* TimeSlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434B81F02066100B44B6A /* TimeSlotCell.swift */; };
 		C90434BA1F02066400B44B6A /* TimeSlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434B81F02066100B44B6A /* TimeSlotCell.swift */; };
 		C90434BC1F02090D00B44B6A /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434BB1F02090D00B44B6A /* CALayer+Extension.swift */; };
@@ -61,6 +60,9 @@
 		C96AC9891ECD99000055580B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9851ECD99000055580B /* ForgotPasswordViewController.swift */; };
 		C96AC98A1ECD99000055580B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9861ECD99000055580B /* LoginViewController.swift */; };
 		C96AC98B1ECD99000055580B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9871ECD99000055580B /* SignupViewController.swift */; };
+		C972061C1F03885F0034CE96 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C972061B1F03885F0034CE96 /* MapKit.framework */; };
+		C972061D1F0388660034CE96 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C972061B1F03885F0034CE96 /* MapKit.framework */; };
+		C972061F1F0388750034CE96 /* Pods_SportBook_Production.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C972061E1F0388750034CE96 /* Pods_SportBook_Production.framework */; };
 		C97522D21EE6533A00104336 /* MyTournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97522D11EE6533A00104336 /* MyTournamentViewController.swift */; };
 		C97522D41EE6573200104336 /* TournamentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97522D31EE6573200104336 /* TournamentDetailViewController.swift */; };
 		C976C3E21EFCAEFC00FEA213 /* MyTournamentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3E11EFCAEFC00FEA213 /* MyTournamentDetailViewController.swift */; };
@@ -231,6 +233,8 @@
 		C96AC9851ECD99000055580B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		C96AC9861ECD99000055580B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C96AC9871ECD99000055580B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		C972061B1F03885F0034CE96 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C972061E1F0388750034CE96 /* Pods_SportBook_Production.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_SportBook_Production.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SportBook-eekctrqcszdahwcvrqnjtiwbmvpv/Build/Products/Debug-iphonesimulator/Pods_SportBook_Production.framework"; sourceTree = "<group>"; };
 		C97522D11EE6533A00104336 /* MyTournamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTournamentViewController.swift; sourceTree = "<group>"; };
 		C97522D31EE6573200104336 /* TournamentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentDetailViewController.swift; sourceTree = "<group>"; };
 		C976C3E11EFCAEFC00FEA213 /* MyTournamentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTournamentDetailViewController.swift; sourceTree = "<group>"; };
@@ -290,6 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C972061C1F03885F0034CE96 /* MapKit.framework in Frameworks */,
 				0D4320EF5EC4B7E862342FA0 /* Pods_SportBook_Staging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,7 +319,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1FBEB55F0F8990FE6399DE3 /* Pods_SportBook_Production.framework in Frameworks */,
+				C972061F1F0388750034CE96 /* Pods_SportBook_Production.framework in Frameworks */,
+				C972061D1F0388660034CE96 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +581,8 @@
 		C94942191ECC047100C21862 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C972061E1F0388750034CE96 /* Pods_SportBook_Production.framework */,
+				C972061B1F03885F0034CE96 /* MapKit.framework */,
 				C9FA8A6B1EF24BB100AA73D5 /* Pods_SportBook_Production.framework */,
 				42704F6E113E2491B3558520 /* Pods_SportBook.framework */,
 				7B3C706898DB9052943EB172 /* Pods_SportBookTests.framework */,

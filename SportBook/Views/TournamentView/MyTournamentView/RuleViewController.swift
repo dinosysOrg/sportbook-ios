@@ -22,6 +22,10 @@ class RuleViewController : BaseViewController {
         self.configureMenu()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     func configureMenu() {
         
         // Array to keep track of controllers in page menu

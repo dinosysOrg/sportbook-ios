@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct TimeSlot {
+class TimeSlot {
     var day: DayOfWeek
-    var block: [TimeBlock]
+    var blocks: [TimeBlock] = []
     
-    func toJson() -> [String:Any] {
-        return [ day.rawValue : block]
+    init(day: DayOfWeek) {
+        self.day = day
     }
 }
