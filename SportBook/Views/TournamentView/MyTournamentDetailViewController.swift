@@ -135,10 +135,19 @@ extension MyTournamentDetailViewController : UITableViewDelegate, UITableViewDat
             self.navigationController?.pushViewController(venueViewController, animated: true)
             break
         case .timeTable:
+            let timeTableViewController = UIStoryboard.loadTimeTableViewController()
+            timeTableViewController.currentTournament = self.currentTournament
+            self.navigationController?.pushViewController(timeTableViewController, animated: true)
             break
         case .opponent:
+            let opponentViewController = UIStoryboard.loadOpponentViewController()
+            opponentViewController.currentTournament = self.currentTournament
+            self.navigationController?.pushViewController(opponentViewController, animated: true)
             break
         case .result:
+            let resultViewController = UIStoryboard.loadResultViewController()
+            resultViewController.currentTournament = self.currentTournament
+            self.navigationController?.pushViewController(resultViewController, animated: true)
             break
         }
     }

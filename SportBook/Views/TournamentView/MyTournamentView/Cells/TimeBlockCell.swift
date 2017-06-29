@@ -1,5 +1,5 @@
 //
-//  WeekDayCell.swift
+//  TimeBlockCell.swift
 //  SportBook
 //
 //  Created by Bui Minh Duc on 6/27/17.

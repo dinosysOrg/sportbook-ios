@@ -12,15 +12,9 @@ import RxCocoa
 import RxSwift
 import Moya
 
-class TournamentSignUpViewModel {
-    
-    fileprivate let disposeBag = DisposeBag()
+class TournamentSignUpViewModel : BaseViewModel {
     
     let tournament : TournamentModel
-    
-    let isLoading = Variable<Bool>(false)
-    
-    let hasFailed = Variable<SportBookError>(SportBookError.none)
     
     let skills = Variable<[SkillModel]>([])
     

@@ -18,7 +18,6 @@ class RuleViewController : BaseViewController {
     
     override func viewDidLoad() {
         self.title = currentTournament?.name
-        
         self.configureMenu()
     }
     

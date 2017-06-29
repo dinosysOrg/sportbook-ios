@@ -44,13 +44,19 @@ fileprivate extension UIStoryboard {
 // MARK: App View Controllers
 
 extension UIStoryboard {
+    //Main Views
+    
     class func loadMainViewController() -> MainViewController {
         return loadFromMain("MainViewController") as! MainViewController
     }
     
+    //Authentication Views
+    
     class func loadLoginViewController() -> LoginViewController {
         return loadFromAuth("LoginViewController") as! LoginViewController
     }
+    
+    //Tournament Views
     
     class func loadTournamentDetailViewController() -> TournamentDetailViewController {
         return loadFromTournament("TournamentDetailViewController") as! TournamentDetailViewController
@@ -64,6 +70,8 @@ extension UIStoryboard {
         return loadFromTournament("MyTournamentViewController") as! MyTournamentViewController
     }
     
+    //My Tournament Views
+    
     class func loadMyTournamentDetailViewController() -> MyTournamentDetailViewController {
         return loadFromTournament("MyTournamentDetailViewController") as! MyTournamentDetailViewController
     }
@@ -74,6 +82,18 @@ extension UIStoryboard {
 
     class func loadInputRankVenueViewController() -> InputRankVenueViewController {
         return loadFromMyTournament("InputRankVenueViewController") as! InputRankVenueViewController
+    }
+    
+    class func loadTimeTableViewController() -> TimeTableViewController {
+        return loadFromMyTournament("TimeTableViewController") as! TimeTableViewController
+    }
+    
+    class func loadOpponentViewController() -> OpponentViewController {
+        return loadFromMyTournament("OpponentViewController") as! OpponentViewController
+    }
+    
+    class func loadResultViewController() -> ResultViewController {
+        return loadFromMyTournament("ResultViewController") as! ResultViewController
     }
     
     // Add other app view controller load methods here ...

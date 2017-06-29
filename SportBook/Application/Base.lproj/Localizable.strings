@@ -55,7 +55,7 @@
 "input_time_range"= "Select your time range";
 "input_rank_venue" = "Rank your venue";
 "update_time_slot_confirm" = "Are you that you want to update this time slots and ranked venue?";
-"no_time_slot_selected" = "Please select at least 1 time slot that you're free in a week";
+"time_slot_minimum_required" = "Please select at least 5 time slot that you're free in a week";
 
 // MARK: Authentication
 "sign_in" = "Sign in";

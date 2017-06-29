@@ -23,7 +23,7 @@ struct TeamModel {
     let status: TeamStatus
     let venueRanking: [String]
     
-    init?(_ jsonData: JSON) {
+    init ?(_ jsonData: JSON) {
         id = jsonData["id"].intValue
         tournamentId    = jsonData["tournament_id"].intValue
         name = jsonData["name"].stringValue

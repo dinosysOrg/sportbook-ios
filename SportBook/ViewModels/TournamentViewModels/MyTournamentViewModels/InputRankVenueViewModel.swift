@@ -12,13 +12,7 @@ import RxCocoa
 import SwiftyJSON
 import Moya
 
-class InputRankVenueViewModel {
-    
-    private let disposeBag = DisposeBag()
-    
-    let isLoading = Variable<Bool>(false)
-    
-    let hasFailed = Variable<SportBookError>(SportBookError.none)
+class InputRankVenueViewModel : BaseViewModel {
     
     let tournament = Variable<TournamentModel?>(nil)
     
@@ -28,18 +22,58 @@ class InputRankVenueViewModel {
     
     let timeBlocks = [TimeBlock.morning, TimeBlock.afternoon, TimeBlock.evening]
     
-    func updateTimeSlotAndRankVenue() -> Observable<Bool> {
-        return Observable<Bool>.create { observer in
+    func loadTimeSlot() -> Observable<Void> {
+        return Observable<Void>.create { observer in
             
             guard let myTeam = self.tournament.value?.myTeam else {
-                observer.onNext(false)
-                
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            
+            self.isLoading.value = true
+            
+            TeamProvider.request(TeamAPI.timeSlot("type", myTeam.id))
+                .subscribe(onNext: { response in
+                    self.isLoading.value = false
+                    
+                    if 401 == response.statusCode {
+                        self.hasFailed.value = SportBookError.unauthenticated
+                    } else if 200..<300 ~= response.statusCode {
+                        let jsonObject = JSON(response.data)
+                        print(jsonObject)
+                    } else {
+                        self.hasFailed.value = SportBookError.apiError(JSON(response.data)["errors"])
+                    }
+                    
+                    observer.onCompleted()
+                    self.isLoading.value = false
+                    
+                }, onError: { error in
+                    self.isLoading.value = false
+                    self.hasFailed.value = SportBookError.connectionFailure
+                }).addDisposableTo(self.disposeBag)
+            
+            
+            return Disposables.create()
+        }
+    }
+    
+    func updateTimeSlotAndRankVenue() -> Observable<Void> {
+        return Observable<Void>.create { observer in
+            
+            guard let myTeam = self.tournament.value?.myTeam else {
+                observer.onCompleted()
                 return Disposables.create()
             }
             
             let selectedTimeSlots = self.timeSlots.filter { $0.blocks.count > 0 }
             
-            if selectedTimeSlots.count > 0 {
+            let timeSlotCount = selectedTimeSlots.map { $0.blocks.count }.reduce(0, +)
+            
+            if selectedTimeSlots.count > 0 && timeSlotCount >= 5 {
+                
+                self.isLoading.value = true
+                
                 var timeSlotsJson = [String: Any]()
                 
                 for timeSlot in selectedTimeSlots {
@@ -52,26 +86,25 @@ class InputRankVenueViewModel {
                         
                         if 401 == response.statusCode {
                             self.hasFailed.value = SportBookError.unauthenticated
-                            observer.onNext(true)
                         } else if 200..<300 ~= response.statusCode {
                             let jsonObject = JSON(response.data)
                             print(jsonObject)
-                            
-                            observer.onNext(true)
                         } else {
                             let errorMessage = JSON(response.data)["errors"].arrayValue
                                 .map { $0.stringValue }.joined(separator: ". ")
                             
                             self.hasFailed.value = SportBookError.customMessage(errorMessage)
-                            observer.onNext(true)
-                        }}, onError: { error in
-                            observer.onNext(false)
-                            self.isLoading.value = false
-                            self.hasFailed.value = SportBookError.connectionFailure
+                        }
+                        
+                        observer.onCompleted()
+                        
+                    }, onError: { error in
+                        self.isLoading.value = false
+                        self.hasFailed.value = SportBookError.connectionFailure
                     }).addDisposableTo(self.disposeBag)
             } else {
-                self.hasFailed.value = SportBookError.customMessage("no_time_slot_selected".localized)
-                observer.onNext(false)
+                self.hasFailed.value = SportBookError.customMessage("time_slot_minimum_required".localized)
+                observer.onCompleted()
             }
             
             return Disposables.create()

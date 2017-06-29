@@ -42,6 +42,7 @@ class InputRankVenueViewController: BaseViewController {
         self.configureUI()
         self.configureViewModel()
         self.configureBindings()
+        self.loadTimeSlot()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,11 +63,7 @@ class InputRankVenueViewController: BaseViewController {
             .flatMap { _ in return self.alertConfirm(text: "update_time_slot_confirm".localized) }
             .filter { $0 }
             .flatMap { _ in return self.viewModel.updateTimeSlotAndRankVenue() }
-            .subscribe(onNext: { isSuccess in
-                if isSuccess {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }).addDisposableTo(self.disposebag)
+            .subscribe(onCompleted: { _ in}).addDisposableTo(self.disposebag)
         
         self.viewModel.hasFailed.asObservable().skip(1)
             .flatMap { error in return self.alert(text: error.description) }
@@ -75,6 +72,10 @@ class InputRankVenueViewController: BaseViewController {
     
     private func configureUI(){
         self.lblTimeSlotHeader.text = "input_time_range".localized
+    }
+    
+    func loadTimeSlot(){
+        self.viewModel.loadTimeSlot().subscribe(onCompleted: { _ in}).addDisposableTo(self.disposebag)
     }
 }
 

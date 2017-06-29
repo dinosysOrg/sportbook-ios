@@ -12,13 +12,7 @@ import RxCocoa
 import SwiftyJSON
 import Moya
 
-class TournamentViewModel {
-    
-    private let disposeBag = DisposeBag()
-    
-    let isLoading = Variable<Bool>(false)
-    
-    let hasFailed = Variable<SportBookError>(SportBookError.none)
+class TournamentViewModel : BaseViewModel {
     
     let tournaments = Variable<[TournamentModel]>([])
     

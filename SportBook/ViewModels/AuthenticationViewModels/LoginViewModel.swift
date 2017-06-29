@@ -14,9 +14,7 @@ import Moya
 import FacebookCore
 import FacebookLogin
 
-class LoginViewModel {
-    
-    private let disposeBag = DisposeBag()
+class LoginViewModel : BaseViewModel {
     
     let emailValid: Driver<Bool>
     

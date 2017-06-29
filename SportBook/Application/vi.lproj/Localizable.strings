@@ -72,7 +72,7 @@
 "input_time_range"= "Chọn thời gian rảnh của bạn";
 "input_rank_venue" = "Xếp hạng địa điểm của bạn";
 "update_time_slot_confirm" = "Bạn có chắc rằng bạn muốn cập nhật thời gian và dịa điểm thi đấu này không?";
-"no_time_slot_selected" = "Xin hãy chọn ít nhất 1 khoảng thời gian bạn rảnh trong tuần";
+"time_slot_minimum_required" = "Xin hãy chọn ít nhất 5 khoảng thời gian bạn rảnh trong tuần";
 
 // MARK: Validation
 "first_name_minimum_length" = "Tên phải ít nhất 2 ký tự";

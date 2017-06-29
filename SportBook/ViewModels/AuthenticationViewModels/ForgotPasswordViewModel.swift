@@ -10,7 +10,8 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-class ForgotPasswordViewModel {
+class ForgotPasswordViewModel : BaseViewModel {
+    
     let emailValid: Driver<Bool>
     
     init(emailText: Driver<String>) {
@@ -23,5 +24,4 @@ class ForgotPasswordViewModel {
     func resetPassword(_ email: String) -> Observable<AuthenticationStatus> {
         return AuthManager.sharedInstance.resetPassword(email)
     }
-
 }
