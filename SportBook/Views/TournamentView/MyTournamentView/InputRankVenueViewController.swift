@@ -16,7 +16,7 @@ class InputRankVenueViewController: BaseViewController {
     
     let viewModel = InputRankVenueViewModel()
     
-    private let disposebag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -63,11 +63,20 @@ class InputRankVenueViewController: BaseViewController {
             .flatMap { _ in return self.alertConfirm(text: "update_time_slot_confirm".localized) }
             .filter { $0 }
             .flatMap { _ in return self.viewModel.updateTimeSlotAndRankVenue() }
-            .subscribe(onCompleted: { _ in}).addDisposableTo(self.disposebag)
+            .subscribe(onCompleted: { _ in}).addDisposableTo(self.disposeBag)
         
-        self.viewModel.hasFailed.asObservable().skip(1)
-            .flatMap { error in return self.alert(text: error.description) }
-            .subscribe(onNext : { _ in }).addDisposableTo(self.disposebag)
+        self.viewModel.hasFailed.asObservable().skip(1).subscribe(onNext: { [unowned self] error in
+            if case SportBookError.unauthenticated = error {
+                AuthManager.sharedInstance.clearSession()
+                
+                //Present login view controller
+                let loginViewController = UIStoryboard.loadLoginViewController()
+                self.tabBarController?.present(loginViewController, animated: true, completion: { })
+            } else {
+                self.alertError(text: error.description).subscribe(onCompleted: {})
+                    .addDisposableTo(self.disposeBag)
+            }
+        }).disposed(by: disposeBag)
     }
     
     private func configureUI(){
@@ -75,7 +84,7 @@ class InputRankVenueViewController: BaseViewController {
     }
     
     func loadTimeSlot(){
-        self.viewModel.loadTimeSlot().subscribe(onCompleted: { _ in}).addDisposableTo(self.disposebag)
+        self.viewModel.loadTimeSlot().subscribe(onCompleted: { _ in}).addDisposableTo(self.disposeBag)
     }
 }
 

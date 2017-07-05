@@ -36,8 +36,9 @@ class OpponentViewModel : BaseViewModel {
                     
                     let otherGroupsArray = jsonObject["other_groups"].arrayValue
                     
-                    self.myGroups.value = myGroupsArray.map { GroupModel($0)! }
-                    self.otherGroups.value = otherGroupsArray.map { GroupModel($0)! }
+                    self.myGroups.value = myGroupsArray.map { GroupModel($0) }
+                    
+                    self.otherGroups.value = otherGroupsArray.map { GroupModel($0) }
                     
                     observer.onCompleted()
                 } else {

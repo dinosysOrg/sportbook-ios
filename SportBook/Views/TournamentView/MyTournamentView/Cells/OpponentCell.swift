@@ -23,9 +23,9 @@ class OpponentCell: UITableViewCell {
         // Initialization code
     }
     
-    func configure(team : TeamModel) {
-        self.lblOpponentName.text = team.name
-        self.lblStatus.text = "Invited"
+    func configure(opponent : OpponentModel) {
+        self.lblOpponentName.text = opponent.teamName
+        self.lblStatus.text = opponent.invitationStatus
     }
     
     func configureUI(){

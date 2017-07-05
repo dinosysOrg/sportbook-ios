@@ -48,6 +48,18 @@ class MyTournamentViewController : BaseViewController {
     }
     
     private func configureBindings() {
+        self.viewModel.hasFailed.asObservable().skip(1).subscribe(onNext: { [unowned self] error in
+            if case SportBookError.unauthenticated = error {
+                AuthManager.sharedInstance.clearSession()
+                
+                //Present login view controller
+                let loginViewController = UIStoryboard.loadLoginViewController()
+                self.tabBarController?.present(loginViewController, animated: true, completion: { })
+            } else {
+                self.alertError(text: error.description).subscribe(onCompleted: {})
+                    .addDisposableTo(self.disposeBag)
+            }
+        }).disposed(by: disposeBag)
     }
     
     private func configureTableView() {

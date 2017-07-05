@@ -25,8 +25,8 @@ struct TournamentModel {
         name = jsonData["name"].stringValue
         startDate = jsonData["start_date"].stringValue
         endDate = jsonData["end_date"].stringValue
-        teams = jsonData["teams"].arrayValue.map { TeamModel($0)! }
-        myTeam = TeamModel(jsonData["teams"])
+        teams = jsonData["teams"].arrayValue.map { TeamModel($0) }
+        myTeam = TeamModel(jsonData["teams"]) 
         competitionSchedule = jsonData["competition_schedule"].stringValue
         competitionMode = jsonData["competition_mode"].stringValue
         competitionFee = jsonData["competition_fee"].stringValue
