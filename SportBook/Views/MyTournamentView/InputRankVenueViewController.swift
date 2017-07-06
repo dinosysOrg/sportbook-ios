@@ -84,9 +84,7 @@ class InputRankVenueViewController: BaseViewController {
     }
     
     func loadTimeSlot(){
-        self.viewModel.loadTimeBlock().subscribe(onCompleted: { _ in
-            self.collectionView.reloadData()
-        }).addDisposableTo(self.disposeBag)
+        self.viewModel.loadTimeSlot().subscribe(onCompleted: { _ in}).addDisposableTo(self.disposeBag)
     }
 }
 
@@ -139,8 +137,6 @@ extension InputRankVenueViewController : UICollectionViewDelegate, UICollectionV
         case 0:
             if column > 0 {
                 cell.layer.addBorder(edge: .left, color: .lightGray, thickness: 1)
-            } else {
-                cell.layer.addBorder(edge: .left, color: .white, thickness: 1)
             }
         default:
             if column == 0 {

@@ -238,11 +238,11 @@ extension AuthManager {
     }
     
     //Access Token Expiration Time
-    var Expiry: Int? {
+    var Expiry: String? {
         get {
             let defaults = UserDefaults.standard
-            let expiry = defaults.object(forKey: "expiry") as? Int
-            return expiry ?? 0
+            let expiry = defaults.object(forKey: "expiry") as? String
+            return expiry ?? ""
         }
         set {
             let defaults = UserDefaults.standard
@@ -296,7 +296,7 @@ extension AuthManager {
     func toDictionary() -> [String:String] {
         return ["Access-Token": AccessToken ?? "",
                 "Client": Client ?? "",
-                "Expiry": String(describing: Expiry) ,
+                "Expiry": Expiry ?? "" ,
                 "Token-Type": TokenType ?? "",
                 "Uid": UID ?? ""]
     }
@@ -310,7 +310,7 @@ extension AuthManager {
             Client = clientData
         }
         
-        if let expiryData = data["Expiry"] as? Int {
+        if let expiryData = data["Expiry"] as? String {
             Expiry = expiryData
         }
         

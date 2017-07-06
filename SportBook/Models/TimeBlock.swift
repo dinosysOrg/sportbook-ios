@@ -33,4 +33,14 @@ extension TimeBlock {
             }
         }
     }
+    
+    static func parse(_ block : [Int]) -> TimeBlock {
+        if block == TimeBlock.morning.times {
+            return TimeBlock.morning
+        } else if block == TimeBlock.afternoon.times {
+            return TimeBlock.afternoon
+        } else {
+            return TimeBlock.evening
+        }
+    }
 }
