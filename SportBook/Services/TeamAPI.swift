@@ -53,22 +53,16 @@ extension TeamAPI : TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
-        case .timeSlot(let _,let id):
+        case .timeSlot(_, let id):
             return [
                 "type" : "available", //Type
                 "id " : id, //Team Id
             ]
-        case .teams(let id, let rankVenue, let preferredTimeBlocks):
-            let params = [
-                "team_id" : id, //Team Id
+        case .teams(_, let rankVenue, let preferredTimeBlocks):
+            return [
                 "venue_ranking" : rankVenue, //Venue ranking for team
                 "preferred_time_blocks" : preferredTimeBlocks //Preferred time block for team
-            ] as [String : Any]
-            
-            let jsonObject = JSON(params)
-            print(jsonObject)
-            
-            return params
+            ]
         case .timeBlock(let id):
             return [
                 "id " : id, //Team Id
@@ -77,7 +71,12 @@ extension TeamAPI : TargetType {
     }
     
     public var parameterEncoding: ParameterEncoding {
-        return URLEncoding.default
+        switch self.method {
+        case .put, .post:
+            return JSONEncoding.default
+        default:
+            return URLEncoding.default
+        }
     }
     
     public var task: Task {
@@ -85,7 +84,7 @@ extension TeamAPI : TargetType {
     }
     
     public var validate: Bool {
-        return false
+        return true
     }
     
     public var sampleData: Data {

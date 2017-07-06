@@ -66,7 +66,12 @@ extension DeviceAPI : TargetType {
     }
     
     public var parameterEncoding: ParameterEncoding {
-        return URLEncoding.default
+        switch self.method {
+        case .put, .post:
+            return JSONEncoding.default
+        default:
+            return URLEncoding.default
+        }
     }
     
     public var task: Task {

@@ -116,6 +116,7 @@ class InputRankVenueViewModel : BaseViewModel {
                 
                 TeamProvider.request(.teams(myTeam.id, [1,2,3,4], timeSlotsJson))
                     .subscribe(onNext: { response in
+                        
                         self.isLoading.value = false
                         
                         if 401 == response.statusCode {
