@@ -22,7 +22,9 @@ class InputRankVenueViewModel : BaseViewModel {
     
     let timeBlocks = [TimeBlock.morning, TimeBlock.afternoon, TimeBlock.evening]
     
-    func loadTimeBlock() -> Observable<Void> {
+    let hasUpdatedTimeBlocks = Variable<Bool>(true)
+    
+    func loadTimeBlocks() -> Observable<Void> {
         return Observable<Void>.create { observer in
             
             guard let myTeam = self.tournament.value?.myTeam else {
@@ -72,7 +74,7 @@ class InputRankVenueViewModel : BaseViewModel {
                             self.timeSlots[6].blocks = saturdayBlocks.map { TimeBlock.parse($0) }
                         }
                         
-                         self.timeSlots.filter { $0.blocks.count > 0 }
+                        self.hasUpdatedTimeBlocks.value = self.timeSlots.filter { $0.blocks.count > 0 }.map { $0.blocks.count }.reduce(0, +) > 0
                         
                     } else {
                         self.hasFailed.value = SportBookError.apiError(JSON(response.data)["errors"])
@@ -86,12 +88,11 @@ class InputRankVenueViewModel : BaseViewModel {
                     self.hasFailed.value = SportBookError.connectionFailure
                 }).addDisposableTo(self.disposeBag)
             
-            
             return Disposables.create()
         }
     }
     
-    func updateTimeSlotAndRankVenue() -> Observable<Void> {
+    func updateTimeBlockAndRankVenue() -> Observable<Void> {
         return Observable<Void>.create { observer in
             
             guard let myTeam = self.tournament.value?.myTeam else {
