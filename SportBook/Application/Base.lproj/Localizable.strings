@@ -11,6 +11,8 @@
 "back" = "Back";
 "ok" = "OK";
 "cancel" = "Cancel";
+"close" = "Close";
+"user_cancel" = "You have cancelled this action";
 
 "tournament" = "Tournament";
 "statistic" = "Statistic";
@@ -36,13 +38,24 @@
 "submit" = "Submit";
 "payment_pending" = "Payment pending";
 "my_tournament" = "My tournament";
-"no_sign_up_tournament" = "You have yet sign up any tournament";
-"not_pay_tournament_yet"= "You have yet pay for this tournament";
+"no_sign_up_tournament" = "My Tournament is not be activated if you haven’t sign up for any tournament.";
+"not_pay_tournament_yet" = "This tournament can not be activated until your payment is confirmed. Please check with operation for more information.";
+"sign_up_tournament_success" = "We have sent send you an instruction email to continue the payment.\nPlease check your email.";
 "rule_regulation" = "Rules and regulation";
 "rank_venue" = "Rank venue";
 "tournament_time_table" = "Tournament timetable";
 "opponent_list" = "Opponents list";
 "tournament_result" = "Tournament results";
+"cancel_signup_tournament_confirm" = "Are you sure that you want to cancel sign up this tournament?";
+
+// MARK: My Tournament
+"rule_tab" = "Competition Rules";
+"fee_tab" = "Competition Fee";
+"schedule_tab" = "Competitions Schedule";
+"input_time_range"= "Select your time range";
+"input_rank_venue" = "Rank your venue";
+"update_time_slot_confirm" = "Are you that you want to update this time slots and ranked venue?";
+"time_slot_minimum_required" = "Please select at least 5 time slot that you're free in a week";
 
 // MARK: Authentication
 "sign_in" = "Sign in";
@@ -59,6 +72,7 @@
 "sign_in_fail" = "Failed to sign in";
 "bad_credentials" = "Bad credentials";
 "user_not_exist" = "This user doesn't exist";
+"unauthenticated" = "You're unauthenticated";
 
 // MARK: Validation
 "first_name_minimum_length" = "Must be at least 2 characters";
@@ -73,6 +87,13 @@
 "error_system" = "System error";
 "error_bad_response" = "Can not extract data";
 
-
+// MARK: Day of Week
+"monday" = "Monday";
+"tuesday" = "Tuesday";
+"wednesday" = "Wednesday";
+"thursday" = "Thursday";
+"friday" = "Friday";
+"saturday" = "Saturday";
+"sunday" = "Sunday";
 
 

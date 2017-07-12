@@ -9,7 +9,13 @@
 import Foundation
 import Moya
 
-let InvitationProvider = MoyaProvider<InvitationAPI>()
+let invitationEndpointClosure = { (target: InvitationAPI) -> Endpoint<InvitationAPI> in
+    let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
+    
+    return defaultEndpoint.adding(newHTTPHeaderFields: AuthManager.sharedInstance.toDictionary())
+}
+
+let InvitationProvider = RxMoyaProvider<InvitationAPI>(endpointClosure: invitationEndpointClosure)
 
 // MARK: - Provider support
 

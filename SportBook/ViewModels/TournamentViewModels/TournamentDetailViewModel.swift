@@ -11,19 +11,9 @@ import RxSwift
 import Moya
 import SwiftyJSON
 
-class TournamentDetailViewModel {
-    
-    private let disposeBag = DisposeBag()
-    
-    let isLoading = Variable<Bool>(false)
-    
-    let hasFailed = Variable<SportBookError>(SportBookError.None)
+class TournamentDetailViewModel : BaseViewModel {
     
     let tournament = Variable<TournamentModel?>(nil)
-    
-    init(tournament : TournamentModel) {
-        self.tournament.value = tournament
-    }
     
     func loadTournamentDetail() {
         self.isLoading.value = true
@@ -34,7 +24,7 @@ class TournamentDetailViewModel {
             self.isLoading.value = false
             
             if 401 == response.statusCode {
-                self.hasFailed.value = SportBookError.Unauthenticated
+                self.hasFailed.value = SportBookError.unauthenticated
             } else if 200..<300 ~= response.statusCode {
                 let jsonObject = JSON(response.data)
                 print(jsonObject)
@@ -46,11 +36,10 @@ class TournamentDetailViewModel {
                 let errorMessage = JSON(response.data)["errors"].arrayValue
                     .map { $0.stringValue }.joined(separator: ". ")
                 
-                self.hasFailed.value = SportBookError.Custom(errorMessage)
+                self.hasFailed.value = SportBookError.customMessage(errorMessage)
             }}, onError: { error in
-                print(error)
                 self.isLoading.value = false
-                self.hasFailed.value = SportBookError.ConnectionFailure
+                self.hasFailed.value = SportBookError.connectionFailure
         }).addDisposableTo(self.disposeBag)
     }
     
@@ -65,7 +54,7 @@ class TournamentDetailViewModel {
                 .subscribe(onNext: { [unowned self] response in
                     
                     if response.statusCode == 0 {
-                        self.hasFailed.value = SportBookError.ConnectionFailure
+                        self.hasFailed.value = SportBookError.connectionFailure
                         observer.onNext(false)
                     } else if 200..<300 ~= response.statusCode {
                         let jsonObject = JSON(response.data)
@@ -77,14 +66,16 @@ class TournamentDetailViewModel {
                         let errorMessage = JSON(response.data)["errors"].arrayValue
                             .map { $0.stringValue }.joined(separator: ". ")
                         
-                        self.hasFailed.value = SportBookError.Custom(errorMessage)
+                        self.hasFailed.value = SportBookError.customMessage(errorMessage)
                         
                         observer.onNext(false)
-                    }
+                    }}, onError: { error in
+                        self.isLoading.value = false
+                        self.hasFailed.value = SportBookError.connectionFailure
                 }).addDisposableTo(self.disposeBag)
             
             return Disposables.create()
         }
     }
-
+    
 }

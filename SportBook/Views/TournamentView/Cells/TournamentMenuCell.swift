@@ -18,9 +18,7 @@ class TournamentMenuCell : UITableViewCell {
     }
     
     func configureUI(){
-        
         //Set cell border
-        self.containerView.layer.borderColor = UIColor.lightGray.cgColor
-        self.containerView.layer.borderWidth = 1
+        self.containerView.layer.addBorder(edge: .top, color: .darkGray, thickness: 1)
     }
 }

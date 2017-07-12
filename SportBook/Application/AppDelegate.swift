@@ -140,7 +140,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("Device Token: \(token)")
         
-        UserManager.sharedInstance.pushNotificationToken = token
+        AuthManager.sharedInstance.pushNotificationToken = token
+        AuthManager.sharedInstance.storePushNotificationToken()
     }
     
     //Push notification register failed

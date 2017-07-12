@@ -25,7 +25,35 @@ class AuthManager {
     static var sharedInstance = AuthManager()
     private let maxAttempts = 3
     
+    fileprivate let disposeBag = DisposeBag()
+    
     private init() {}
+    
+    func storePushNotificationToken() {
+        let iPhoneUDID =  UIDevice.current.identifierForVendor!.uuidString
+        
+        let userId = UserManager.sharedInstance.user?.uid
+        
+        DeviceProvider.request(.create(self.pushNotificationToken, iPhoneUDID, userId)).subscribe(onNext: { reponse in
+            if 200..<300 ~= reponse.statusCode {
+                print("Device Token stored successfully")
+            } else {
+                print("Device Token stored failed")
+            }
+        }).addDisposableTo(disposeBag)
+    }
+    
+    func deletePushNotificationToken() {
+        let iPhoneUDID =  UIDevice.current.identifierForVendor!.uuidString
+        
+        DeviceProvider.request(.delete(iPhoneUDID)).subscribe(onNext: { reponse in
+            if 200..<300 ~= reponse.statusCode {
+                print("Device Token deleted")
+            } else {
+                print("Device Token delete failed")
+            }
+        }).addDisposableTo(disposeBag)
+    }
     
     func signIn(_ email: String, password: String) -> Observable<AuthenticationStatus> {
         return AuthenticationProvider.request(.signInWithEmail(email,password))
@@ -64,7 +92,7 @@ class AuthManager {
             print(jsonObject)
             
             if response.statusCode == 0 {
-                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+                observer.onNext(AuthenticationStatus.Error(SportBookError.connectionFailure))
             } else if 200..<300 ~= response.statusCode {
                 
                 let jsonObject = JSON(response.data)
@@ -78,12 +106,14 @@ class AuthManager {
                 
                 UserManager.sharedInstance.updateUserInfo(userInfo: jsonObject["data"])
                 
+                //Request to store push notification token with this user
+                self.storePushNotificationToken()
+                
                 observer.onNext(AuthenticationStatus.Authenticated)
             } else {
-                let errorMessage = JSON(response.data)["errors"].arrayValue
-                    .map { $0.stringValue }.joined(separator: ". ")
+                let jsonError = JSON(response.data)["errors"]
                 
-                observer.onError(SportBookError.Custom(errorMessage))
+                observer.onError(SportBookError.authenticationError(jsonError))
             }
             
             return Disposables.create()
@@ -97,14 +127,13 @@ class AuthManager {
             print(jsonObject)
             
             if response.statusCode == 0 {
-                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+                observer.onNext(AuthenticationStatus.Error(SportBookError.connectionFailure))
             } else if 200..<300 ~= response.statusCode {
                 observer.onNext(AuthenticationStatus.SignedUp)
             } else {
-                let errorMessage = JSON(response.data)["errors"].arrayValue
-                    .map { $0.stringValue }.joined(separator: ". ")
+                let jsonError = JSON(response.data)["errors"]
                 
-                observer.onError(SportBookError.Custom(errorMessage))
+                observer.onError(SportBookError.authenticationError(jsonError))
             }
             
             return Disposables.create()
@@ -129,15 +158,14 @@ class AuthManager {
             print(jsonObject)
             
             if response.statusCode == 0 {
-                observer.onNext(AuthenticationStatus.Error(SportBookError.ConnectionFailure))
+                observer.onNext(AuthenticationStatus.Error(SportBookError.connectionFailure))
             } else if 200..<300 ~= response.statusCode {
                 observer.onNext(AuthenticationStatus.PasswordReset)
             }
             else {
-                let errorMessage = JSON(response.data)["errors"].arrayValue
-                    .map { $0.stringValue }.joined(separator: ". ")
+                let jsonError = JSON(response.data)["errors"]
                 
-                observer.onError(SportBookError.Custom(errorMessage))
+                observer.onError(SportBookError.authenticationError(jsonError))
             }
             
             return Disposables.create()
@@ -151,6 +179,8 @@ class AuthManager {
         self.Expiry = nil
         self.UID = nil
         
+        //Delete push notification token with this user
+        self.deletePushNotificationToken()
         UserManager.sharedInstance.clearUserInfo()
     }
 }
@@ -170,7 +200,7 @@ extension AuthManager {
         get {
             let defaults = UserDefaults.standard
             let token = defaults.object(forKey: "accessToken") as? String
-            return token ?? ""
+            return token
         }
         set {
             let defaults = UserDefaults.standard
@@ -184,7 +214,7 @@ extension AuthManager {
         get {
             let defaults = UserDefaults.standard
             let tokenType = defaults.object(forKey: "tokenType") as? String
-            return tokenType ?? ""
+            return tokenType
         }
         set {
             let defaults = UserDefaults.standard
@@ -225,12 +255,27 @@ extension AuthManager {
     var Client: String? {
         get {
             let defaults = UserDefaults.standard
-            let code = defaults.object(forKey: "client") as? String
-            return code ?? ""
+            let client = defaults.object(forKey: "client") as? String
+            return client ?? ""
         }
         set {
             let defaults = UserDefaults.standard
             defaults.set(newValue, forKey: "client")
+            defaults.synchronize()
+        }
+    }
+    
+    //Push notification token
+    
+    var pushNotificationToken: String {
+        get {
+            let defaults = UserDefaults.standard
+            let token = defaults.object(forKey: "push_notification_token") as? String
+            return token ?? ""
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "push_notification_token")
             defaults.synchronize()
         }
     }

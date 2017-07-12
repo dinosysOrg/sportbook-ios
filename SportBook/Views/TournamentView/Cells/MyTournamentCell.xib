@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H7d-WH-XZv">
                         <rect key="frame" x="0.0" y="0.0" width="499" height="239.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UQb-mr-RDm">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="UQb-mr-RDm">
                                 <rect key="frame" x="0.0" y="0.0" width="499" height="239.5"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujd-BK-B4S">
@@ -67,4 +67,7 @@
             <point key="canvasLocation" x="-64.5" y="150"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="placeholder" width="1478" height="979"/>
+    </resources>
 </document>

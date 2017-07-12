@@ -40,18 +40,6 @@ class UserManager {
         }
     }
     
-    //Push notification token
-    private var _pushNotificationToken : String = ""
-    
-    var pushNotificationToken: String {
-        get {
-            return _pushNotificationToken
-        }
-        set {
-            _pushNotificationToken = newValue
-        }
-    }
-    
     //Update user info
     func updateUserInfo(userInfo : JSON) {
         userJsonData = userInfo

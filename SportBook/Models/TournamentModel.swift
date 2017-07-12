@@ -14,7 +14,8 @@ struct TournamentModel {
     let name: String
     let startDate: String
     let endDate: String
-    let teams: [TeamModel]
+    let teams: [TeamModel]?
+    let myTeam: TeamModel?
     let competitionSchedule: String
     let competitionMode: String
     let competitionFee: String
@@ -24,7 +25,8 @@ struct TournamentModel {
         name = jsonData["name"].stringValue
         startDate = jsonData["start_date"].stringValue
         endDate = jsonData["end_date"].stringValue
-        teams = jsonData["teams"].arrayValue.map { TeamModel($0) }
+        teams = jsonData["teams"].arrayValue.map { TeamModel($0)! }
+        myTeam = TeamModel(jsonData["teams"])
         competitionSchedule = jsonData["competition_schedule"].stringValue
         competitionMode = jsonData["competition_mode"].stringValue
         competitionFee = jsonData["competition_fee"].stringValue

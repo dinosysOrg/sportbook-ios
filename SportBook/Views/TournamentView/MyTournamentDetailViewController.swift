@@ -24,7 +24,7 @@ class MyTournamentDetailViewController : BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate let viewModel = TournamentViewModel()
+    fileprivate let viewModel = TournamentDetailViewModel()
     
     fileprivate let menuCell = "TournamentMenuCell"
     
@@ -45,23 +45,34 @@ class MyTournamentDetailViewController : BaseViewController {
         
         self.title = currentTournament?.name
         
+        self.configureViewModel()
         self.configureTableView()
         self.configureBindings()
+        
+        self.viewModel.loadTournamentDetail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
     }
     
+    func configureViewModel() {
+        self.viewModel.tournament.value = self.currentTournament
+    }
+    
     private func configureBindings() {
+        self.viewModel.tournament.asDriver().drive(onNext: { [unowned self] tournament in
+            guard let detailTournament = tournament else {
+                return
+            }
+            
+            self.currentTournament = detailTournament
+        }).disposed(by: disposeBag)
     }
     
     private func configureTableView() {
         self.tableView.reloadData()
-    }
-    
-    func refresh() {
-        viewModel.loadTournaments()
     }
     
     fileprivate func getMenuName(menuType: TournamentMenuType) -> String {
@@ -112,14 +123,31 @@ extension MyTournamentDetailViewController : UITableViewDelegate, UITableViewDat
         
         switch menuType {
         case .rule:
+            let ruleViewController = UIStoryboard.loadRuleViewController()
+            ruleViewController.currentTournament = self.currentTournament
+            
+            self.navigationController?.pushViewController(ruleViewController, animated: true)
             break
         case .venue:
+            let venueViewController = UIStoryboard.loadInputRankVenueViewController()
+            venueViewController.currentTournament = self.currentTournament
+            
+            self.navigationController?.pushViewController(venueViewController, animated: true)
             break
         case .timeTable:
+            let timeTableViewController = UIStoryboard.loadTimeTableViewController()
+            timeTableViewController.currentTournament = self.currentTournament
+            self.navigationController?.pushViewController(timeTableViewController, animated: true)
             break
         case .opponent:
+            let opponentViewController = UIStoryboard.loadOpponentViewController()
+            opponentViewController.currentTournament = self.currentTournament
+            self.navigationController?.pushViewController(opponentViewController, animated: true)
             break
         case .result:
+            let resultViewController = UIStoryboard.loadResultViewController()
+            resultViewController.currentTournament = self.currentTournament
+            self.navigationController?.pushViewController(resultViewController, animated: true)
             break
         }
     }

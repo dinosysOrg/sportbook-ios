@@ -11,6 +11,8 @@
 "back" = "Quay lại";
 "ok" = "OK";
 "cancel" = "Hủy bỏ";
+"close" = "Đóng";
+"user_cancel" = "Bạn đã hủy bỏ thao tác này";
 
 "tournament" = "Giải đấu";
 "statistic" = "Thống kê";
@@ -38,11 +40,13 @@
 "my_tournament" = "Giải đấu của tôi";
 "no_sign_up_tournament" = "Bạn chưa đăng ký tham gia bất kỳ giải đấu nào";
 "not_pay_tournament_yet"= "Bạn chưa thanh toán cho giải đấu này";
+"sign_up_tournament_success" = "Chúng tôi đã gửi cho bạn một emai hướng dẫn thanh toán.\nXin vui lòng kiểm tra email";
 "rule_regulation" = "Quy tắc và quy định";
 "rank_venue" = "Địa điểm thi đấu";
 "tournament_time_table" = "Lịch đấu";
 "opponent_list" = "Đối thủ";
 "tournament_result" = "Kết quả";
+"cancel_signup_tournament_confirm" = "Bạn có chắc chắn rằng bạn muốn hủy bỏ việc đăng ký giải đấu này không?";
 
 // MARK: Authentication
 "sign_in" = "Đăng nhập";
@@ -59,6 +63,16 @@
 "sign_in_fail" = "Đăng nhập thất bại";
 "bad_credentials" = "Thông tin đăng nhập không đúng";
 "user_not_exist" = "Người dùng không tốn tại trong hệ thống";
+"unauthenticated" = "Bạn chưa được xác thực";
+
+// MARK: My Tournament
+"rule_tab" = "Luật lệ thi đấu";
+"fee_tab" = "Phí thi đấu";
+"schedule_tab" = "Lịch thi đấu";
+"input_time_range"= "Chọn thời gian rảnh của bạn";
+"input_rank_venue" = "Xếp hạng địa điểm của bạn";
+"update_time_slot_confirm" = "Bạn có chắc rằng bạn muốn cập nhật thời gian và dịa điểm thi đấu này không?";
+"time_slot_minimum_required" = "Xin hãy chọn ít nhất 5 khoảng thời gian bạn rảnh trong tuần";
 
 // MARK: Validation
 "first_name_minimum_length" = "Tên phải ít nhất 2 ký tự";
@@ -72,4 +86,13 @@
 "error_server" = "Lỗi máy chủ";
 "error_system" = "Lỗi hệ thống";
 "error_bad_response" = "Không thể trích xuất dữ liệu";
+
+// MARK: Day of Week
+"monday" = "Hai";
+"tuesday" = "Ba";
+"wednesday" = "Tư";
+"thursday" = "Năm";
+"friday" = "Sáu";
+"saturday" = "Bảy";
+"sunday" = "Chủ Nhật";
 

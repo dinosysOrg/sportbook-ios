@@ -10,7 +10,7 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-class SignupViewModel {
+class SignupViewModel : BaseViewModel {
     
     let emailValid: Driver<Bool>
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PageMenu
 import RxSwift
 import RxCocoa
 
@@ -14,7 +15,9 @@ class TournamentDetailViewController : BaseViewController {
     
     var currentTournament : TournamentModel?
     
-    fileprivate var viewModel : TournamentDetailViewModel!
+    var pageMenu : CAPSPageMenu?
+    
+    fileprivate let viewModel = TournamentDetailViewModel()
     
     fileprivate let disposeBag = DisposeBag()
     
@@ -24,23 +27,24 @@ class TournamentDetailViewController : BaseViewController {
     
     @IBOutlet weak var btnSignUp: UIButton!
     
+    @IBOutlet weak var infoContainerView: UIView!
+    
     override func viewDidLoad() {
         self.title = currentTournament?.name
         self.configureViewModel()
         self.configureBindings()
+        self.configureMenu()
         self.viewModel.loadTournamentDetail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
-        self.viewModel?.loadTournamentDetail()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        self.viewModel.loadTournamentDetail()
     }
     
     func configureViewModel() {
-        self.viewModel = TournamentDetailViewModel(tournament: self.currentTournament!)
+        self.viewModel.tournament.value = currentTournament
     }
     
     private func configureBindings() {
@@ -50,29 +54,21 @@ class TournamentDetailViewController : BaseViewController {
         signUpTap.asObservable().subscribe(onNext: { [unowned self] _ in
             let user = UserManager.sharedInstance.user!
             
-            let tournament = self.viewModel.tournament.value!
-            
-            //If there's no team, it means that user have not sign up this tournament yet
-            if tournament.teams.count == 0 {
-                //Check his/her profile if they had signed up any tournament before
-                if user.hasTournamentProfile {
-                    //If had, do fast sign up with their info
-                    self.viewModel.fastSignUpTournament().subscribe(onNext: { success in
-                        self.updateSignUpButton(success)
-                    }).addDisposableTo(self.disposeBag)
-                } else {
-                    //Else move them to sign up view
-                    let signUpTournamentViewController = UIStoryboard.loadSignUpTournamentViewController()
-                    
-                    signUpTournamentViewController.currentTournament = self.viewModel.tournament.value
-                    signUpTournamentViewController.signUpSuccess.asDriver().drive(onNext: { [unowned self] success in
-                        self.updateSignUpButton(success)
-                    }).addDisposableTo(self.disposeBag)
-                    
-                    self.navigationController?.pushViewController(signUpTournamentViewController, animated: true)
-                }
+            if user.hasTournamentProfile {
+                //If had, do fast sign up with their info
+                self.viewModel.fastSignUpTournament().subscribe(onNext: { success in
+                    self.updateSignUpButton(success)
+                }).addDisposableTo(self.disposeBag)
             } else {
+                //Else move them to sign up view
+                let signUpTournamentViewController = UIStoryboard.loadSignUpTournamentViewController()
                 
+                signUpTournamentViewController.currentTournament = self.viewModel.tournament.value
+                signUpTournamentViewController.signUpSuccess.asDriver().drive(onNext: { [unowned self] success in
+                    self.updateSignUpButton(success)
+                }).addDisposableTo(self.disposeBag)
+                
+                self.navigationController?.pushViewController(signUpTournamentViewController, animated: true)
             }
         }).addDisposableTo(disposeBag)
         
@@ -84,30 +80,33 @@ class TournamentDetailViewController : BaseViewController {
         }).disposed(by: disposeBag)
         
         self.viewModel.hasFailed.asObservable().skip(1).subscribe(onNext: { [unowned self] error in
-            if case SportBookError.Unauthenticated = error {
+            if case SportBookError.unauthenticated = error {
                 AuthManager.sharedInstance.clearSession()
                 
                 //Present login view controller
                 let loginViewController = UIStoryboard.loadLoginViewController()
                 self.tabBarController?.present(loginViewController, animated: true, completion: { })
             } else {
-                ErrorManager.sharedInstance.showError(viewController: self, error: error)
+                self.alertError(text: error.description).subscribe(onCompleted: {})
+                    .addDisposableTo(self.disposeBag)
             }
         }).disposed(by: disposeBag)
     }
     
-    func updateUI(tournament : TournamentModel) {
-        if tournament.teams.count > 0 {
-            let myTeam = tournament.teams.first!
-            
-            if myTeam.status == TeamStatus.registered {
-                self.updateSignUpButton(true)
-            } else {
-                //Implement later
-            }
-        } else {
+    func updateUI(tournament : TournamentModel) {        
+        guard let myTeam = tournament.myTeam else {
             self.btnSignUp.isEnabled = true
+            
+            return
         }
+        
+        if myTeam.status == TeamStatus.registered {
+             self.updateSignUpButton(true)
+        } else {
+            //Implement later
+        }
+        
+        self.configureMenu()
     }
     
     func updateSignUpButton(_ signedUp : Bool) {
@@ -117,5 +116,54 @@ class TournamentDetailViewController : BaseViewController {
         } else {
             self.btnSignUp.isEnabled = true
         }
+    }
+    
+    
+    func configureMenu() {
+        for subView in self.infoContainerView.subviews {
+            subView.removeFromSuperview()
+        }
+        
+        // Array to keep track of controllers in page menu
+        var controllerArray : [UIViewController] = []
+        
+        // Create variables for all view controllers you want to put in the
+        // page menu, initialize them, and add each to the controller array.
+        // (Can be any UIViewController subclass)
+        // Make sure the title property of all view controllers is set
+        // Example:
+        let ruleViewController : WebViewController = WebViewController(nibName: "WebViewController", bundle: nil)
+        ruleViewController.title = "rule_tab".localized
+        ruleViewController.htmlString = currentTournament?.competitionMode
+        
+        let feeViewController : WebViewController = WebViewController(nibName: "WebViewController", bundle: nil)
+        feeViewController.title = "fee_tab".localized
+        feeViewController.htmlString = currentTournament?.competitionFee
+        
+        let scheduleViewController : WebViewController = WebViewController(nibName: "WebViewController", bundle: nil)
+        scheduleViewController.title = "schedule_tab".localized
+        scheduleViewController.htmlString = currentTournament?.competitionSchedule
+        
+        controllerArray.append(ruleViewController)
+        controllerArray.append(feeViewController)
+        controllerArray.append(scheduleViewController)
+        
+        // Customize page menu to your liking (optional) or use default settings by sending nil for 'options' in the init
+        // Example:
+        let parameters: [CAPSPageMenuOption] = [
+            .scrollMenuBackgroundColor(UIColor.white),
+            .selectedMenuItemLabelColor(UIColor.black),
+            .unselectedMenuItemLabelColor(UIColor.gray),
+            .menuItemSeparatorWidth(0),
+            .useMenuLikeSegmentedControl(false)
+        ]
+        
+        // Initialize page menu with controller array, frame, and optional parameters
+        let pageMenuFrame = CGRect(x: 0, y: 0, width: self.infoContainerView.frame.width, height: self.infoContainerView.frame.height)
+        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: pageMenuFrame, pageMenuOptions: parameters)
+        
+        // Lastly add page menu as subview of base view controller view
+        // or use pageMenu controller in you view hierachy as desired
+        self.infoContainerView.addSubview(pageMenu!.view)
     }
 }

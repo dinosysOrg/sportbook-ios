@@ -28,7 +28,7 @@ let AuthenticationProvider = RxMoyaProvider<AuthenticationAPI>(endpointClosure: 
 //Delcaration of Authentication APIs
 public enum AuthenticationAPI  {
     case signInWithEmail(String, String) //Signin with email and password
-    case signInWithFacebook(String)
+    case signInWithFacebook(String) //Signin with Facebook
     case signUp(String, String) //Sign up with email and password
     case signOut //Sign up with email and password
     case forgotPassword(String) //Reset password

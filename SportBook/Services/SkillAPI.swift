@@ -9,7 +9,13 @@
 import Foundation
 import Moya
 
-let SkillProvider = RxMoyaProvider<SkillAPI>()
+let skillEndpointClosure = { (target: SkillAPI) -> Endpoint<SkillAPI> in
+    let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
+    
+    return defaultEndpoint.adding(newHTTPHeaderFields: AuthManager.sharedInstance.toDictionary())
+}
+
+let SkillProvider = RxMoyaProvider<SkillAPI>(endpointClosure: skillEndpointClosure)
 
 // MARK: - Provider support
 

@@ -9,12 +9,58 @@
 /* Begin PBXBuildFile section */
 		0D4320EF5EC4B7E862342FA0 /* Pods_SportBook_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E38B7F8DD6CD187416E578 /* Pods_SportBook_Staging.framework */; };
 		B0DC3CE17A243AE17938B896 /* Pods_SportBookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B427DEF1612F4A55DC3CA76 /* Pods_SportBookUITests.framework */; };
-		B1FBEB55F0F8990FE6399DE3 /* Pods_SportBook_Production.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C038C250897C145A71AF193F /* Pods_SportBook_Production.framework */; };
+		C90434B91F02066100B44B6A /* TimeSlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434B81F02066100B44B6A /* TimeSlotCell.swift */; };
+		C90434BA1F02066400B44B6A /* TimeSlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434B81F02066100B44B6A /* TimeSlotCell.swift */; };
+		C90434BC1F02090D00B44B6A /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434BB1F02090D00B44B6A /* CALayer+Extension.swift */; };
+		C90434C01F02165600B44B6A /* TimeBlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434BF1F02165600B44B6A /* TimeBlockCell.swift */; };
+		C90434C51F0217A400B44B6A /* MyTournamentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434C41F0217A400B44B6A /* MyTournamentViewModel.swift */; };
+		C90434C71F02180700B44B6A /* InputRankVenueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434C61F02180700B44B6A /* InputRankVenueViewModel.swift */; };
+		C90434C81F02180700B44B6A /* InputRankVenueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434C61F02180700B44B6A /* InputRankVenueViewModel.swift */; };
+		C90434CD1F021A8A00B44B6A /* DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434CC1F021A8A00B44B6A /* DayOfWeek.swift */; };
+		C90434CE1F021A8A00B44B6A /* DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434CC1F021A8A00B44B6A /* DayOfWeek.swift */; };
+		C90434D01F021C2D00B44B6A /* TimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434CF1F021C2D00B44B6A /* TimeBlock.swift */; };
+		C90434D11F021C2D00B44B6A /* TimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434CF1F021C2D00B44B6A /* TimeBlock.swift */; };
+		C90434D31F0239F600B44B6A /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434D21F0239F600B44B6A /* TimeSlot.swift */; };
+		C90434D41F0239F600B44B6A /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434D21F0239F600B44B6A /* TimeSlot.swift */; };
+		C90434D91F02561300B44B6A /* WeekDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434D81F02561300B44B6A /* WeekDayCell.swift */; };
+		C90434DA1F02561300B44B6A /* WeekDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434D81F02561300B44B6A /* WeekDayCell.swift */; };
+		C90434DB1F02563700B44B6A /* TimeBlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434BF1F02165600B44B6A /* TimeBlockCell.swift */; };
 		C913898F1EFA275F0035F0F4 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FA8A6E1EF26BD500AA73D5 /* DatePickerViewController.swift */; };
 		C91389901EFA277A0035F0F4 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9FA8A6F1EF26BD500AA73D5 /* DatePickerViewController.xib */; };
+		C91A21D41F00F5B700CFE11D /* MyTournament.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C91A21D31F00F5B700CFE11D /* MyTournament.storyboard */; };
+		C91A21D61F00F63D00CFE11D /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A21D51F00F63D00CFE11D /* RuleViewController.swift */; };
+		C91A21D81F00F64C00CFE11D /* InputRankVenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A21D71F00F64C00CFE11D /* InputRankVenueViewController.swift */; };
+		C91A21DA1F00F66300CFE11D /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A21D91F00F66300CFE11D /* TimeTableViewController.swift */; };
+		C91A21DC1F00F67100CFE11D /* OpponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A21DB1F00F67100CFE11D /* OpponentViewController.swift */; };
+		C91A21DE1F00F68400CFE11D /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A21DD1F00F68400CFE11D /* ResultViewController.swift */; };
+		C930AF261F04DCD5007952E8 /* OpponentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930AF251F04DCD5007952E8 /* OpponentCell.swift */; };
+		C930AF271F04DCD5007952E8 /* OpponentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930AF251F04DCD5007952E8 /* OpponentCell.swift */; };
+		C930AF281F04E1E1007952E8 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3F01EFCFD1000FEA213 /* ErrorModel.swift */; };
+		C930AF291F04E1E1007952E8 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93B26D31F00FA7D006A81DB /* WebViewController.swift */; };
+		C930AF2A1F04E1E1007952E8 /* MyTournamentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434C41F0217A400B44B6A /* MyTournamentViewModel.swift */; };
+		C930AF2B1F04E1E1007952E8 /* MatchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C4021EFD146300FEA213 /* MatchAPI.swift */; };
+		C930AF2C1F04E1E1007952E8 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3EA1EFCCB0C00FEA213 /* Date+Extension.swift */; };
+		C930AF2D1F04E1E1007952E8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3FC1EFD05CD00FEA213 /* UIViewController+Extension.swift */; };
+		C930AF2E1F04E1E1007952E8 /* CALayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434BB1F02090D00B44B6A /* CALayer+Extension.swift */; };
+		C930AF301F04E7D9007952E8 /* TournamentMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930AF2F1F04E7D9007952E8 /* TournamentMatchCell.swift */; };
+		C930AF311F04E820007952E8 /* TournamentMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930AF2F1F04E7D9007952E8 /* TournamentMatchCell.swift */; };
+		C930AF331F04F5B4007952E8 /* OpponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930AF321F04F5B4007952E8 /* OpponentViewModel.swift */; };
+		C930AF351F04F5C3007952E8 /* TimeTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930AF341F04F5C3007952E8 /* TimeTableViewModel.swift */; };
+		C930AF371F04F5CC007952E8 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930AF361F04F5CC007952E8 /* ResultViewModel.swift */; };
+		C930AF391F04F94C007952E8 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930AF381F04F94C007952E8 /* BaseViewModel.swift */; };
+		C930AF3D1F05002D007952E8 /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930AF3C1F05002D007952E8 /* GroupModel.swift */; };
 		C93482031ED59B4100B069C1 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482021ED59B4100B069C1 /* ForgotPasswordViewModel.swift */; };
 		C93482061ED59B4800B069C1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482041ED59B4800B069C1 /* LoginViewModel.swift */; };
 		C93482071ED59B4800B069C1 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93482051ED59B4800B069C1 /* SignupViewModel.swift */; };
+		C93B26D51F00FA7D006A81DB /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93B26D31F00FA7D006A81DB /* WebViewController.swift */; };
+		C93B26D61F00FA7D006A81DB /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C93B26D41F00FA7D006A81DB /* WebViewController.xib */; };
+		C93B26D71F00FB38006A81DB /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C93B26D41F00FA7D006A81DB /* WebViewController.xib */; };
+		C93B26D81F0102ED006A81DB /* MyTournament.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C91A21D31F00F5B700CFE11D /* MyTournament.storyboard */; };
+		C93B26D91F0102F7006A81DB /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A21D51F00F63D00CFE11D /* RuleViewController.swift */; };
+		C93B26DA1F0102F9006A81DB /* InputRankVenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A21D71F00F64C00CFE11D /* InputRankVenueViewController.swift */; };
+		C93B26DB1F0102FB006A81DB /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A21D91F00F66300CFE11D /* TimeTableViewController.swift */; };
+		C93B26DC1F0102FD006A81DB /* OpponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A21DB1F00F67100CFE11D /* OpponentViewController.swift */; };
+		C93B26DD1F010301006A81DB /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A21DD1F00F68400CFE11D /* ResultViewController.swift */; };
 		C93BCC161ED7EDCB008A99FC /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93BCC151ED7EDCB008A99FC /* AuthManager.swift */; };
 		C93BCC181ED81338008A99FC /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93BCC171ED81338008A99FC /* Validation.swift */; };
 		C94941D71ECBF5DC00C21862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94941D61ECBF5DC00C21862 /* AppDelegate.swift */; };
@@ -30,6 +76,9 @@
 		C96AC9891ECD99000055580B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9851ECD99000055580B /* ForgotPasswordViewController.swift */; };
 		C96AC98A1ECD99000055580B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9861ECD99000055580B /* LoginViewController.swift */; };
 		C96AC98B1ECD99000055580B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9871ECD99000055580B /* SignupViewController.swift */; };
+		C972061C1F03885F0034CE96 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C972061B1F03885F0034CE96 /* MapKit.framework */; };
+		C972061D1F0388660034CE96 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C972061B1F03885F0034CE96 /* MapKit.framework */; };
+		C972061F1F0388750034CE96 /* Pods_SportBook_Production.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C972061E1F0388750034CE96 /* Pods_SportBook_Production.framework */; };
 		C97522D21EE6533A00104336 /* MyTournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97522D11EE6533A00104336 /* MyTournamentViewController.swift */; };
 		C97522D41EE6573200104336 /* TournamentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97522D31EE6573200104336 /* TournamentDetailViewController.swift */; };
 		C976C3E21EFCAEFC00FEA213 /* MyTournamentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3E11EFCAEFC00FEA213 /* MyTournamentDetailViewController.swift */; };
@@ -40,6 +89,9 @@
 		C976C3E81EFCB59400FEA213 /* TournamentMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3E71EFCB59400FEA213 /* TournamentMenuCell.swift */; };
 		C976C3E91EFCB6EC00FEA213 /* TournamentMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3E71EFCB59400FEA213 /* TournamentMenuCell.swift */; };
 		C976C3EB1EFCCB0C00FEA213 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3EA1EFCCB0C00FEA213 /* Date+Extension.swift */; };
+		C976C3F11EFCFD1000FEA213 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3F01EFCFD1000FEA213 /* ErrorModel.swift */; };
+		C976C3FD1EFD05CD00FEA213 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3FC1EFD05CD00FEA213 /* UIViewController+Extension.swift */; };
+		C976C4031EFD146300FEA213 /* MatchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C4021EFD146300FEA213 /* MatchAPI.swift */; };
 		C97E3C221EEE9397000DC4B2 /* SkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C211EEE9397000DC4B2 /* SkillCell.swift */; };
 		C97E3C241EEE93CE000DC4B2 /* SkillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C231EEE93CE000DC4B2 /* SkillModel.swift */; };
 		C97E3C261EEEA9CD000DC4B2 /* TeamAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C251EEEA9CD000DC4B2 /* TeamAPI.swift */; };
@@ -59,9 +111,7 @@
 		C9AE767D1EDFC6CC00F2D4D4 /* TournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AE767C1EDFC6CC00F2D4D4 /* TournamentViewController.swift */; };
 		C9AE767F1EDFC76000F2D4D4 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AE767E1EDFC76000F2D4D4 /* StatisticViewController.swift */; };
 		C9B27E831EDE6D93009532E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9B27E851EDE6D93009532E2 /* Localizable.strings */; };
-		C9B27E8D1EDED89B009532E2 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B27E8C1EDED89B009532E2 /* ErrorManager.swift */; };
 		C9B65D6A1EE7B21400C6F84C /* TournamentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D691EE7B21400C6F84C /* TournamentViewModel.swift */; };
-		C9B65D6C1EE7B21E00C6F84C /* MyTournamentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D6B1EE7B21E00C6F84C /* MyTournamentViewModel.swift */; };
 		C9B65D701EE7B23D00C6F84C /* TournamentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D6F1EE7B23D00C6F84C /* TournamentDetailViewModel.swift */; };
 		C9B65D721EE7B63300C6F84C /* TournamentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D711EE7B63300C6F84C /* TournamentModel.swift */; };
 		C9B65D741EE7DDD700C6F84C /* CachedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D731EE7DDD700C6F84C /* CachedManager.swift */; };
@@ -74,7 +124,6 @@
 		C9D8446B1EE7FB0E00C77FD0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7087E1ED41CE00062B0BA /* UserManager.swift */; };
 		C9D8446C1EE7FB0E00C77FD0 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93BCC171ED81338008A99FC /* Validation.swift */; };
 		C9D8446D1EE7FB0E00C77FD0 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7087A1ED41C000062B0BA /* String+Extension.swift */; };
-		C9D8446F1EE7FB0E00C77FD0 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B27E8C1EDED89B009532E2 /* ErrorManager.swift */; };
 		C9D844701EE7FB0E00C77FD0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F429371ED5683700A304C3 /* ProfileViewController.swift */; };
 		C9D844711EE7FB0E00C77FD0 /* TournamentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E708721ED3DF0E0062B0BA /* TournamentAPI.swift */; };
 		C9D844721EE7FB0E00C77FD0 /* TournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AE767C1EDFC6CC00F2D4D4 /* TournamentViewController.swift */; };
@@ -87,7 +136,6 @@
 		C9D8447A1EE7FB0E00C77FD0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94941D81ECBF5DC00C21862 /* MainViewController.swift */; };
 		C9D8447B1EE7FB0E00C77FD0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7087C1ED41CCF0062B0BA /* UserModel.swift */; };
 		C9D8447C1EE7FB0E00C77FD0 /* TournamentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97522D31EE6573200104336 /* TournamentDetailViewController.swift */; };
-		C9D8447D1EE7FB0E00C77FD0 /* MyTournamentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D6B1EE7B21E00C6F84C /* MyTournamentViewModel.swift */; };
 		C9D8447E1EE7FB0E00C77FD0 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96AC9851ECD99000055580B /* ForgotPasswordViewController.swift */; };
 		C9D8447F1EE7FB0E00C77FD0 /* TournamentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B65D6F1EE7B23D00C6F84C /* TournamentDetailViewModel.swift */; };
 		C9D844801EE7FB0E00C77FD0 /* SportBookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E708781ED3E73A0062B0BA /* SportBookAPI.swift */; };
@@ -160,9 +208,33 @@
 		86AE5EE0368962AAE5CED1B3 /* Pods-SportBookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportBookUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportBookUITests/Pods-SportBookUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F2388BB8D1FCE93A98C9C0A /* Pods-SportBookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportBookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportBookTests/Pods-SportBookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C038C250897C145A71AF193F /* Pods_SportBook_Production.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportBook_Production.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C90434B81F02066100B44B6A /* TimeSlotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSlotCell.swift; sourceTree = "<group>"; };
+		C90434BB1F02090D00B44B6A /* CALayer+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Extension.swift"; sourceTree = "<group>"; };
+		C90434BF1F02165600B44B6A /* TimeBlockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBlockCell.swift; sourceTree = "<group>"; };
+		C90434C41F0217A400B44B6A /* MyTournamentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTournamentViewModel.swift; sourceTree = "<group>"; };
+		C90434C61F02180700B44B6A /* InputRankVenueViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputRankVenueViewModel.swift; sourceTree = "<group>"; };
+		C90434CC1F021A8A00B44B6A /* DayOfWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOfWeek.swift; sourceTree = "<group>"; };
+		C90434CF1F021C2D00B44B6A /* TimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBlock.swift; sourceTree = "<group>"; };
+		C90434D21F0239F600B44B6A /* TimeSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
+		C90434D81F02561300B44B6A /* WeekDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDayCell.swift; sourceTree = "<group>"; };
+		C91A21D31F00F5B700CFE11D /* MyTournament.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyTournament.storyboard; sourceTree = "<group>"; };
+		C91A21D51F00F63D00CFE11D /* RuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
+		C91A21D71F00F64C00CFE11D /* InputRankVenueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputRankVenueViewController.swift; sourceTree = "<group>"; };
+		C91A21D91F00F66300CFE11D /* TimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
+		C91A21DB1F00F67100CFE11D /* OpponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpponentViewController.swift; sourceTree = "<group>"; };
+		C91A21DD1F00F68400CFE11D /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		C930AF251F04DCD5007952E8 /* OpponentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpponentCell.swift; sourceTree = "<group>"; };
+		C930AF2F1F04E7D9007952E8 /* TournamentMatchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentMatchCell.swift; sourceTree = "<group>"; };
+		C930AF321F04F5B4007952E8 /* OpponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpponentViewModel.swift; sourceTree = "<group>"; };
+		C930AF341F04F5C3007952E8 /* TimeTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewModel.swift; sourceTree = "<group>"; };
+		C930AF361F04F5CC007952E8 /* ResultViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
+		C930AF381F04F94C007952E8 /* BaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		C930AF3C1F05002D007952E8 /* GroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		C93482021ED59B4100B069C1 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		C93482041ED59B4800B069C1 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C93482051ED59B4800B069C1 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		C93B26D31F00FA7D006A81DB /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		C93B26D41F00FA7D006A81DB /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		C93BCC151ED7EDCB008A99FC /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		C93BCC171ED81338008A99FC /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		C94941D31ECBF5DC00C21862 /* SportBook Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SportBook Staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,11 +256,16 @@
 		C96AC9851ECD99000055580B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		C96AC9861ECD99000055580B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C96AC9871ECD99000055580B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		C972061B1F03885F0034CE96 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C972061E1F0388750034CE96 /* Pods_SportBook_Production.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_SportBook_Production.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SportBook-eekctrqcszdahwcvrqnjtiwbmvpv/Build/Products/Debug-iphonesimulator/Pods_SportBook_Production.framework"; sourceTree = "<group>"; };
 		C97522D11EE6533A00104336 /* MyTournamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTournamentViewController.swift; sourceTree = "<group>"; };
 		C97522D31EE6573200104336 /* TournamentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentDetailViewController.swift; sourceTree = "<group>"; };
 		C976C3E11EFCAEFC00FEA213 /* MyTournamentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTournamentDetailViewController.swift; sourceTree = "<group>"; };
 		C976C3E71EFCB59400FEA213 /* TournamentMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentMenuCell.swift; sourceTree = "<group>"; };
 		C976C3EA1EFCCB0C00FEA213 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		C976C3F01EFCFD1000FEA213 /* ErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		C976C3FC1EFD05CD00FEA213 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		C976C4021EFD146300FEA213 /* MatchAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchAPI.swift; sourceTree = "<group>"; };
 		C97E3C211EEE9397000DC4B2 /* SkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillCell.swift; sourceTree = "<group>"; };
 		C97E3C231EEE93CE000DC4B2 /* SkillModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillModel.swift; sourceTree = "<group>"; };
 		C97E3C251EEEA9CD000DC4B2 /* TeamAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamAPI.swift; sourceTree = "<group>"; };
@@ -207,9 +284,7 @@
 		C9AE767E1EDFC76000F2D4D4 /* StatisticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		C9B27E841EDE6D93009532E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9B27E871EDE7411009532E2 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C9B27E8C1EDED89B009532E2 /* ErrorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		C9B65D691EE7B21400C6F84C /* TournamentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentViewModel.swift; sourceTree = "<group>"; };
-		C9B65D6B1EE7B21E00C6F84C /* MyTournamentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTournamentViewModel.swift; sourceTree = "<group>"; };
 		C9B65D6F1EE7B23D00C6F84C /* TournamentDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentDetailViewModel.swift; sourceTree = "<group>"; };
 		C9B65D711EE7B63300C6F84C /* TournamentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentModel.swift; sourceTree = "<group>"; };
 		C9B65D731EE7DDD700C6F84C /* CachedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedManager.swift; sourceTree = "<group>"; };
@@ -242,6 +317,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C972061C1F03885F0034CE96 /* MapKit.framework in Frameworks */,
 				0D4320EF5EC4B7E862342FA0 /* Pods_SportBook_Staging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,7 +342,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1FBEB55F0F8990FE6399DE3 /* Pods_SportBook_Production.framework in Frameworks */,
+				C972061F1F0388750034CE96 /* Pods_SportBook_Production.framework in Frameworks */,
+				C972061D1F0388660034CE96 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,13 +367,49 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C90434B71F02062C00B44B6A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C90434B81F02066100B44B6A /* TimeSlotCell.swift */,
+				C90434BF1F02165600B44B6A /* TimeBlockCell.swift */,
+				C90434D81F02561300B44B6A /* WeekDayCell.swift */,
+				C930AF251F04DCD5007952E8 /* OpponentCell.swift */,
+				C930AF2F1F04E7D9007952E8 /* TournamentMatchCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C90434C31F02178B00B44B6A /* MyTournamentViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C90434C61F02180700B44B6A /* InputRankVenueViewModel.swift */,
+				C930AF321F04F5B4007952E8 /* OpponentViewModel.swift */,
+				C930AF341F04F5C3007952E8 /* TimeTableViewModel.swift */,
+				C930AF361F04F5CC007952E8 /* ResultViewModel.swift */,
+			);
+			path = MyTournamentViewModels;
+			sourceTree = "<group>";
+		};
+		C91A21D21F00F58E00CFE11D /* MyTournamentView */ = {
+			isa = PBXGroup;
+			children = (
+				C90434B71F02062C00B44B6A /* Cells */,
+				C91A21D31F00F5B700CFE11D /* MyTournament.storyboard */,
+				C91A21D51F00F63D00CFE11D /* RuleViewController.swift */,
+				C91A21D71F00F64C00CFE11D /* InputRankVenueViewController.swift */,
+				C91A21D91F00F66300CFE11D /* TimeTableViewController.swift */,
+				C91A21DB1F00F67100CFE11D /* OpponentViewController.swift */,
+				C91A21DD1F00F68400CFE11D /* ResultViewController.swift */,
+			);
+			path = MyTournamentView;
+			sourceTree = "<group>";
+		};
 		C93BCC141ED7ED98008A99FC /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				C9E7087E1ED41CE00062B0BA /* UserManager.swift */,
 				C93BCC151ED7EDCB008A99FC /* AuthManager.swift */,
 				C98FD1C91EDD5127004BA4E3 /* ThemeManager.swift */,
-				C9B27E8C1EDED89B009532E2 /* ErrorManager.swift */,
 				C9B65D731EE7DDD700C6F84C /* CachedManager.swift */,
 			);
 			path = Managers;
@@ -380,6 +493,11 @@
 				C97E3C231EEE93CE000DC4B2 /* SkillModel.swift */,
 				C98C51051EF7DC4E008F67C5 /* LocationModel.swift */,
 				C9C197341EFBC21A003B5683 /* TeamModel.swift */,
+				C976C3F01EFCFD1000FEA213 /* ErrorModel.swift */,
+				C90434CC1F021A8A00B44B6A /* DayOfWeek.swift */,
+				C90434CF1F021C2D00B44B6A /* TimeBlock.swift */,
+				C90434D21F0239F600B44B6A /* TimeSlot.swift */,
+				C930AF3C1F05002D007952E8 /* GroupModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -404,6 +522,7 @@
 			children = (
 				C96AC9831ECD98410055580B /* AuthenticationViewModels */,
 				C9B65D681EE7B1A100C6F84C /* TournamentViewModels */,
+				C930AF381F04F94C007952E8 /* BaseViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -462,6 +581,8 @@
 				C96AC9761ECD85030055580B /* UIStoryboard+Loader.swift */,
 				C9E7087A1ED41C000062B0BA /* String+Extension.swift */,
 				C976C3EA1EFCCB0C00FEA213 /* Date+Extension.swift */,
+				C976C3FC1EFD05CD00FEA213 /* UIViewController+Extension.swift */,
+				C90434BB1F02090D00B44B6A /* CALayer+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -490,6 +611,8 @@
 		C94942191ECC047100C21862 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C972061E1F0388750034CE96 /* Pods_SportBook_Production.framework */,
+				C972061B1F03885F0034CE96 /* MapKit.framework */,
 				C9FA8A6B1EF24BB100AA73D5 /* Pods_SportBook_Production.framework */,
 				42704F6E113E2491B3558520 /* Pods_SportBook.framework */,
 				7B3C706898DB9052943EB172 /* Pods_SportBookTests.framework */,
@@ -542,8 +665,9 @@
 				C98CEBC31EEE519900D9A908 /* Tournament.storyboard */,
 				C97522D11EE6533A00104336 /* MyTournamentViewController.swift */,
 				C97522D31EE6573200104336 /* TournamentDetailViewController.swift */,
-				C98CEBC51EEE53C900D9A908 /* SignUpTournamentViewController.swift */,
 				C976C3E11EFCAEFC00FEA213 /* MyTournamentDetailViewController.swift */,
+				C98CEBC51EEE53C900D9A908 /* SignUpTournamentViewController.swift */,
+				C91A21D21F00F58E00CFE11D /* MyTournamentView */,
 			);
 			path = TournamentView;
 			sourceTree = "<group>";
@@ -553,8 +677,9 @@
 			children = (
 				C9FA8A7B1EF29A0000AA73D5 /* TournamentSignUpViewModel.swift */,
 				C9B65D691EE7B21400C6F84C /* TournamentViewModel.swift */,
-				C9B65D6B1EE7B21E00C6F84C /* MyTournamentViewModel.swift */,
+				C90434C41F0217A400B44B6A /* MyTournamentViewModel.swift */,
 				C9B65D6F1EE7B23D00C6F84C /* TournamentDetailViewModel.swift */,
+				C90434C31F02178B00B44B6A /* MyTournamentViewModels */,
 			);
 			path = TournamentViewModels;
 			sourceTree = "<group>";
@@ -578,8 +703,9 @@
 				C9E708781ED3E73A0062B0BA /* SportBookAPI.swift */,
 				C9E708701ED3DEFC0062B0BA /* AuthenticationAPI.swift */,
 				C9E708721ED3DF0E0062B0BA /* TournamentAPI.swift */,
-				C9E708761ED3E6630062B0BA /* SkillAPI.swift */,
 				C97E3C251EEEA9CD000DC4B2 /* TeamAPI.swift */,
+				C976C4021EFD146300FEA213 /* MatchAPI.swift */,
+				C9E708761ED3E6630062B0BA /* SkillAPI.swift */,
 				C97E3C271EEEA9E0000DC4B2 /* InvitationAPI.swift */,
 				C97E3C291EEEA9E9000DC4B2 /* DeviceAPI.swift */,
 			);
@@ -593,6 +719,8 @@
 				C9FA8A6F1EF26BD500AA73D5 /* DatePickerViewController.xib */,
 				C98C50FF1EF7AEA1008F67C5 /* PickerViewControler.swift */,
 				C98C51001EF7AEA1008F67C5 /* PickerViewControler.xib */,
+				C93B26D31F00FA7D006A81DB /* WebViewController.swift */,
+				C93B26D41F00FA7D006A81DB /* WebViewController.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -757,7 +885,9 @@
 				C9FA8A711EF26BD500AA73D5 /* DatePickerViewController.xib in Resources */,
 				C9FA8A681EF24A1000AA73D5 /* Staging Info.plist in Resources */,
 				C9B27E831EDE6D93009532E2 /* Localizable.strings in Resources */,
+				C93B26D61F00FA7D006A81DB /* WebViewController.xib in Resources */,
 				C98CEBC41EEE519900D9A908 /* Tournament.storyboard in Resources */,
+				C91A21D41F00F5B700CFE11D /* MyTournament.storyboard in Resources */,
 				C98C51031EF7AEA1008F67C5 /* PickerViewControler.xib in Resources */,
 				C96AC9881ECD99000055580B /* Authentication.storyboard in Resources */,
 				C98C510C1EF7E498008F67C5 /* cities.json in Resources */,
@@ -792,9 +922,11 @@
 				C98C51041EF7AEA1008F67C5 /* PickerViewControler.xib in Resources */,
 				C9FA8A691EF24A1F00AA73D5 /* Production Info.plist in Resources */,
 				C9D8448E1EE7FB0E00C77FD0 /* Localizable.strings in Resources */,
+				C93B26D81F0102ED006A81DB /* MyTournament.storyboard in Resources */,
 				C9D8448F1EE7FB0E00C77FD0 /* Authentication.storyboard in Resources */,
 				C9D844901EE7FB0E00C77FD0 /* LaunchScreen.storyboard in Resources */,
 				C98C510D1EF7E498008F67C5 /* cities.json in Resources */,
+				C93B26D71F00FB38006A81DB /* WebViewController.xib in Resources */,
 				C9D844911EE7FB0E00C77FD0 /* Assets.xcassets in Resources */,
 				C9D844921EE7FB0E00C77FD0 /* Main.storyboard in Resources */,
 			);
@@ -1016,6 +1148,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C930AF261F04DCD5007952E8 /* OpponentCell.swift in Sources */,
+				C930AF3D1F05002D007952E8 /* GroupModel.swift in Sources */,
+				C90434CD1F021A8A00B44B6A /* DayOfWeek.swift in Sources */,
+				C90434D31F0239F600B44B6A /* TimeSlot.swift in Sources */,
 				C98CEBC61EEE53C900D9A908 /* SignUpTournamentViewController.swift in Sources */,
 				C97E3C241EEE93CE000DC4B2 /* SkillModel.swift in Sources */,
 				C97E3C221EEE9397000DC4B2 /* SkillCell.swift in Sources */,
@@ -1023,46 +1159,65 @@
 				C98FD1CA1EDD5127004BA4E3 /* ThemeManager.swift in Sources */,
 				C9E7087F1ED41CE00062B0BA /* UserManager.swift in Sources */,
 				C93BCC181ED81338008A99FC /* Validation.swift in Sources */,
+				C930AF301F04E7D9007952E8 /* TournamentMatchCell.swift in Sources */,
+				C90434D01F021C2D00B44B6A /* TimeBlock.swift in Sources */,
+				C91A21D81F00F64C00CFE11D /* InputRankVenueViewController.swift in Sources */,
+				C930AF331F04F5B4007952E8 /* OpponentViewModel.swift in Sources */,
+				C930AF391F04F94C007952E8 /* BaseViewModel.swift in Sources */,
 				C9E7087B1ED41C000062B0BA /* String+Extension.swift in Sources */,
-				C9B27E8D1EDED89B009532E2 /* ErrorManager.swift in Sources */,
 				C976C3E81EFCB59400FEA213 /* TournamentMenuCell.swift in Sources */,
 				C9F429381ED5683700A304C3 /* ProfileViewController.swift in Sources */,
 				C9E708731ED3DF0E0062B0BA /* TournamentAPI.swift in Sources */,
 				C9AE767D1EDFC6CC00F2D4D4 /* TournamentViewController.swift in Sources */,
 				C97E3C261EEEA9CD000DC4B2 /* TeamAPI.swift in Sources */,
+				C91A21DA1F00F66300CFE11D /* TimeTableViewController.swift in Sources */,
 				C96AC98A1ECD99000055580B /* LoginViewController.swift in Sources */,
 				C9E708771ED3E6630062B0BA /* SkillAPI.swift in Sources */,
 				C93482071ED59B4800B069C1 /* SignupViewModel.swift in Sources */,
 				C9C1973C1EFBC86E003B5683 /* MyTournamentCell.swift in Sources */,
+				C90434C71F02180700B44B6A /* InputRankVenueViewModel.swift in Sources */,
+				C90434C51F0217A400B44B6A /* MyTournamentViewModel.swift in Sources */,
 				C93482031ED59B4100B069C1 /* ForgotPasswordViewModel.swift in Sources */,
 				C97522D21EE6533A00104336 /* MyTournamentViewController.swift in Sources */,
 				C96AC98B1ECD99000055580B /* SignupViewController.swift in Sources */,
 				C97E3C281EEEA9E0000DC4B2 /* InvitationAPI.swift in Sources */,
+				C93B26D51F00FA7D006A81DB /* WebViewController.swift in Sources */,
 				C94941D91ECBF5DC00C21862 /* MainViewController.swift in Sources */,
 				C9E7087D1ED41CCF0062B0BA /* UserModel.swift in Sources */,
 				C98C51011EF7AEA1008F67C5 /* PickerViewControler.swift in Sources */,
+				C930AF371F04F5CC007952E8 /* ResultViewModel.swift in Sources */,
+				C91A21D61F00F63D00CFE11D /* RuleViewController.swift in Sources */,
 				C9FA8A7C1EF29A0000AA73D5 /* TournamentSignUpViewModel.swift in Sources */,
 				C97522D41EE6573200104336 /* TournamentDetailViewController.swift in Sources */,
 				C976C3E21EFCAEFC00FEA213 /* MyTournamentDetailViewController.swift in Sources */,
-				C9B65D6C1EE7B21E00C6F84C /* MyTournamentViewModel.swift in Sources */,
 				C96AC9891ECD99000055580B /* ForgotPasswordViewController.swift in Sources */,
 				C9B65D701EE7B23D00C6F84C /* TournamentDetailViewModel.swift in Sources */,
+				C90434D91F02561300B44B6A /* WeekDayCell.swift in Sources */,
 				C97E3C2A1EEEA9E9000DC4B2 /* DeviceAPI.swift in Sources */,
 				C9C197351EFBC21A003B5683 /* TeamModel.swift in Sources */,
+				C91A21DC1F00F67100CFE11D /* OpponentViewController.swift in Sources */,
 				C9E708791ED3E73A0062B0BA /* SportBookAPI.swift in Sources */,
+				C90434B91F02066100B44B6A /* TimeSlotCell.swift in Sources */,
 				C9FA8A701EF26BD500AA73D5 /* DatePickerViewController.swift in Sources */,
 				C9E708711ED3DEFC0062B0BA /* AuthenticationAPI.swift in Sources */,
+				C930AF351F04F5C3007952E8 /* TimeTableViewModel.swift in Sources */,
 				C98C51061EF7DC4E008F67C5 /* LocationModel.swift in Sources */,
 				C9AE767F1EDFC76000F2D4D4 /* StatisticViewController.swift in Sources */,
+				C976C3FD1EFD05CD00FEA213 /* UIViewController+Extension.swift in Sources */,
+				C90434BC1F02090D00B44B6A /* CALayer+Extension.swift in Sources */,
 				C94941D71ECBF5DC00C21862 /* AppDelegate.swift in Sources */,
+				C976C4031EFD146300FEA213 /* MatchAPI.swift in Sources */,
 				C9B65D721EE7B63300C6F84C /* TournamentModel.swift in Sources */,
 				C96AC9821ECD88900055580B /* BaseViewController.swift in Sources */,
 				C93BCC161ED7EDCB008A99FC /* AuthManager.swift in Sources */,
+				C976C3F11EFCFD1000FEA213 /* ErrorModel.swift in Sources */,
 				C9B65D741EE7DDD700C6F84C /* CachedManager.swift in Sources */,
 				C9B65D6A1EE7B21400C6F84C /* TournamentViewModel.swift in Sources */,
 				C93482061ED59B4800B069C1 /* LoginViewModel.swift in Sources */,
 				C976C3EB1EFCCB0C00FEA213 /* Date+Extension.swift in Sources */,
 				C96AC9771ECD85030055580B /* UIStoryboard+Loader.swift in Sources */,
+				C90434C01F02165600B44B6A /* TimeBlockCell.swift in Sources */,
+				C91A21DE1F00F68400CFE11D /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,9 +1241,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C930AF281F04E1E1007952E8 /* ErrorModel.swift in Sources */,
+				C930AF291F04E1E1007952E8 /* WebViewController.swift in Sources */,
+				C930AF2A1F04E1E1007952E8 /* MyTournamentViewModel.swift in Sources */,
+				C930AF2B1F04E1E1007952E8 /* MatchAPI.swift in Sources */,
+				C930AF2C1F04E1E1007952E8 /* Date+Extension.swift in Sources */,
+				C930AF2D1F04E1E1007952E8 /* UIViewController+Extension.swift in Sources */,
+				C930AF2E1F04E1E1007952E8 /* CALayer+Extension.swift in Sources */,
 				C976C3E31EFCB35100FEA213 /* TeamModel.swift in Sources */,
 				C976C3E41EFCB35100FEA213 /* MyTournamentCell.swift in Sources */,
 				C976C3E51EFCB35100FEA213 /* TournamentCell.swift in Sources */,
+				C90434DA1F02561300B44B6A /* WeekDayCell.swift in Sources */,
 				C976C3E61EFCB35100FEA213 /* MyTournamentDetailViewController.swift in Sources */,
 				C913898F1EFA275F0035F0F4 /* DatePickerViewController.swift in Sources */,
 				C9FA8A601EF244A100AA73D5 /* SkillModel.swift in Sources */,
@@ -1096,14 +1259,19 @@
 				C9FA8A621EF244A100AA73D5 /* SignUpTournamentViewController.swift in Sources */,
 				C9FA8A631EF244A100AA73D5 /* TeamAPI.swift in Sources */,
 				C976C3E91EFCB6EC00FEA213 /* TournamentMenuCell.swift in Sources */,
+				C90434D41F0239F600B44B6A /* TimeSlot.swift in Sources */,
+				C90434C81F02180700B44B6A /* InputRankVenueViewModel.swift in Sources */,
+				C93B26DA1F0102F9006A81DB /* InputRankVenueViewController.swift in Sources */,
+				C93B26D91F0102F7006A81DB /* RuleViewController.swift in Sources */,
 				C9FA8A641EF244A100AA73D5 /* InvitationAPI.swift in Sources */,
 				C9FA8A651EF244A100AA73D5 /* DeviceAPI.swift in Sources */,
+				C93B26DB1F0102FB006A81DB /* TimeTableViewController.swift in Sources */,
 				C9D8446A1EE7FB0E00C77FD0 /* ThemeManager.swift in Sources */,
 				C9D8446B1EE7FB0E00C77FD0 /* UserManager.swift in Sources */,
 				C9FA8A7D1EF29A0000AA73D5 /* TournamentSignUpViewModel.swift in Sources */,
 				C9D8446C1EE7FB0E00C77FD0 /* Validation.swift in Sources */,
 				C9D8446D1EE7FB0E00C77FD0 /* String+Extension.swift in Sources */,
-				C9D8446F1EE7FB0E00C77FD0 /* ErrorManager.swift in Sources */,
+				C90434CE1F021A8A00B44B6A /* DayOfWeek.swift in Sources */,
 				C9D844701EE7FB0E00C77FD0 /* ProfileViewController.swift in Sources */,
 				C9D844711EE7FB0E00C77FD0 /* TournamentAPI.swift in Sources */,
 				C9D844721EE7FB0E00C77FD0 /* TournamentViewController.swift in Sources */,
@@ -1112,26 +1280,32 @@
 				C9D844751EE7FB0E00C77FD0 /* SignupViewModel.swift in Sources */,
 				C9D844761EE7FB0E00C77FD0 /* ForgotPasswordViewModel.swift in Sources */,
 				C9D844771EE7FB0E00C77FD0 /* MyTournamentViewController.swift in Sources */,
+				C90434DB1F02563700B44B6A /* TimeBlockCell.swift in Sources */,
 				C9D844781EE7FB0E00C77FD0 /* SignupViewController.swift in Sources */,
+				C90434BA1F02066400B44B6A /* TimeSlotCell.swift in Sources */,
 				C9D8447A1EE7FB0E00C77FD0 /* MainViewController.swift in Sources */,
 				C9D8447B1EE7FB0E00C77FD0 /* UserModel.swift in Sources */,
 				C9D8447C1EE7FB0E00C77FD0 /* TournamentDetailViewController.swift in Sources */,
-				C9D8447D1EE7FB0E00C77FD0 /* MyTournamentViewModel.swift in Sources */,
 				C9D8447E1EE7FB0E00C77FD0 /* ForgotPasswordViewController.swift in Sources */,
 				C9D8447F1EE7FB0E00C77FD0 /* TournamentDetailViewModel.swift in Sources */,
+				C93B26DD1F010301006A81DB /* ResultViewController.swift in Sources */,
 				C9D844801EE7FB0E00C77FD0 /* SportBookAPI.swift in Sources */,
 				C9D844811EE7FB0E00C77FD0 /* AuthenticationAPI.swift in Sources */,
 				C9D844821EE7FB0E00C77FD0 /* StatisticViewController.swift in Sources */,
+				C930AF271F04DCD5007952E8 /* OpponentCell.swift in Sources */,
 				C9D844831EE7FB0E00C77FD0 /* AppDelegate.swift in Sources */,
 				C9D844841EE7FB0E00C77FD0 /* TournamentModel.swift in Sources */,
+				C90434D11F021C2D00B44B6A /* TimeBlock.swift in Sources */,
 				C9D844851EE7FB0E00C77FD0 /* BaseViewController.swift in Sources */,
 				C98C51021EF7AEA1008F67C5 /* PickerViewControler.swift in Sources */,
 				C9D844861EE7FB0E00C77FD0 /* AuthManager.swift in Sources */,
 				C9D844871EE7FB0E00C77FD0 /* CachedManager.swift in Sources */,
 				C9D844881EE7FB0E00C77FD0 /* TournamentViewModel.swift in Sources */,
 				C9D844891EE7FB0E00C77FD0 /* LoginViewModel.swift in Sources */,
+				C93B26DC1F0102FD006A81DB /* OpponentViewController.swift in Sources */,
 				C98C51071EF7DC4E008F67C5 /* LocationModel.swift in Sources */,
 				C9D8448A1EE7FB0E00C77FD0 /* UIStoryboard+Loader.swift in Sources */,
+				C930AF311F04E820007952E8 /* TournamentMatchCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

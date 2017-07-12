@@ -102,6 +102,7 @@ class SignUpTournamentViewController : BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
         let backButton = UIBarButtonItem(title: "back".localized, style: .plain, target: self, action: #selector(self.navigateBack(sender:)))
         self.navigationItem.leftBarButtonItem = backButton
@@ -113,11 +114,13 @@ class SignUpTournamentViewController : BaseViewController {
     }
     
     func navigateBack(sender: AnyObject) {
+         //Display confirm dialog to cancle sign up tournament
         if signUpStep == .inputForm {
-            //Display confirm dialog to cancle sign up tournament
-            //Yes: Navigate back to tournament detail
-            //No: Dismiss dialog
-            self.navigationController?.popViewController(animated: true)
+            self.alertConfirm(text: "cancel_signup_tournament_confirm".localized).subscribe(onNext: { isOk in
+                if isOk {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }).addDisposableTo(disposeBag)
         } else {
             self.showInputFormView()
         }
@@ -202,14 +205,15 @@ class SignUpTournamentViewController : BaseViewController {
         }).disposed(by: disposeBag)
         
         self.viewModel.hasFailed.asObservable().skip(1).subscribe(onNext: { [unowned self] error in
-            if case SportBookError.Unauthenticated = error {
+            if case SportBookError.unauthenticated = error {
                 AuthManager.sharedInstance.clearSession()
                 
                 //Present login view controller
                 let loginViewController = UIStoryboard.loadLoginViewController()
                 self.tabBarController?.present(loginViewController, animated: true, completion: { })
             } else {
-                ErrorManager.sharedInstance.showError(viewController: self, error: error)
+                self.alertError(text: error.description).subscribe(onCompleted: {})
+                    .addDisposableTo(self.disposeBag)
             }
         }).disposed(by: disposeBag)
         

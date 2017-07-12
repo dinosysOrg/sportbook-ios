@@ -26,7 +26,7 @@ public enum TournamentAPI  {
     case tournament(Int) //Get a tournament by Id
     case myTournaments //Get my tournaments
     case upcomingTournaments //Get all upcoming tournaments
-    case upcomingMatches //Get all upcoming matches
+    case opponents(Int) //Get all opponents
     case signupTournament(Int, String, Int, String, Int, String?, String?, [Int]?) //Sign up for a tournament by Id
 }
 
@@ -36,7 +36,7 @@ extension TournamentAPI : TargetType {
     public var path: String {
         switch self {
         case .tournaments:
-            return "/tournaments/"
+            return "/tournaments"
         case .tournament(let id):
             return "/tournaments/\(id)"
         case .myTournaments:
@@ -44,9 +44,9 @@ extension TournamentAPI : TargetType {
         case .signupTournament(let id, _, _, _, _, _, _, _):
             return "/tournaments/\(id)/teams"
         case .upcomingTournaments:
-            return "/tournaments/my-tournaments/upcoming-tournaments/"
-        case .upcomingMatches:
-            return "/tournaments/my-tournaments/upcoming-matches/"
+            return "/tournaments/my-tournaments/upcoming-tournaments"
+        case .opponents(let id):
+            return "/tournaments/\(id)/groups"
         }
     }
     
