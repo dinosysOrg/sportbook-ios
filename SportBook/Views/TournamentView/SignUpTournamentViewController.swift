@@ -156,7 +156,7 @@ class SignUpTournamentViewController : BaseViewController {
         self.present(self.districtPickerViewController, animated: true, completion: { })
     }
     
-    func configureViewModel() {
+    private func configureViewModel() {
         self.viewModel = TournamentSignUpViewModel(tournament: self.currentTournament!, firstNameText: self.tfFirstName.rx.text.orEmpty.asDriver(), lastNameText: self.tfLastName.rx.text.orEmpty.asDriver(), phoneNumberText: self.tfMobile.rx.text.orEmpty.asDriver())
     }
     

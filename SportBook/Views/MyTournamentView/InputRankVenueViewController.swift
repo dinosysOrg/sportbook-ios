@@ -16,7 +16,7 @@ class InputRankVenueViewController: BaseViewController {
     
     let viewModel = InputRankVenueViewModel()
     
-    private let disposebag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -42,7 +42,7 @@ class InputRankVenueViewController: BaseViewController {
         self.configureUI()
         self.configureViewModel()
         self.configureBindings()
-        self.loadTimeSlot()
+        self.loadTimeBlocks()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,20 +62,36 @@ class InputRankVenueViewController: BaseViewController {
         submitTap.asObservable()
             .flatMap { _ in return self.alertConfirm(text: "update_time_slot_confirm".localized) }
             .filter { $0 }
-            .flatMap { _ in return self.viewModel.updateTimeSlotAndRankVenue() }
-            .subscribe(onCompleted: { _ in}).addDisposableTo(self.disposebag)
+            .flatMap { _ in return self.viewModel.updateTimeBlockAndRankVenue() }
+            .subscribe(onCompleted: { _ in}).addDisposableTo(self.disposeBag)
         
-        self.viewModel.hasFailed.asObservable().skip(1)
-            .flatMap { error in return self.alert(text: error.description) }
-            .subscribe(onNext : { _ in }).addDisposableTo(self.disposebag)
+        self.viewModel.hasFailed.asObservable().skip(1).subscribe(onNext: { [unowned self] error in
+            if case SportBookError.unauthenticated = error {
+                AuthManager.sharedInstance.clearSession()
+                
+                //Present login view controller
+                let loginViewController = UIStoryboard.loadLoginViewController()
+                self.tabBarController?.present(loginViewController, animated: true, completion: { })
+            } else {
+                self.alertError(text: error.description).subscribe(onCompleted: {})
+                    .addDisposableTo(self.disposeBag)
+            }
+        }).disposed(by: disposeBag)
+        
+        self.viewModel.hasUpdatedTimeBlocks.asDriver().drive(onNext: { [unowned self] updated in
+            self.btnSubmit.isEnabled = !updated
+            self.collectionView.isUserInteractionEnabled = !updated
+        }).addDisposableTo(disposeBag)
     }
     
     private func configureUI(){
         self.lblTimeSlotHeader.text = "input_time_range".localized
     }
     
-    func loadTimeSlot(){
-        self.viewModel.loadTimeSlot().subscribe(onCompleted: { _ in}).addDisposableTo(self.disposebag)
+    func loadTimeBlocks(){
+        self.viewModel.loadTimeBlocks().subscribe(onCompleted: { _ in
+            self.collectionView.reloadData()
+        }).addDisposableTo(self.disposeBag)
     }
 }
 
@@ -128,6 +144,8 @@ extension InputRankVenueViewController : UICollectionViewDelegate, UICollectionV
         case 0:
             if column > 0 {
                 cell.layer.addBorder(edge: .left, color: .lightGray, thickness: 1)
+            } else {
+                cell.layer.addBorder(edge: .left, color: .white, thickness: 1)
             }
         default:
             if column == 0 {

@@ -20,8 +20,6 @@
 		C90434CE1F021A8A00B44B6A /* DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434CC1F021A8A00B44B6A /* DayOfWeek.swift */; };
 		C90434D01F021C2D00B44B6A /* TimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434CF1F021C2D00B44B6A /* TimeBlock.swift */; };
 		C90434D11F021C2D00B44B6A /* TimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434CF1F021C2D00B44B6A /* TimeBlock.swift */; };
-		C90434D31F0239F600B44B6A /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434D21F0239F600B44B6A /* TimeSlot.swift */; };
-		C90434D41F0239F600B44B6A /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434D21F0239F600B44B6A /* TimeSlot.swift */; };
 		C90434D91F02561300B44B6A /* WeekDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434D81F02561300B44B6A /* WeekDayCell.swift */; };
 		C90434DA1F02561300B44B6A /* WeekDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434D81F02561300B44B6A /* WeekDayCell.swift */; };
 		C90434DB1F02563700B44B6A /* TimeBlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90434BF1F02165600B44B6A /* TimeBlockCell.swift */; };
@@ -92,6 +90,14 @@
 		C976C3F11EFCFD1000FEA213 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3F01EFCFD1000FEA213 /* ErrorModel.swift */; };
 		C976C3FD1EFD05CD00FEA213 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C3FC1EFD05CD00FEA213 /* UIViewController+Extension.swift */; };
 		C976C4031EFD146300FEA213 /* MatchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C976C4021EFD146300FEA213 /* MatchAPI.swift */; };
+		C97BD1A71F0DD7CF0096B642 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BD1A61F0DD7CF0096B642 /* Section.swift */; };
+		C97BD1A81F0DD7CF0096B642 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BD1A61F0DD7CF0096B642 /* Section.swift */; };
+		C97BD1AA1F0DD7FE0096B642 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BD1A91F0DD7FE0096B642 /* UIView+Extension.swift */; };
+		C97BD1AB1F0DD7FE0096B642 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BD1A91F0DD7FE0096B642 /* UIView+Extension.swift */; };
+		C97BD1B31F0DD8990096B642 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BD1B21F0DD8990096B642 /* ResultCell.swift */; };
+		C97BD1B41F0DD8990096B642 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BD1B21F0DD8990096B642 /* ResultCell.swift */; };
+		C97BD1BF1F0DE8600096B642 /* CollapsibleHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BD1BE1F0DE8600096B642 /* CollapsibleHeaderCell.swift */; };
+		C97BD1C01F0DE8600096B642 /* CollapsibleHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97BD1BE1F0DE8600096B642 /* CollapsibleHeaderCell.swift */; };
 		C97E3C221EEE9397000DC4B2 /* SkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C211EEE9397000DC4B2 /* SkillCell.swift */; };
 		C97E3C241EEE93CE000DC4B2 /* SkillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C231EEE93CE000DC4B2 /* SkillModel.swift */; };
 		C97E3C261EEEA9CD000DC4B2 /* TeamAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E3C251EEEA9CD000DC4B2 /* TeamAPI.swift */; };
@@ -108,6 +114,9 @@
 		C98CEBC41EEE519900D9A908 /* Tournament.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C98CEBC31EEE519900D9A908 /* Tournament.storyboard */; };
 		C98CEBC61EEE53C900D9A908 /* SignUpTournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98CEBC51EEE53C900D9A908 /* SignUpTournamentViewController.swift */; };
 		C98FD1CA1EDD5127004BA4E3 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98FD1C91EDD5127004BA4E3 /* ThemeManager.swift */; };
+		C9A54CFC1F0C8A760051E411 /* OpponentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A54CFB1F0C8A760051E411 /* OpponentModel.swift */; };
+		C9A54D001F0CCE2E0051E411 /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A54CFF1F0CCE2E0051E411 /* TimeSlot.swift */; };
+		C9A54D011F0CCE2E0051E411 /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A54CFF1F0CCE2E0051E411 /* TimeSlot.swift */; };
 		C9AE767D1EDFC6CC00F2D4D4 /* TournamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AE767C1EDFC6CC00F2D4D4 /* TournamentViewController.swift */; };
 		C9AE767F1EDFC76000F2D4D4 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AE767E1EDFC76000F2D4D4 /* StatisticViewController.swift */; };
 		C9B27E831EDE6D93009532E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9B27E851EDE6D93009532E2 /* Localizable.strings */; };
@@ -215,7 +224,6 @@
 		C90434C61F02180700B44B6A /* InputRankVenueViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputRankVenueViewModel.swift; sourceTree = "<group>"; };
 		C90434CC1F021A8A00B44B6A /* DayOfWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOfWeek.swift; sourceTree = "<group>"; };
 		C90434CF1F021C2D00B44B6A /* TimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBlock.swift; sourceTree = "<group>"; };
-		C90434D21F0239F600B44B6A /* TimeSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
 		C90434D81F02561300B44B6A /* WeekDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDayCell.swift; sourceTree = "<group>"; };
 		C91A21D31F00F5B700CFE11D /* MyTournament.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyTournament.storyboard; sourceTree = "<group>"; };
 		C91A21D51F00F63D00CFE11D /* RuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +274,10 @@
 		C976C3F01EFCFD1000FEA213 /* ErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		C976C3FC1EFD05CD00FEA213 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C976C4021EFD146300FEA213 /* MatchAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchAPI.swift; sourceTree = "<group>"; };
+		C97BD1A61F0DD7CF0096B642 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		C97BD1A91F0DD7FE0096B642 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		C97BD1B21F0DD8990096B642 /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
+		C97BD1BE1F0DE8600096B642 /* CollapsibleHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleHeaderCell.swift; sourceTree = "<group>"; };
 		C97E3C211EEE9397000DC4B2 /* SkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillCell.swift; sourceTree = "<group>"; };
 		C97E3C231EEE93CE000DC4B2 /* SkillModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillModel.swift; sourceTree = "<group>"; };
 		C97E3C251EEEA9CD000DC4B2 /* TeamAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamAPI.swift; sourceTree = "<group>"; };
@@ -280,6 +292,8 @@
 		C98CEBC31EEE519900D9A908 /* Tournament.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tournament.storyboard; sourceTree = "<group>"; };
 		C98CEBC51EEE53C900D9A908 /* SignUpTournamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTournamentViewController.swift; sourceTree = "<group>"; };
 		C98FD1C91EDD5127004BA4E3 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		C9A54CFB1F0C8A760051E411 /* OpponentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpponentModel.swift; sourceTree = "<group>"; };
+		C9A54CFF1F0CCE2E0051E411 /* TimeSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
 		C9AE767C1EDFC6CC00F2D4D4 /* TournamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentViewController.swift; sourceTree = "<group>"; };
 		C9AE767E1EDFC76000F2D4D4 /* StatisticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		C9B27E841EDE6D93009532E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -375,6 +389,8 @@
 				C90434D81F02561300B44B6A /* WeekDayCell.swift */,
 				C930AF251F04DCD5007952E8 /* OpponentCell.swift */,
 				C930AF2F1F04E7D9007952E8 /* TournamentMatchCell.swift */,
+				C97BD1B21F0DD8990096B642 /* ResultCell.swift */,
+				C97BD1BE1F0DE8600096B642 /* CollapsibleHeaderCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -387,7 +403,8 @@
 				C930AF341F04F5C3007952E8 /* TimeTableViewModel.swift */,
 				C930AF361F04F5CC007952E8 /* ResultViewModel.swift */,
 			);
-			path = MyTournamentViewModels;
+			name = MyTournamentViewModels;
+			path = TournamentViewModels/MyTournamentViewModels;
 			sourceTree = "<group>";
 		};
 		C91A21D21F00F58E00CFE11D /* MyTournamentView */ = {
@@ -493,11 +510,13 @@
 				C97E3C231EEE93CE000DC4B2 /* SkillModel.swift */,
 				C98C51051EF7DC4E008F67C5 /* LocationModel.swift */,
 				C9C197341EFBC21A003B5683 /* TeamModel.swift */,
+				C9A54CFB1F0C8A760051E411 /* OpponentModel.swift */,
 				C976C3F01EFCFD1000FEA213 /* ErrorModel.swift */,
 				C90434CC1F021A8A00B44B6A /* DayOfWeek.swift */,
+				C9A54CFF1F0CCE2E0051E411 /* TimeSlot.swift */,
 				C90434CF1F021C2D00B44B6A /* TimeBlock.swift */,
-				C90434D21F0239F600B44B6A /* TimeSlot.swift */,
 				C930AF3C1F05002D007952E8 /* GroupModel.swift */,
+				C97BD1A61F0DD7CF0096B642 /* Section.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -512,6 +531,7 @@
 				C97522CE1EE652DC00104336 /* ProfileView */,
 				C97522CF1EE652DC00104336 /* StatisticView */,
 				C97522D01EE652DC00104336 /* TournamentView */,
+				C91A21D21F00F58E00CFE11D /* MyTournamentView */,
 				C96AC9811ECD88900055580B /* BaseViewController.swift */,
 			);
 			path = Views;
@@ -522,6 +542,7 @@
 			children = (
 				C96AC9831ECD98410055580B /* AuthenticationViewModels */,
 				C9B65D681EE7B1A100C6F84C /* TournamentViewModels */,
+				C90434C31F02178B00B44B6A /* MyTournamentViewModels */,
 				C930AF381F04F94C007952E8 /* BaseViewModel.swift */,
 			);
 			path = ViewModels;
@@ -583,6 +604,7 @@
 				C976C3EA1EFCCB0C00FEA213 /* Date+Extension.swift */,
 				C976C3FC1EFD05CD00FEA213 /* UIViewController+Extension.swift */,
 				C90434BB1F02090D00B44B6A /* CALayer+Extension.swift */,
+				C97BD1A91F0DD7FE0096B642 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -667,7 +689,6 @@
 				C97522D31EE6573200104336 /* TournamentDetailViewController.swift */,
 				C976C3E11EFCAEFC00FEA213 /* MyTournamentDetailViewController.swift */,
 				C98CEBC51EEE53C900D9A908 /* SignUpTournamentViewController.swift */,
-				C91A21D21F00F58E00CFE11D /* MyTournamentView */,
 			);
 			path = TournamentView;
 			sourceTree = "<group>";
@@ -679,7 +700,6 @@
 				C9B65D691EE7B21400C6F84C /* TournamentViewModel.swift */,
 				C90434C41F0217A400B44B6A /* MyTournamentViewModel.swift */,
 				C9B65D6F1EE7B23D00C6F84C /* TournamentDetailViewModel.swift */,
-				C90434C31F02178B00B44B6A /* MyTournamentViewModels */,
 			);
 			path = TournamentViewModels;
 			sourceTree = "<group>";
@@ -1151,11 +1171,12 @@
 				C930AF261F04DCD5007952E8 /* OpponentCell.swift in Sources */,
 				C930AF3D1F05002D007952E8 /* GroupModel.swift in Sources */,
 				C90434CD1F021A8A00B44B6A /* DayOfWeek.swift in Sources */,
-				C90434D31F0239F600B44B6A /* TimeSlot.swift in Sources */,
+				C9A54D001F0CCE2E0051E411 /* TimeSlot.swift in Sources */,
 				C98CEBC61EEE53C900D9A908 /* SignUpTournamentViewController.swift in Sources */,
 				C97E3C241EEE93CE000DC4B2 /* SkillModel.swift in Sources */,
 				C97E3C221EEE9397000DC4B2 /* SkillCell.swift in Sources */,
 				C9C197381EFBC7E8003B5683 /* TournamentCell.swift in Sources */,
+				C97BD1B31F0DD8990096B642 /* ResultCell.swift in Sources */,
 				C98FD1CA1EDD5127004BA4E3 /* ThemeManager.swift in Sources */,
 				C9E7087F1ED41CE00062B0BA /* UserManager.swift in Sources */,
 				C93BCC181ED81338008A99FC /* Validation.swift in Sources */,
@@ -1164,6 +1185,8 @@
 				C91A21D81F00F64C00CFE11D /* InputRankVenueViewController.swift in Sources */,
 				C930AF331F04F5B4007952E8 /* OpponentViewModel.swift in Sources */,
 				C930AF391F04F94C007952E8 /* BaseViewModel.swift in Sources */,
+				C97BD1AA1F0DD7FE0096B642 /* UIView+Extension.swift in Sources */,
+				C97BD1BF1F0DE8600096B642 /* CollapsibleHeaderCell.swift in Sources */,
 				C9E7087B1ED41C000062B0BA /* String+Extension.swift in Sources */,
 				C976C3E81EFCB59400FEA213 /* TournamentMenuCell.swift in Sources */,
 				C9F429381ED5683700A304C3 /* ProfileViewController.swift in Sources */,
@@ -1175,6 +1198,7 @@
 				C9E708771ED3E6630062B0BA /* SkillAPI.swift in Sources */,
 				C93482071ED59B4800B069C1 /* SignupViewModel.swift in Sources */,
 				C9C1973C1EFBC86E003B5683 /* MyTournamentCell.swift in Sources */,
+				C9A54CFC1F0C8A760051E411 /* OpponentModel.swift in Sources */,
 				C90434C71F02180700B44B6A /* InputRankVenueViewModel.swift in Sources */,
 				C90434C51F0217A400B44B6A /* MyTournamentViewModel.swift in Sources */,
 				C93482031ED59B4100B069C1 /* ForgotPasswordViewModel.swift in Sources */,
@@ -1192,6 +1216,7 @@
 				C976C3E21EFCAEFC00FEA213 /* MyTournamentDetailViewController.swift in Sources */,
 				C96AC9891ECD99000055580B /* ForgotPasswordViewController.swift in Sources */,
 				C9B65D701EE7B23D00C6F84C /* TournamentDetailViewModel.swift in Sources */,
+				C97BD1A71F0DD7CF0096B642 /* Section.swift in Sources */,
 				C90434D91F02561300B44B6A /* WeekDayCell.swift in Sources */,
 				C97E3C2A1EEEA9E9000DC4B2 /* DeviceAPI.swift in Sources */,
 				C9C197351EFBC21A003B5683 /* TeamModel.swift in Sources */,
@@ -1252,16 +1277,18 @@
 				C976C3E41EFCB35100FEA213 /* MyTournamentCell.swift in Sources */,
 				C976C3E51EFCB35100FEA213 /* TournamentCell.swift in Sources */,
 				C90434DA1F02561300B44B6A /* WeekDayCell.swift in Sources */,
+				C97BD1B41F0DD8990096B642 /* ResultCell.swift in Sources */,
 				C976C3E61EFCB35100FEA213 /* MyTournamentDetailViewController.swift in Sources */,
 				C913898F1EFA275F0035F0F4 /* DatePickerViewController.swift in Sources */,
 				C9FA8A601EF244A100AA73D5 /* SkillModel.swift in Sources */,
 				C9FA8A611EF244A100AA73D5 /* SkillCell.swift in Sources */,
+				C97BD1A81F0DD7CF0096B642 /* Section.swift in Sources */,
 				C9FA8A621EF244A100AA73D5 /* SignUpTournamentViewController.swift in Sources */,
 				C9FA8A631EF244A100AA73D5 /* TeamAPI.swift in Sources */,
 				C976C3E91EFCB6EC00FEA213 /* TournamentMenuCell.swift in Sources */,
-				C90434D41F0239F600B44B6A /* TimeSlot.swift in Sources */,
 				C90434C81F02180700B44B6A /* InputRankVenueViewModel.swift in Sources */,
 				C93B26DA1F0102F9006A81DB /* InputRankVenueViewController.swift in Sources */,
+				C9A54D011F0CCE2E0051E411 /* TimeSlot.swift in Sources */,
 				C93B26D91F0102F7006A81DB /* RuleViewController.swift in Sources */,
 				C9FA8A641EF244A100AA73D5 /* InvitationAPI.swift in Sources */,
 				C9FA8A651EF244A100AA73D5 /* DeviceAPI.swift in Sources */,
@@ -1269,6 +1296,7 @@
 				C9D8446A1EE7FB0E00C77FD0 /* ThemeManager.swift in Sources */,
 				C9D8446B1EE7FB0E00C77FD0 /* UserManager.swift in Sources */,
 				C9FA8A7D1EF29A0000AA73D5 /* TournamentSignUpViewModel.swift in Sources */,
+				C97BD1C01F0DE8600096B642 /* CollapsibleHeaderCell.swift in Sources */,
 				C9D8446C1EE7FB0E00C77FD0 /* Validation.swift in Sources */,
 				C9D8446D1EE7FB0E00C77FD0 /* String+Extension.swift in Sources */,
 				C90434CE1F021A8A00B44B6A /* DayOfWeek.swift in Sources */,
@@ -1289,6 +1317,7 @@
 				C9D8447E1EE7FB0E00C77FD0 /* ForgotPasswordViewController.swift in Sources */,
 				C9D8447F1EE7FB0E00C77FD0 /* TournamentDetailViewModel.swift in Sources */,
 				C93B26DD1F010301006A81DB /* ResultViewController.swift in Sources */,
+				C97BD1AB1F0DD7FE0096B642 /* UIView+Extension.swift in Sources */,
 				C9D844801EE7FB0E00C77FD0 /* SportBookAPI.swift in Sources */,
 				C9D844811EE7FB0E00C77FD0 /* AuthenticationAPI.swift in Sources */,
 				C9D844821EE7FB0E00C77FD0 /* StatisticViewController.swift in Sources */,

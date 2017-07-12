@@ -43,7 +43,7 @@ class TournamentDetailViewController : BaseViewController {
         self.viewModel.loadTournamentDetail()
     }
     
-    func configureViewModel() {
+    private func configureViewModel() {
         self.viewModel.tournament.value = currentTournament
     }
     

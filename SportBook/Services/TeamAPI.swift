@@ -24,6 +24,7 @@ let TeamProvider = RxMoyaProvider<TeamAPI>(endpointClosure: teamEndpointClosure)
 public enum TeamAPI  {
     case timeSlot(String, Int) //Get time slots for team
     case teams(Int, [Int], [String:Any]) //Updates time slot and venue ranking for team
+    case timeBlock(Int) //Get time blocks and venue ranking for team
 }
 
 extension TeamAPI : TargetType {
@@ -35,12 +36,14 @@ extension TeamAPI : TargetType {
             return "/teams/\(id)/time_slots/"
         case .teams(let id, _, _):
             return "/teams/\(id)/"
+        case .timeBlock(let id):
+            return "/teams/\(id)/time_blocks/"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .timeSlot(_):
+        case .timeSlot(_), .timeBlock(_):
             return .get
             
         case .teams(_):
@@ -50,27 +53,30 @@ extension TeamAPI : TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
-        case .timeSlot(let type,let id):
+        case .timeSlot(_, let id):
             return [
                 "type" : "available", //Type
                 "id " : id, //Team Id
             ]
-        case .teams(let id, let rankVenue, let preferredTimeBlocks):
-            let params = [
-                "team_id" : id, //Team Id
+        case .teams(_, let rankVenue, let preferredTimeBlocks):
+            return [
                 "venue_ranking" : rankVenue, //Venue ranking for team
                 "preferred_time_blocks" : preferredTimeBlocks //Preferred time block for team
-            ] as [String : Any]
-            
-            let jsonObject = JSON(params)
-            print(jsonObject)
-            
-            return params
+            ]
+        case .timeBlock(let id):
+            return [
+                "id " : id, //Team Id
+            ]
         }
     }
     
     public var parameterEncoding: ParameterEncoding {
-        return URLEncoding.default
+        switch self.method {
+        case .put, .post:
+            return JSONEncoding.default
+        default:
+            return URLEncoding.default
+        }
     }
     
     public var task: Task {
@@ -78,7 +84,7 @@ extension TeamAPI : TargetType {
     }
     
     public var validate: Bool {
-        return false
+        return true
     }
     
     public var sampleData: Data {

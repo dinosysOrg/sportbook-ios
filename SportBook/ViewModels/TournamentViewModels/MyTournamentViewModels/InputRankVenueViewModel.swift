@@ -22,7 +22,9 @@ class InputRankVenueViewModel : BaseViewModel {
     
     let timeBlocks = [TimeBlock.morning, TimeBlock.afternoon, TimeBlock.evening]
     
-    func loadTimeSlot() -> Observable<Void> {
+    let hasUpdatedTimeBlocks = Variable<Bool>(true)
+    
+    func loadTimeBlocks() -> Observable<Void> {
         return Observable<Void>.create { observer in
             
             guard let myTeam = self.tournament.value?.myTeam else {
@@ -32,7 +34,7 @@ class InputRankVenueViewModel : BaseViewModel {
             
             self.isLoading.value = true
             
-            TeamProvider.request(TeamAPI.timeSlot("type", myTeam.id))
+            TeamProvider.request(TeamAPI.timeBlock(myTeam.id))
                 .subscribe(onNext: { response in
                     self.isLoading.value = false
                     
@@ -41,6 +43,39 @@ class InputRankVenueViewModel : BaseViewModel {
                     } else if 200..<300 ~= response.statusCode {
                         let jsonObject = JSON(response.data)
                         print(jsonObject)
+                        
+                        let preferredTimeBlocks = jsonObject["preferred_time_blocks"]
+                        
+                        if let sundayBlocks = preferredTimeBlocks[DayOfWeek.sunday.rawValue].arrayObject as? [[Int]] {
+                            self.timeSlots[0].blocks = sundayBlocks.map { TimeBlock.parse($0) }
+                        }
+                        
+                        if let mondayBlocks = preferredTimeBlocks[DayOfWeek.monday.rawValue].arrayObject as? [[Int]] {
+                            self.timeSlots[1].blocks = mondayBlocks.map { TimeBlock.parse($0) }
+                        }
+                        
+                        if let tuesdayBlocks = preferredTimeBlocks[DayOfWeek.tuesday.rawValue].arrayObject as? [[Int]] {
+                            self.timeSlots[2].blocks = tuesdayBlocks.map { TimeBlock.parse($0) }
+                        }
+                        
+                        if let wednesdayBlocks = preferredTimeBlocks[DayOfWeek.wednesday.rawValue].arrayObject as? [[Int]] {
+                            self.timeSlots[3].blocks = wednesdayBlocks.map { TimeBlock.parse($0) }
+                        }
+                        
+                        if let thursdayBlocks = preferredTimeBlocks[DayOfWeek.thursday.rawValue].arrayObject as? [[Int]] {
+                            self.timeSlots[4].blocks = thursdayBlocks.map { TimeBlock.parse($0) }
+                        }
+                        
+                        if let fridayBlocks = preferredTimeBlocks[DayOfWeek.friday.rawValue].arrayObject as? [[Int]] {
+                            self.timeSlots[5].blocks = fridayBlocks.map { TimeBlock.parse($0) }
+                        }
+                        
+                        if let saturdayBlocks = preferredTimeBlocks[DayOfWeek.saturday.rawValue].arrayObject as? [[Int]] {
+                            self.timeSlots[6].blocks = saturdayBlocks.map { TimeBlock.parse($0) }
+                        }
+                        
+                        self.hasUpdatedTimeBlocks.value = self.timeSlots.filter { $0.blocks.count > 0 }.map { $0.blocks.count }.reduce(0, +) > 0
+                        
                     } else {
                         self.hasFailed.value = SportBookError.apiError(JSON(response.data)["errors"])
                     }
@@ -53,12 +88,11 @@ class InputRankVenueViewModel : BaseViewModel {
                     self.hasFailed.value = SportBookError.connectionFailure
                 }).addDisposableTo(self.disposeBag)
             
-            
             return Disposables.create()
         }
     }
     
-    func updateTimeSlotAndRankVenue() -> Observable<Void> {
+    func updateTimeBlockAndRankVenue() -> Observable<Void> {
         return Observable<Void>.create { observer in
             
             guard let myTeam = self.tournament.value?.myTeam else {
@@ -76,12 +110,13 @@ class InputRankVenueViewModel : BaseViewModel {
                 
                 var timeSlotsJson = [String: Any]()
                 
-                for timeSlot in selectedTimeSlots {
-                    timeSlotsJson[timeSlot.day.rawValue] = timeSlot.blocks.map { $0.times }
-                }
+                selectedTimeSlots.forEach({ timeSlot in
+                     timeSlotsJson[timeSlot.day.rawValue] = timeSlot.blocks.map { $0.times }
+                })
                 
                 TeamProvider.request(.teams(myTeam.id, [1,2,3,4], timeSlotsJson))
                     .subscribe(onNext: { response in
+                        
                         self.isLoading.value = false
                         
                         if 401 == response.statusCode {
@@ -97,7 +132,6 @@ class InputRankVenueViewModel : BaseViewModel {
                         }
                         
                         observer.onCompleted()
-                        
                     }, onError: { error in
                         self.isLoading.value = false
                         self.hasFailed.value = SportBookError.connectionFailure

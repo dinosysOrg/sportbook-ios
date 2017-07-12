@@ -15,4 +15,10 @@ class TimeSlot {
     init(day: DayOfWeek) {
         self.day = day
     }
+    
+    func toJson() -> [String: Any] {
+        return [
+            day.rawValue : blocks.map { $0.times }
+        ]
+    }
 }
